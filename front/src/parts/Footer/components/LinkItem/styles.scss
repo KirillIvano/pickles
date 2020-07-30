@@ -1,0 +1,7 @@
+.linkItem {
+    @apply text-sm text-gray-700;
+}
+
+.linkItem + .linkItem {
+    @apply mt-3;
+}

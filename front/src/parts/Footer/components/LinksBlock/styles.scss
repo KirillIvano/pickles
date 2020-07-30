@@ -1,0 +1,17 @@
+.linksBlock {
+    @apply pt-2 mt-6;
+
+    .linksBlockTitle {
+        @apply py-1 border-b-2 border-gray-700 text-sm font-bold;
+    }
+
+    .linksBlockContent {
+        @apply pt-6 text-sm;
+    }
+}
+
+@screen sm {
+    .linksBlock {
+        @apply mt-0;
+    }
+}

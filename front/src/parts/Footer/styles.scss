@@ -1,0 +1,15 @@
+.footer {
+    @apply bg-gray-100;
+
+    .footerContent {
+        @apply flex-col p-10;
+    }
+}
+
+@screen sm {
+    .footer {
+        .footerContent {
+            @apply flex;
+        }
+    }
+}

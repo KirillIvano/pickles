@@ -1,0 +1,19 @@
+.footerContacts {
+    .companyName {
+        @apply text-3xl font-bold;
+    }
+
+    .contactsContainer {
+        @apply mt-6;
+
+        .contactsItem {
+            @apply text-sm mt-3;
+        }
+    }
+}
+
+@screen sm {
+    .footerContacts {
+        flex: 0 0 200px;
+    }
+}
