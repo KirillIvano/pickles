@@ -1,7 +1,12 @@
+@use "~vars/pads";
+@use "~vars/colors";
+
 .navbar {
-    @apply flex;
+    display: flex;
 
     .navItemWrapper {
-        @apply p-2 m-2 text-black;
+        padding: pads.$pad2;
+        margin: pads.$pad2;
+        color: colors.$black;
     }
 }

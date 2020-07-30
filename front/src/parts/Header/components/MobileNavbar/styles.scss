@@ -1,11 +1,19 @@
+@use "~vars/pads";
+
 .navbar {
-    @apply flex-col items-center overflow-hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
 
     max-height: 0;
     transition: max-height 0.3s;
 
     .navItem {
-        @apply flex justify-center p-3;
+        display: flex;
+        justify-content: center;
+        padding: pads.$pad3;
     }
 }
 

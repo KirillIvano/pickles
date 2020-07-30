@@ -1,9 +1,17 @@
+@use "~vars/screen";
+@use "~vars/pads";
+
 .header {
-    @apply p-4 pt-0;
+    padding: pads.$pad4;
+    padding-top: 0;
+
     height: 80px;
 
     .headerContent {
-        @apply flex justify-between items-center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         height: 100%;
     }
 }
