@@ -1,17 +1,24 @@
+@use "~vars/screen";
+@use "~vars/pads";
+@use "~vars/colors";
+
 .linksBlock {
-    @apply pt-2 mt-6;
+    padding-top: pads.$pad2;
+    margin-top: pads.$pad6;
 
     .linksBlockTitle {
-        @apply py-1 border-b-2 border-gray-700 text-sm font-bold;
+        padding: pads.$pad1 0;
+        border-bottom: 2px solid colors.$dark_gray;
+        font-weight: bold;
     }
 
     .linksBlockContent {
-        @apply pt-6 text-sm;
+        padding-top: pads.$pad6;
     }
 }
 
-@screen sm {
+@media (min-height: screen.$sm) {
     .linksBlock {
-        @apply mt-0;
+        margin-top: pads.$pad6;
     }
 }

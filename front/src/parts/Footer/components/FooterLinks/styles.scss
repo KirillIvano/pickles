@@ -1,0 +1,13 @@
+@use "~vars/screen";
+@use "~vars/pads";
+
+.footerLinks {
+    flex: 1 1 auto;
+    padding-top: pads.$pad4;
+}
+
+@media (min-width: screen.$sm) {
+    .footerLinks {
+        margin-left: pads.$pad12;
+    }
+}

@@ -1,15 +1,21 @@
+@use "~vars/screen";
+@use "~vars/colors";
+@use "~vars/pads";
+
 .footer {
-    @apply bg-gray-100;
+    background: colors.$light_gray;
 
     .footerContent {
-        @apply flex-col p-10;
+        display: flex;
+        flex-direction: column;
+        padding: pads.$pad10;
     }
 }
 
-@screen sm {
+@media (min-width: screen.$sm) {
     .footer {
         .footerContent {
-            @apply flex;
+            flex-direction: row;
         }
     }
 }

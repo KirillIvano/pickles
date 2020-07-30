@@ -1,47 +1,47 @@
 import React from 'react';
-import classnames from 'classnames';
+import {Row, Col} from 'react-flexbox-grid';
 
-import styles from './styles.less';
 import {LinkItem, LinksBlock} from './..';
+import styles from './styles.scss';
 
 
 const FooterLinks = () => (
-    <div className="flex flex-wrap w-full -mx-4 pt-4 md:ml-12">
-        <div className="w-full md:w-1/2 px-4">
+    <Row className={styles.footerLinks}>
+        <Col md={6}>
             <LinksBlock title={'Каталог'}>
-                <div className="flex -mx-4">
-                    <div className="w-1/2 px-4">
+                <Row>
+                    <Col xs={6}>
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    </div>
-                    <div className="w-1/2 px-4">
+                    </Col>
+                    <Col xs={6}>
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                         <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </LinksBlock>
-        </div>
-        <div className="w-full md:w-1/4 px-4">
-            <LinksBlock title={'Каталог'}>
-                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-            </LinksBlock>
-        </div>
-        <div className="w-full md:w-1/4 px-4">
+        </Col>
+        <Col md={3}>
             <LinksBlock title={'Каталог'}>
                 <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                 <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                 <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
                 <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
             </LinksBlock>
-        </div>
-    </div>
+        </Col>
+        <Col md={3}>
+            <LinksBlock title={'Каталог'}>
+                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
+                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
+                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
+                <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
+            </LinksBlock>
+        </Col>
+    </Row>
 );
 
 export default FooterLinks;

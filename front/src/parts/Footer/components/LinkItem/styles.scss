@@ -1,7 +1,12 @@
+@use "~vars/pads";
+@use "~vars/colors";
+@use "~vars/fonts";
+
 .linkItem {
-    @apply text-sm text-gray-700;
+    color: colors.$dark_gray;
+    font-size: fonts.$xs;
 }
 
 .linkItem + .linkItem {
-    @apply mt-3;
+    margin-top: pads.$pad3;
 }

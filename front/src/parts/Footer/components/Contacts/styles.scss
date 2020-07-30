@@ -1,18 +1,25 @@
+@use "~vars/screen";
+@use "~vars/pads";
+@use "~vars/fonts";
+
 .footerContacts {
     .companyName {
-        @apply text-3xl font-bold;
+        font-weight: bold;
+        font-size: fonts.$xxxl;
     }
 
     .contactsContainer {
-        @apply mt-6;
+        margin-top: pads.$pad6;
 
         .contactsItem {
-            @apply text-sm mt-3;
+            margin-top: pads.$pad3;
+
+            font-size: fonts.$xs;
         }
     }
 }
 
-@screen sm {
+@media (min-width: screen.$sm) {
     .footerContacts {
         flex: 0 0 200px;
     }
