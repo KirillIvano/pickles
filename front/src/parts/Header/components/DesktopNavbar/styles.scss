@@ -1,0 +1,7 @@
+.navbar {
+    @apply flex;
+
+    .navItemWrapper {
+        @apply p-2 m-2 text-black;
+    }
+}

@@ -1,0 +1,9 @@
+.header {
+    @apply p-4 pt-0;
+    height: 80px;
+
+    .headerContent {
+        @apply flex justify-between items-center;
+        height: 100%;
+    }
+}

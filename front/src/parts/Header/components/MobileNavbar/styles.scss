@@ -1,0 +1,21 @@
+.navbar {
+    @apply flex-col items-center overflow-hidden;
+
+    max-height: 0;
+    transition: max-height 0.3s;
+
+    .navItem {
+        @apply flex justify-center p-3;
+    }
+}
+
+.navbar.entering,
+.navbar.entered {
+    max-height: 200px;
+}
+
+.navbar.exiting,
+.navbar.exited,
+.navbar.unmounted {
+    max-height: 0;
+}

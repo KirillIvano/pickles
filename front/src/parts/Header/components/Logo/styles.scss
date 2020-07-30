@@ -1,0 +1,10 @@
+.logoContainer {
+    @apply relative;
+
+    align-self: initial;
+    height: 100%;
+
+    .logo {
+        height: 100%;
+    }
+}
