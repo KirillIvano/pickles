@@ -5,6 +5,13 @@ from helpers import random_hash
 
 
 class Category(Model):
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
     id = AutoField(primary_key=True)
     name = CharField(
         verbose_name='Название',
@@ -17,6 +24,13 @@ class Category(Model):
 
 
 class Product(Model):
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+
+    def __str__(self):
+        return f'{self.name} | {self.category.name}'
+
     id = AutoField(primary_key=True)
     name = CharField(
         verbose_name='Название',
@@ -57,8 +71,14 @@ class ProductImage(Model):
         super().save(*a, **kw)
 
 
-
 class ProductInfo(Model):
+    class Meta:
+        verbose_name = 'Информация о продукте'
+        verbose_name_plural = 'Информация о продукте'
+
+    def __str__(self):
+        return f'{self.product.name} {self.name}'
+
     product = ForeignKey(
         verbose_name='Продукт',
         to=Product,
