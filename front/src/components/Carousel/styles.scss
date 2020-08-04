@@ -1,0 +1,47 @@
+@import "~vars/fonts.less";
+
+.carousel {
+    position: relative;
+
+    width: 100%;
+    overflow: hidden;
+
+    $controlwidth: 46px;
+
+    .carouselLeftControl,
+    .carouselRightControl {
+        position: absolute;
+        height: 91px;
+        width: @controlWidth;
+
+        top: 50%;
+        margin-top: -45px;
+
+        background: url("./images/arrow.svg");
+        transform-origin: center center;
+
+        cursor: pointer;
+
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .carouselLeftControl {
+        left: 0;
+        transform: translateX(-$controlwidth) rotate(180deg);
+    }
+
+    .carouselRightControl {
+        right: 0;
+        transform: translateX($controlwidth);
+    }
+}
+
+.carousel:hover {
+    .carouselLeftControl {
+        transform: translateX(0) rotate(180deg);
+    }
+
+    .carouselRightControl {
+        transform: translateX(0);
+    }
+}
