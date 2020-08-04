@@ -1,9 +1,11 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
+import db_interface.category
+from helpers.wrap_response import wrap_data, wrap_error
 
 
-def every() -> HttpResponse:
-    ...
+def every(request: HttpRequest) -> HttpResponse:
+    return wrap_data(db_interface.category.every())
 
 
-def by_id(category_id) -> HttpResponse:
+def by_id(request: HttpRequest, category_id) -> HttpResponse:
     ...
