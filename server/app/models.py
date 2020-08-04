@@ -49,6 +49,13 @@ class Product(Model):
 
 
 class ProductImage(Model):
+    class Meta:
+        verbose_name = 'Фото продукта'
+        verbose_name_plural = 'Фото продукта'
+
+    def __str__(self):
+        return f'Фото #{self.id}'
+
     product = ForeignKey(
         verbose_name='Продукт',
         to=Product, on_delete=CASCADE
@@ -88,6 +95,6 @@ class ProductInfo(Model):
         verbose_name='Название',
         max_length=128
     )
-    text = TextField(
+    value = TextField(
         verbose_name='Текст'
     )

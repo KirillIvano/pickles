@@ -6,16 +6,20 @@ from app.models import *
 admin.site.site_header = "Админ-панель Aglobell"
 
 
-class ProductInfoInline(StackedInline):
-    model = ProductInfo
-
-
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
     pass
 
 
+class ProductInfoInline(StackedInline):
+    model = ProductInfo
+
+
+class ProductImageInline(StackedInline):
+    model = ProductImage
+
+
 @admin.register(Product)
 class ProductAdmin(ModelAdmin):
-    inlines = [ProductInfoInline]
+    inlines = [ProductInfoInline, ProductImageInline]
 

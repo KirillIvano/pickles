@@ -1,12 +1,10 @@
-from app import models
 from django.db.models.fields.files import ImageFieldFile
-import json
 import pprint
 import datetime
 pp = pprint.PrettyPrinter().pprint
 
 
-def to_dict(model, fields: list):
+def to_dict(model, fields: list) -> dict:
     """
     fields = [
         ('actual_key', 'newKey'),
@@ -19,7 +17,7 @@ def to_dict(model, fields: list):
     if 'hash' in model.keys():
         model.pop('hash')
 
-    if fields is None:
+    if len(fields) == 0:
         return model
     else:
         new_model = {}
@@ -32,8 +30,8 @@ def to_dict(model, fields: list):
         return new_model
 
 
-def _select_from_query(query, fields):
-    if fields is not None and len(fields) == 1:
+def select_from_query(query, fields):
+    if len(fields) == 1:
         field = fields[0]
         for obj in query:
             attr = obj.__getattribute__(field[0])
@@ -46,31 +44,28 @@ def _select_from_query(query, fields):
             yield to_dict(obj, fields)
 
 
-def select(model, key, value, fields: list = None):
+def select(model, key, value, fields: list):
     """
     fields = [
         ('actual_key', 'newKey'),
     ]
     """
     query = model.objects.filter(**{key: value})
-    return _select_from_query(query, fields)
+    return select_from_query(query, fields)
 
 
-def select_single(
-        model,
-        key,
-        value,
-        fields: list = None
-):
+def select_single(model, key, value, fields: list):
     """
     fields = [
         ('actual_key', 'newKey'),
     ]
     """
     try:
-        object = model.objects.get(**{key: value})
-        object = to_dict(object, fields)
+        query = model.objects.get(**{key: value})
+        instances = list(select_from_query([query], fields))
+        if len(instances) == 0:
+            return None
+        else:
+            return instances[0]
     except model.DoesNotExist:
-        object = None
-
-    return object
+        return None
