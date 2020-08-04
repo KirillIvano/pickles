@@ -9,7 +9,7 @@ module.exports = {
         alias: {
             '@': path.resolve(__dirname, 'src'),
             mobx: path.resolve(__dirname, "/node_modules/mobx/lib/mobx.es6.js"),
-            '~vars': path.resolve(__dirname, 'src', 'vars')
+            vars: path.resolve(__dirname, 'src', 'vars')
         },
     },
     output: {

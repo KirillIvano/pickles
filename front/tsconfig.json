@@ -8,11 +8,11 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "jsx": "react",
-
+    "allowJs": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "~vars": ["src/vars"]
+      "~vars/*": ["src/vars/*.less"]
     },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
