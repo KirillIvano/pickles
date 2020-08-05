@@ -1,0 +1,73 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/colors";
+@import "~vars/screen";
+
+.deliveryInfo {
+    flex-basis: 200px;
+    flex-grow: 1;
+
+    padding: $pad12;
+
+    .deliveryDescription {
+        margin-top: $pad4;
+
+        color: $dark_gray;
+        font-size: $xs;
+        line-height: 1.5;
+    }
+
+    .deliveryDescription.hightlighted {
+        color: $black;
+    }
+
+    .deliveryContact {
+        position: relative;
+
+        display: block;
+        width: max-content;
+        margin-top: $pad4;
+
+        font-size: $lg;
+        color: $firm;
+        text-decoration: none;
+
+        cursor: pointer;
+    }
+
+    .deliveryContact::after {
+        content: "";
+        position: absolute;
+
+        height: 2px;
+
+        bottom: -5px;
+        left: 50%;
+        right: 50%;
+
+        background: $firm;
+
+        transition: 0.5s ease-in-out;
+    }
+
+    .deliveryContact:hover::after,
+    .deliveryContact:focus::after {
+        right: 0;
+        left: 0;
+    }
+
+    .deliveryContact:active,
+    .deliveryContact:focus {
+        outline: none;
+    }
+
+    .deliveryToCatalog {
+        margin-top: $pad12;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .deliveryInfo {
+        padding: $pad12 $pad6;
+    }
+}

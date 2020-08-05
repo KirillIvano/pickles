@@ -1,0 +1,13 @@
+@import "~vars/screen";
+
+.deliveryMap {
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+@media all and (max-width: $screen_md) {
+    .deliveryMap {
+        flex-grow: 0;
+        flex-basis: 250px;
+    }
+}

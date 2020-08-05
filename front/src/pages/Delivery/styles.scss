@@ -1,0 +1,14 @@
+@import "~vars/screen";
+
+.deliveryPage {
+    display: flex;
+    min-height: 70vh;
+
+    height: auto;
+}
+
+@media all and (max-width: $screen_md) {
+    .deliveryPage {
+        flex-direction: column;
+    }
+}
