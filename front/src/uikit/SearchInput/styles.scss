@@ -1,0 +1,39 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.searchWrapper {
+    .searchLabel {
+        display: block;
+        padding-bottom: $pad1;
+        font-size: $xs;
+    }
+
+    .inputWrapper {
+        position: relative;
+
+        .searchInput {
+            display: block;
+            width: 100%;
+
+            padding: $pad4;
+            padding-right: 44px;
+
+            font-size: $sm;
+
+            border: 0.5px solid $dark_gray;
+            border-radius: 2px;
+        }
+
+        .loupe {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+
+            top: 50%;
+            margin-top: -12px;
+
+            right: 14px;
+        }
+    }
+}

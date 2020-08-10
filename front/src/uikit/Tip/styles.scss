@@ -1,0 +1,25 @@
+@import "~vars/fonts";
+@import "~vars/pads";
+@import "~vars/colors";
+
+.tooltip {
+    position: absolute;
+
+    left: 5px;
+    bottom: calc(100% + 5px);
+    padding: $pad2;
+
+    color: white;
+    font-size: $xs;
+    background: lighten($firm, 10);
+    border-radius: 5px;
+
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}

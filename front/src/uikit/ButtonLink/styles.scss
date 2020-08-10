@@ -1,0 +1,22 @@
+@import "~vars/pads";
+@import "~vars/colors";
+
+.buttonLink {
+    display: inline-block;
+
+    padding: $pad3 $pad7;
+
+    border: 1px solid $firm;
+    border-radius: 2px;
+
+    color: $black;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: background-color;
+}
+
+.buttonLink:focus {
+
+}

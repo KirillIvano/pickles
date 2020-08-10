@@ -1,0 +1,30 @@
+@keyframes roll {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.preloaderWrapper {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .preloader {
+        width: 50px;
+        height: 50px;
+
+        background: transparent;
+
+        border: 16px solid #bbb;
+        border-top-color: transparent;
+        border-radius: 50%;
+
+        animation: roll 2s linear infinite;
+    }
+}

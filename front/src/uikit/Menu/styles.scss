@@ -1,0 +1,53 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.menuToggler {
+    padding: $pad4 $pad8;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 0.5px solid $dark_gray;
+    border-radius: 2px;
+
+    .menuTogglerIcon {
+        fill: $dark_gray;
+
+        transform-origin: center;
+        transition: 0.3s ease-in-out;
+    }
+
+    .menuTogglerContent {
+        font-size: $sm;
+        margin-left: 5px;
+    }
+}
+
+.menuToggler.selected {
+    .menuTogglerIcon {
+        fill: $firm;
+        transform: rotate(90deg);
+    }
+}
+
+.menu {
+    overflow: hidden;
+
+    background: $light_gray;
+
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    max-height: 0;
+}
+
+.menu.opened {
+    opacity: 1;
+
+    max-height: initial;
+}

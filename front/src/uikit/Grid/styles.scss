@@ -1,0 +1,8 @@
+@import "~vars/screen";
+
+@media all and (max-width: $screen_sm) {
+    .grid {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

@@ -1,0 +1,19 @@
+@import "~vars/pads";
+@import "~vars/colors";
+@import "~vars/fonts";
+
+.optionsList {
+    .option {
+        color: $black;
+
+        transition: color 0.3s ease-in-out;
+    }
+
+    .option.selected {
+        color: $firm;
+    }
+
+    .option + .option {
+        margin-top: 8px;
+    }
+}
