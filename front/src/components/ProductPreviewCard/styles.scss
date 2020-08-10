@@ -1,0 +1,78 @@
+@import "~vars/pads";
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/screen";
+
+.productCard {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+
+    font-family: 'PT Sans', sans-serif;
+
+    border-radius: 5px;
+    border: 0.5px solid #dbdbdb;
+
+    .productImageWrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 55%;
+
+        overflow: hidden;
+
+        .productImage {
+            position: absolute;
+            width: 100%;
+            display: block;
+
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    .productInfo {
+        padding: $pad2 $pad1 $pad2;
+
+        font-size: $lg;
+
+        .productPrice {
+            color: $black;
+        }
+
+        .productWeight {
+            color: $dark_gray;
+            font-size: $xs;
+        }
+
+        .productName {
+            margin-top: $pad1;
+            font-size: $sm;
+        }
+    }
+
+    .cartButton {
+        margin-top: auto;
+    }
+}
+
+.productCard:hover,
+.productCard:focus {
+    .productImageWrapper {
+        .productImage {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .productCard {
+        .productCardContent {
+            .productInfo {
+                .productWeight {
+                    font-size: $lg;
+                }
+            }
+        }
+    }
+}
