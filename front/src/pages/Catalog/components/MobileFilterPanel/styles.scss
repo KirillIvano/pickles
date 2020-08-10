@@ -1,0 +1,14 @@
+@import "~vars/pads";
+
+.filtersTogglers {
+    margin-top: 16px;
+}
+
+.menu {
+    margin-top: $pad4;
+
+    .menuContent {
+        padding-top: $pad6;
+        padding-bottom: $pad6;
+    }
+}

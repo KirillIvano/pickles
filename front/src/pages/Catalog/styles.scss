@@ -1,0 +1,8 @@
+.catalog {
+    @apply mx-auto;
+
+    .catalogContent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,9 @@
+@import "~vars/pads";
+
+.productList {
+    padding-bottom: 4rem;
+
+    .productListItem {
+        margin-top: $pad8;
+    }
+}
