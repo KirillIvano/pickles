@@ -1,6 +1,7 @@
 from django.db.models import *
 from helpers import download_image
 from helpers import random_hash
+from helpers.transliterate import translit
 # Create your models here.
 
 
@@ -12,9 +13,16 @@ class Category(Model):
     def __str__(self):
         return self.name
 
+    def save(self, *a, **kw):
+        self.name_translit = translit(self.name)
+        super().save(*a, **kw)
+
     id = AutoField(primary_key=True)
     name = CharField(
         verbose_name='Название',
+        max_length=256
+    )
+    name_translit = CharField(
         max_length=256
     )
     order = IntegerField(
@@ -31,9 +39,16 @@ class Product(Model):
     def __str__(self):
         return f'{self.name} | {self.category.name}'
 
+    def save(self, *a, **kw):
+        self.translit_name = translit(self.name)
+        super().save(*a, **kw)
+
     id = AutoField(primary_key=True)
     name = CharField(
         verbose_name='Название',
+        max_length=256
+    )
+    translit_name = CharField(
         max_length=256
     )
     price = IntegerField(

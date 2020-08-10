@@ -8,7 +8,7 @@ admin.site.site_header = "Админ-панель Aglobell"
 
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
-    pass
+    fields = ['name']
 
 
 class ProductInfoInline(StackedInline):
@@ -21,5 +21,15 @@ class ProductImageInline(StackedInline):
 
 @admin.register(Product)
 class ProductAdmin(ModelAdmin):
+    fields = [
+        'category',
+        'name',
+        'translit_name',
+        'price',
+        'weight',
+    ]
+    readonly_fields = [
+        'translit_name'
+    ]
     inlines = [ProductInfoInline, ProductImageInline]
 
