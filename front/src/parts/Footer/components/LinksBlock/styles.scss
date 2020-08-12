@@ -17,7 +17,7 @@
     }
 }
 
-@media (min-height: screen.$sm) {
+@media (min-height: screen.$screen_md) {
     .linksBlock {
         margin-top: pads.$pad6;
     }

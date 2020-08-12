@@ -19,7 +19,7 @@
     }
 }
 
-@media (min-width: screen.$sm) {
+@media (min-width: screen.$screen_sm) {
     .footerContacts {
         flex: 0 0 200px;
     }

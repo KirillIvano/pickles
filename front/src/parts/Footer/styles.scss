@@ -8,11 +8,12 @@
     .footerContent {
         display: flex;
         flex-direction: column;
-        padding: pads.$pad10;
+        padding-top: pads.$pad10;
+        padding-bottom: pads.$pad10;
     }
 }
 
-@media (min-width: screen.$sm) {
+@media (min-width: screen.$screen_md) {
     .footer {
         .footerContent {
             flex-direction: row;

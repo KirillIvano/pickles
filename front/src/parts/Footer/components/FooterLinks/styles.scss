@@ -2,12 +2,14 @@
 @use "~vars/pads";
 
 .footerLinks {
+    width: 100%;
+
     flex: 1 1 auto;
     padding-top: pads.$pad4;
 }
 
-@media (min-width: screen.$sm) {
+@media (min-width: screen.$screen_sm) {
     .footerLinks {
-        margin-left: pads.$pad12;
+        margin-left: pads.$pad12 !important;
     }
 }

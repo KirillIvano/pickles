@@ -1,5 +1,6 @@
 import React from 'react';
-import {Grid} from 'react-flexbox-grid';
+
+import {Grid} from '@/uikit';
 
 import {Contacts, FooterLinks} from './components';
 import styles from './styles.scss';
