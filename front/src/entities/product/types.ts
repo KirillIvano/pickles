@@ -1,9 +1,10 @@
 export type ProductPreviewType = {
     id: number;
-    photo: string;
+    image: string;
     name: string;
     price: number;
-    volume: number;
+    weight: number;
+    verboseName: string;
 }
 
 export type ProductDescriptionItemType = {
@@ -13,8 +14,8 @@ export type ProductDescriptionItemType = {
 
 export type ProductType = {
     id: number;
-    photos: string[];
+    images: string[];
     description: ProductDescriptionItemType[];
     price: number;
-    volume: number;
+    weight: number;
 }

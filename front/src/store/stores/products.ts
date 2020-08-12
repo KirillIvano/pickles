@@ -1,6 +1,6 @@
 import {observable, action} from 'mobx';
 
-import {ProductPreviewType, ProductType} from './types';
+import {ProductPreviewType, ProductType} from '@/entities/product/types';
 
 class ProductStore {
     @observable products: Map<number, ProductType> = new Map();
