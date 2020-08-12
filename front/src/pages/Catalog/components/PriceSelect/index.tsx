@@ -1,61 +1,81 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {useDebouncedEventHandler} from '@/hooks/useDebouncedEventHandler';
+import {useDebouncer} from '@/hooks/useDebouncer';
 import {getUniqueId} from '@/util/getUniqueId';
+import {Input, Label} from '@/uikit';
+import {useDeviceType} from '@/contexts/DeviceContext';
 
-import {useProductFiltersContext} from './../../hooks/useFiltersContext';
 import {useCatalogStoreContext} from './../../hooks/useCatalogStoreContext';
+import {useProductFiltersContext} from './../../hooks/useFiltersContext';
 import styles from './styles.scss';
 
 
 const PriceSelect = observer(() => {
     const inputId = useMemo(getUniqueId, []);
+    const device = useDeviceType();
+    const inputsSize = device === 'mobile' ? 'lg' : 'sm';
 
     const {edgePrices} = useCatalogStoreContext();
     const {setMaxPrice, setMinPrice} = useProductFiltersContext();
 
+    const [localMinPrice, setLocalMinPrice] = useState('');
+    const [localMaxPrice, setLocalMaxPrice] = useState('');
 
-    useEffect(() => {setMinPrice(edgePrices.minPrice);}, [edgePrices.minPrice]);
-    useEffect(() => {setMaxPrice(edgePrices.maxPrice);}, [edgePrices.maxPrice]);
-
-
-    const handleMinPriceChange = useDebouncedEventHandler(
-        ({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
-            value ? setMinPrice(+value) : setMinPrice(edgePrices.minPrice),
-        300,
+    useEffect(
+        () => {
+            setMinPrice(localMinPrice ? +localMinPrice : edgePrices.minPrice);
+        },
+        [edgePrices.minPrice],
+    );
+    useEffect(
+        () => {setMaxPrice(localMaxPrice ? +localMaxPrice : edgePrices.maxPrice);},
+        [edgePrices.maxPrice],
     );
 
-    const handleMaxPriceChange = useDebouncedEventHandler(
-        ({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
-            value ? setMaxPrice(+value) : setMaxPrice(edgePrices.maxPrice),
-        300,
-    );
+    const minPriceDebouncer = useDebouncer(300);
+    const maxPriceDebouncer = useDebouncer(300);
+
 
     return (
         <div className={styles.pricesSelect}>
-            <label
-                className={styles.label}
+            <Label
                 htmlFor={inputId}
             >
-                Выбор цены
-            </label>
+                цена, ₽/шт
+            </Label>
 
             <div className={styles.pricesWrapper}>
-                <input
-                    className={styles.priceSelectInput}
+                <Input
                     id={inputId}
                     type="number"
                     name="minPrice"
-                    onChange={handleMinPriceChange}
+                    onChange={({target: {value}}) => {
+                        minPriceDebouncer.perform(
+                            () => setMinPrice(value ? +value : edgePrices.minPrice),
+                        );
+                        setLocalMinPrice(value);
+                    }}
+                    value={localMinPrice}
                     placeholder={`от ${edgePrices.minPrice}`}
-                />
-                <input
+
                     className={styles.priceSelectInput}
+                    sizing={inputsSize}
+                />
+                <Input
                     type="number"
                     name="maxPrice"
-                    onChange={handleMaxPriceChange}
+                    value={localMaxPrice}
+                    onChange={({target: {value}}) => {
+                        maxPriceDebouncer.perform(
+                            () => setMaxPrice(value ? +value : edgePrices.maxPrice),
+                        );
+                        setLocalMaxPrice(value);
+                    }}
                     placeholder={`до ${edgePrices.maxPrice}`}
+
+                    className={styles.priceSelectInput}
+                    sizing={inputsSize}
                 />
             </div>
         </div>

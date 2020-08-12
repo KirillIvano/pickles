@@ -11,6 +11,7 @@ import {
     ProductsSearch,
     PriceSelect,
     MobileSortSelect,
+    CategorySelect,
 } from '..';
 import styles from './styles.scss';
 
@@ -22,6 +23,7 @@ enum MenuName {
 
 const MobileFilterPanel = () => {
     const [selectedMenu, setSelectedMenu] = useState<MenuName | null>(MenuName.FILTER);
+
 
     const handleMenuSelect = (menuName: MenuName) => {
         if (menuName === selectedMenu) {
@@ -59,6 +61,7 @@ const MobileFilterPanel = () => {
             >
                 <Grid className={styles.menuContent}>
                     <PriceSelect />
+                    <CategorySelect />
                 </Grid>
             </Menu>
 

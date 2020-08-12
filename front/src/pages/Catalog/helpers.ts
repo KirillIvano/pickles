@@ -42,6 +42,13 @@ const SORTING_POLICIES_NAMES: Record<SortingPolicy, string> = {
     'alphabetic': 'По алфавиту',
 };
 
+const nameToPolicyMapping = (Object.keys(SORTING_POLICIES_NAMES) as SortingPolicy[])
+    .reduce((acc, policy) => {
+        acc[SORTING_POLICIES_NAMES[policy]] = policy;
+
+        return acc;
+    }, {} as Record<string, SortingPolicy>);
+
 
 export const getSortingPolicyName = (policy: SortingPolicy) =>
     SORTING_POLICIES_NAMES[policy];
@@ -53,3 +60,5 @@ export const sortProducts = (
 
 export const getSortingPolicies = (): SortingPolicy[] =>
     ['none', 'alphabetic', 'price_asc', 'price_desc'];
+
+export const getPolicyByName = (name: string) => nameToPolicyMapping[name];

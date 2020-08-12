@@ -1,7 +1,7 @@
 import {observable, action, computed} from 'mobx';
 
 import {ProductPreviewType} from '@/entities/product/types';
-import {productStore} from '@/entities/product/store';
+import {productStore} from '@/store/stores/products';
 import {getProductPreviews as fetchProducts} from '@/services/product';
 import {clientifyProductPreview} from '@/entities/product/transformers';
 

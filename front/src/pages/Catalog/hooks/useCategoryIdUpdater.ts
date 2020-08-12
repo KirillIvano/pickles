@@ -3,7 +3,7 @@ import qs from 'query-string';
 
 import {useQuery} from '@/hooks/useQuery';
 
-export const useCategoryIdUpdate = () => {
+export const useCategoryIdUpdater = () => {
     const history = useHistory();
     const search = useQuery<{categoryId?: string}>();
 
@@ -12,6 +12,8 @@ export const useCategoryIdUpdate = () => {
 
         if (!id) {
             delete updatedSearch.categoryId;
+        } else {
+            updatedSearch.categoryId = `${id}`;
         }
 
         history.push({

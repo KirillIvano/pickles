@@ -3,30 +3,11 @@
 @import "~vars/pads";
 
 .pricesSelect {
-    .label {
-        display: block;
-
-        margin-bottom: $pad1;
-
-        font-size: $xs;
-        color: $dark_gray;
-    }
-
     .pricesWrapper {
         display: flex;
 
         .priceSelectInput {
-            flex: 1 1 auto;
-
-            padding: $pad4 0;
-            color: $black;
-
-            border: 0.5px solid $dark_gray;
-            border-radius: 2px;
-
-            font-size: $sm;
-
-            text-align: center;
+            flex: 1 1 100px;
         }
 
         .priceSelectInput + .priceSelectInput {

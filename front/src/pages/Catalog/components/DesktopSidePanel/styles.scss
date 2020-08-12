@@ -1,0 +1,15 @@
+@import "~vars/pads";
+
+.sidePanel {
+    position: sticky;
+    flex: 0 0 300px;
+    max-width: 300px;
+
+    min-height: 500px;
+
+    padding: $pad8 $pad6 $pad8 0;
+
+    .priceSelectWrapper {
+        margin-top: $pad6;
+    }
+}
