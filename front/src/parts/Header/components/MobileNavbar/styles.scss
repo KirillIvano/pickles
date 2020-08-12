@@ -1,25 +1,32 @@
 @use "~vars/pads";
 
-.navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@import "~vars/colors";
+@import "~vars/fonts";
 
+.navbar {
     overflow: hidden;
+
+    background: $light_gray;
 
     max-height: 0;
     transition: max-height 0.3s;
 
-    .navItem {
-        display: flex;
-        justify-content: center;
-        padding: pads.$pad3;
+    .navbarContent {
+        padding-top: pads.$pad5;
+        padding-bottom: pads.$pad5;
+
+        .navItem {
+            padding-bottom: pads.$pad2;
+            padding-top: pads.$pad2;
+
+            font-size: $lg;
+        }
     }
 }
 
 .navbar.entering,
 .navbar.entered {
-    max-height: 200px;
+    max-height: 300px;
 }
 
 .navbar.exiting,

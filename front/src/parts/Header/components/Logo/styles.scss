@@ -1,3 +1,5 @@
+@import "~vars/screen";
+
 .logoContainer {
     position: relative;
 
@@ -6,5 +8,18 @@
 
     .logo {
         height: 100%;
+    }
+}
+
+@media all and (max-width: $screen_sm) {
+    .logoContainer {
+        position: relative;
+
+        align-self: flex-start;
+        height: 80%;
+
+        .logo {
+            height: 100%;
+        }
     }
 }

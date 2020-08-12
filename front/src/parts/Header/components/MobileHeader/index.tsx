@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import classnames from 'classnames';
 
 import {renderForMobileHOC} from '@/contexts/DeviceContext';
+import {Grid} from '@/uikit';
 
 import styles from './styles.scss';
 import {MobileNavbar, Burger, Logo} from './..';
@@ -15,13 +16,13 @@ const MobileHeader = () => {
     return (
         <>
             <header className={styles.header}>
-                <div className={classnames('container', styles.headerContent)}>
+                <Grid className={classnames(styles.headerContent)}>
                     <Logo />
                     <Burger
                         isActive={isNavOpened}
                         handleClick={toggleNav}
                     />
-                </div>
+                </Grid>
             </header>
             <MobileNavbar isOpen={isNavOpened} />
         </>

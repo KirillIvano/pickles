@@ -2,16 +2,17 @@ import React from 'react';
 import classnames from 'classnames';
 
 import {renderForDesktopHOC} from '@/contexts/DeviceContext';
+import {Grid} from '@/uikit';
 
 import styles from './styles.scss';
 import {Logo, DesktopNav} from './../';
 
 const Header = () => (
     <header className={styles.header}>
-        <div className={classnames(styles.headerContent, 'container')}>
+        <Grid className={classnames(styles.headerContent)}>
             <Logo />
             <DesktopNav />
-        </div>
+        </Grid>
     </header>
 );
 

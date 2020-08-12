@@ -1,12 +1,14 @@
 $containerSize: 32px;
 
-$burgerColor: #818181;
+$burgerColor: #333;
 
 .burgerContainer {
     position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: $containerSize;
     height: $containerSize;
 

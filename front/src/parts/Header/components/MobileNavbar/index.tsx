@@ -3,6 +3,7 @@ import {Transition} from 'react-transition-group';
 import classnames from 'classnames';
 
 import {NAV_ITEMS} from '@/constants/nav';
+import {Grid} from '@/uikit';
 
 import styles from './styles.scss';
 import {NavItem} from './../';
@@ -21,14 +22,16 @@ const MobileNav = ({
                 styles.navbar,
                 styles[stage] as string,
             )}>
-                {NAV_ITEMS.map(navItem => (
-                    <NavItem
-                        wrapperClass={styles.navItem}
-                        key={navItem.path}
-                        {...navItem}
-                    />
-                ),
-                )}
+                <Grid className={styles.navbarContent}>
+                    {NAV_ITEMS.map(navItem => (
+                        <NavItem
+                            wrapperClass={styles.navItem}
+                            key={navItem.path}
+                            {...navItem}
+                        />
+                    ),
+                    )}
+                </Grid>
             </nav>
         )}
     </Transition>
