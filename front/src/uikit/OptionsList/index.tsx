@@ -4,12 +4,12 @@ import classnames from 'classnames';
 import styles from './styles.scss';
 
 
-type OptionProps = {
+interface OptionProps extends React.LiHTMLAttributes<HTMLLIElement> {
     caption: string;
     isSelected: boolean;
     className?: string;
 
-    handleSelect: () => void;
+    handleSelect?: () => void;
 }
 
 export const Option = ({
@@ -18,8 +18,11 @@ export const Option = ({
     className,
 
     handleSelect,
+
+    ...props
 }: OptionProps) => (
     <li
+        {...props}
         className={classnames(
             className,
             styles.option,
@@ -29,7 +32,7 @@ export const Option = ({
         aria-selected={isSelected}
 
         onClick={handleSelect}
-        onKeyUp={({key}) => key === 'Enter' && handleSelect()}
+        onKeyUp={({key}) => key === 'Enter' && handleSelect && handleSelect()}
     >
         {caption}
     </li>
@@ -43,8 +46,9 @@ type OptionsListProps = {
 
 const OptionsList = ({
     children,
+    className,
 }: OptionsListProps) => (
-    <ul className={styles.optionsList}>
+    <ul className={classnames(className, styles.optionsList)}>
         {children}
     </ul>
 );

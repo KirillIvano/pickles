@@ -57,17 +57,13 @@ export const Menu = ({
 
     className,
     openedClassName,
-}: MenuProps) => (
+}: MenuProps) => isOpened ? (
     <div
-        aria-hidden={!isOpened}
         className={classnames(
             className,
             styles.menu,
-            {
-                [classnames(openedClassName, styles.opened)]: isOpened,
-            },
         )}
     >
         {children}
     </div>
-);
+) : null;

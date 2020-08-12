@@ -1,0 +1,30 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.input {
+    display: block;
+    width: 100%;
+
+    min-width: 0;
+    padding: $pad1;
+
+    border: 0.5px solid $dark_gray;
+    border-radius: 2px;
+
+    color: $black;
+    font-size: $sm;
+
+    transition: box-shadow 0.3s;
+}
+
+.input.large {
+    padding: $pad4 $pad1;
+    text-align: center;
+}
+
+.input:focus,
+.input:hover {
+    outline: none;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1)
+}

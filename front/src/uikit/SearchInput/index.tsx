@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import {useDebouncedEventHandler} from '@/hooks/useDebouncedEventHandler';
 import {useUniqueId} from '@/hooks/useUniqueId';
+import {Input, Label} from '@/uikit';
 
 import styles from './styles.scss';
 import loupeImg from './images/loupe.svg';
@@ -11,6 +12,7 @@ import loupeImg from './images/loupe.svg';
 type SearchInputProps = {
     setSearchValue: (val: string) => void;
 
+    sizing: 'sm' | 'lg';
     caption?: string;
     placeholder?: string;
     className?: string;
@@ -24,8 +26,10 @@ const SearchInput = ({
 
     caption,
     placeholder,
-    className,
     wrapperClassName,
+
+    className,
+    sizing,
 }: SearchInputProps) => {
     const handleSearchChange = useDebouncedEventHandler(
         (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -35,22 +39,30 @@ const SearchInput = ({
     const inputId = useUniqueId();
 
     return (
-        <div className={classnames(wrapperClassName, styles.searchWrapper)}>
-            <label
+        <div className={classnames(
+            wrapperClassName,
+            styles.searchWrapper,
+            {[styles.large]: sizing === 'lg'},
+        )}>
+            <Label
                 htmlFor={inputId}
-                className={styles.searchLabel}
             >
                 {caption || 'Поиск'}
-            </label>
+            </Label>
             <div className={styles.inputWrapper}>
-                <input
+                <Input
+                    sizing={sizing}
                     id={inputId}
                     className={classnames(className, styles.searchInput)}
                     onChange={handleSearchChange}
                     placeholder={placeholder}
                 />
 
-                <img className={styles.loupe} src={loupeImg} alt="Лупа" />
+                <img
+                    className={styles.loupe}
+                    src={loupeImg}
+                    alt="Лупа"
+                />
             </div>
         </div>
     );

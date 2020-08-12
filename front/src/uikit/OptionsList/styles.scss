@@ -4,9 +4,12 @@
 
 .optionsList {
     .option {
+        width: fit-content;
         color: $black;
 
         transition: color 0.3s ease-in-out;
+
+        cursor: pointer;
     }
 
     .option.selected {

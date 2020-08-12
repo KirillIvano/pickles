@@ -35,19 +35,19 @@
     }
 }
 
-.menu {
-    overflow: hidden;
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
 
-    background: $light_gray;
-
-    opacity: 0;
-    transition: opacity 0.5s;
-
-    max-height: 0;
+    to {
+        opacity: 1;
+    }
 }
 
-.menu.opened {
-    opacity: 1;
+.menu {
+    background: $light_gray;
 
-    max-height: initial;
+    opacity: 1;
+    animation: appear 0.5s ease-in-out;
 }

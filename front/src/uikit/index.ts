@@ -6,3 +6,6 @@ export {default as SearchInput} from './SearchInput';
 export {default as Grid} from './Grid';
 export {default as OptionsList} from './OptionsList';
 export {MenuTogglerBtn, Menu} from './Menu';
+export {default as PageHeading} from './PageHeading';
+export {Input, Select} from './Input';
+export {default as Label} from './Label';

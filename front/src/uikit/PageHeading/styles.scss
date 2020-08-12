@@ -1,0 +1,10 @@
+@import "~vars/fonts";
+@import "~vars/colors";
+
+.pageHeading {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+
+    color: $black;
+    font-size: $xxl;
+}
