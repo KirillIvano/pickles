@@ -1,14 +1,16 @@
-export const createDebouncer = (func: () => void, delay: number) => {
+export const createDebouncer = (delay: number) => {
     let presentTimeout: number | null = null;
 
-    return () => {
-        if (presentTimeout !== null) {
-            clearTimeout(presentTimeout);
-        }
+    return {
+        perform: (func: () => void) => {
+            if (presentTimeout !== null) {
+                clearTimeout(presentTimeout);
+            }
 
-        presentTimeout = window.setTimeout(() => {
-            func();
-            presentTimeout = null;
-        }, delay);
+            presentTimeout = window.setTimeout(() => {
+                func();
+                presentTimeout = null;
+            }, delay);
+        },
     };
 };
