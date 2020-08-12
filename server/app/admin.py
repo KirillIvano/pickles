@@ -1,14 +1,15 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin, StackedInline
+from django.contrib.admin import ModelAdmin, StackedInline, TabularInline
 from app.models import *
 
-# Register your models here.
+
 admin.site.site_header = "Админ-панель Aglobell"
 
 
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
-    fields = ['name']
+    fields = ['name', 'name_translit']
+    readonly_fields = ['name_translit']
 
 
 class ProductInfoInline(StackedInline):
@@ -19,17 +20,37 @@ class ProductImageInline(StackedInline):
     model = ProductImage
 
 
+class ItemInline(TabularInline):
+    model = Item
+
+
 @admin.register(Product)
 class ProductAdmin(ModelAdmin):
     fields = [
         'category',
         'name',
-        'translit_name',
+        'name_translit',
         'price',
         'weight',
     ]
-    readonly_fields = [
-        'translit_name'
-    ]
+    readonly_fields = ['name_translit']
     inlines = [ProductInfoInline, ProductImageInline]
 
+
+@admin.register(Order)
+class OrderAdmin(ModelAdmin):
+    fields = [
+        'hash_digital',
+        'name',
+        'phone',
+        'email',
+        'address',
+        'comment',
+        'status',
+    ]
+    readonly_fields = ['hash_digital']
+    inlines = [ItemInline]
+
+# @admin.register(OrderStatus)
+# class OrderStatusAdmin(ModelAdmin):
+#     pass

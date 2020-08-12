@@ -23,6 +23,7 @@ class Category(Model):
         max_length=256
     )
     name_translit = CharField(
+        verbose_name='Название в ссылке',
         max_length=256
     )
     order = IntegerField(
@@ -40,7 +41,7 @@ class Product(Model):
         return f'{self.name} | {self.category.name}'
 
     def save(self, *a, **kw):
-        self.translit_name = translit(self.name)
+        self.name_translit = translit(self.name)
         super().save(*a, **kw)
 
     id = AutoField(primary_key=True)
@@ -48,7 +49,8 @@ class Product(Model):
         verbose_name='Название',
         max_length=256
     )
-    translit_name = CharField(
+    name_translit = CharField(
+        verbose_name='Название в ссылке',
         max_length=256
     )
     price = IntegerField(
@@ -112,4 +114,91 @@ class ProductInfo(Model):
     )
     value = TextField(
         verbose_name='Текст'
+    )
+
+
+class OrderStatus(Model):
+
+    class Meta:
+        verbose_name = "Статус"
+        verbose_name_plural = "Статусы"
+
+    def __str__(self):
+        return self.verbose_name
+
+    id = AutoField(primary_key=True)
+    code = CharField(
+        verbose_name='Код',
+        max_length=128
+    )
+    verbose_name = CharField(
+        verbose_name='Название',
+        max_length=256
+    )
+
+
+class Order(Model):
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+    def __str__(self):
+        return f"{self.name} {self.phone}"
+
+    hash = CharField(
+        default=random_hash.hash_string,
+        max_length=64
+    )
+    hash_digital = CharField(
+        default=random_hash.hash_digital,
+        max_length=64
+    )
+    name = CharField(
+        verbose_name='Имя',
+        max_length=64
+    )
+    phone = CharField(
+        verbose_name='Телефон',
+        max_length=64
+    )
+    email = CharField(
+        verbose_name='Email',
+        max_length=128,
+    )
+    address = CharField(
+        verbose_name='Адрес',
+        max_length=512,
+    )
+    comment = CharField(
+        verbose_name='Комментарий',
+        max_length=512,
+    )
+
+    status = ForeignKey(
+        OrderStatus,
+        verbose_name='Статус',
+        on_delete=SET_NULL,
+        null=True
+    )
+
+
+class Item(Model):
+
+    class Meta:
+        verbose_name = 'Позиция'
+        verbose_name_plural = 'Позиции'
+
+    def __str__(self):
+        return f"{self.product.name} {self.quantity}"
+
+    product = ForeignKey(
+        Product,
+        verbose_name='Продукт',
+        on_delete=DO_NOTHING
+        )
+    order = ForeignKey(
+        Order,
+        on_delete=CASCADE)
+    quantity = IntegerField(
+        verbose_name='Количество'
     )

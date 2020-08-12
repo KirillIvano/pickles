@@ -1,27 +1,31 @@
+from aglobell.settings import MAIL_PASSWORD, MAIL_LOGIN
 import smtplib
-from email.mime.text import MIMEText
-
-from settings import MAIL_HOST, MAIL_LOGIN, MAIL_PASSWORD, MAIL_PORT
-from tasks import tasks
 
 
-server = smtplib.SMTP_SSL(MAIL_HOST, MAIL_PORT)
-server.login(MAIL_LOGIN, MAIL_PASSWORD)
-
-def generate_mail(address: str, text: str, title: str = '') -> MIMEText:
-    message = MIMEText(text)
-
-    message['From'] = MAIL_LOGIN
-    message['To'] = address
-    message['Subject'] = title
-
-    return message
+def _create_mail_session():
+    mail_session = smtplib.SMTP('smtp.gmail.com', 587)
+    mail_session.starttls()
+    mail_session.login(MAIL_LOGIN, MAIL_PASSWORD)
+    return mail_session
 
 
-def send_mail(address: str, text: str):
-    msg = generate_mail(address, text)
-    server.sendmail(msg['From'], msg['To'], msg.as_string())
+session = _create_mail_session()
 
-@tasks.task
-def send_mail_async(address: str, text: str):
-    send_mail(address, text)
+
+def send_mail(destination, subject, text):
+    global session
+    message = f"Subject: {subject}\n{text}"
+    try:
+        session.sendmail(
+            from_addr=MAIL_LOGIN,
+            to_addrs=destination,
+            msg=message.encode('utf-8')
+        )
+    except smtplib.SMTPConnectError:
+        session = _create_mail_session()
+        session.sendmail(
+            from_addr=MAIL_LOGIN,
+            to_addrs=destination,
+            msg=message.encode('utf-8')
+        )
+    return True

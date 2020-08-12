@@ -1,5 +1,7 @@
 import db_interface.tools
 from app.models import Product, ProductImage, ProductInfo
+from typing import List, Dict
+
 
 FIELDS = [
     ('id', 'id'),
@@ -45,3 +47,11 @@ def by_id(product_id: int) -> dict:
             [('name', 'name'), ('value', 'value')]
         ))
     return product
+
+
+def exists(product_id: int) -> bool:
+    try:
+        Product.objects.get(id=product_id)
+        return True
+    except Product.DoesNotExist:
+        return False
