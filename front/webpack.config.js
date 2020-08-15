@@ -2,20 +2,34 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
+
+const vendorList = ['@babel/polyfill', 'react', 'react-dom'];    
+
 module.exports = {
-    entry: './src/index.tsx',
+      entry: './src/index.tsx',
+      optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    },
     resolve: {
-        extensions: ['.ts', '.js', '.tsx', 'less'],
+        extensions: ['.ts', '.js', '.tsx'],
         alias: {
             '@': path.resolve(__dirname, 'src'),
-            mobx: path.resolve(__dirname, "/node_modules/mobx/lib/mobx.es6.js"),
+            // mobx: path.resolve(__dirname, "/node_modules/mobx/lib/mobx.es6.js"),
             vars: path.resolve(__dirname, 'src', 'vars')
         },
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: '[name].[hash].js',
     },
     plugins: [
         new CleanObsoleteChunks(),
@@ -39,6 +53,7 @@ module.exports = {
                         loader: 'ts-loader',
                         options: {
                             configFile: path.resolve(__dirname, 'tsconfig.json'),
+                            transpileOnly: true
                         },
                     },
                 ],

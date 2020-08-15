@@ -18,13 +18,12 @@ const prodConfigs = {
         ],
     },
     plugins: [
-        new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
             filename: 'main.css',
             chunkFilename: '[id].css'
         }),
         new webpack.DefinePlugin({
-            __SERVER_ORIGIN__: '"http://5.63.157.207:8000"',
+            __SERVER_ORIGIN__: '"http://134.0.117.137:8000"',
         }),
         new ImageminPlugin({
             cache: true,
@@ -45,12 +44,14 @@ const prodConfigs = {
                 ]
               ]
             }
-          })
+        }),
+        // new BundleAnalyzerPlugin(),
     ],
     module: {
         rules: [
             {
                 test: /\.scss$/,
+                exclude: /flexboxgrid/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -69,9 +70,7 @@ const prodConfigs = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            ident: 'postcss',
                             plugins: [
-                                require('tailwindcss'),
                                 require('autoprefixer'),
                             ],
                         },
@@ -80,8 +79,22 @@ const prodConfigs = {
                         loader: 'sass-loader',
                     }
                 ],
-            },
+            }, 
             {
+                test: /\.css$/,
+                include: /flexboxgrid/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        },
+                    },
+                ],
+            },
+             {
                 test: /\.(png|svg|jpg|ico|ttf)$/,
                 use: [
                     {
@@ -96,5 +109,8 @@ const prodConfigs = {
         ],
     },
 };
+
+
+console.log( merge(commonConfig, prodConfigs))
 
 module.exports = merge(commonConfig, prodConfigs);

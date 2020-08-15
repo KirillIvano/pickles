@@ -1,0 +1,74 @@
+@import "~vars/pads";
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/screen";
+
+.productDescription {
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Roboto', sans-serif;
+
+    .productName {
+        font-weight: bold;
+        font-size: $xxxl;
+        line-height: 1.2;
+        color: $black;
+    }
+
+    .productPricing {
+        margin-top: $pad10;
+
+        color: $black;
+
+        .price {
+            font-weight: bold;
+            font-size: $xxl;
+        }
+
+        .volume {
+            font-size: $xl;
+        }
+    }
+
+    .productToCart {
+        margin-top: $pad8;
+    }
+
+    .productInfo {
+        margin-top: $pad8;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .productDescription {
+        margin-top: $pad6;
+
+        .productName {
+            font-weight: normal;
+            font-size: $xxl;
+        }
+
+        .productPricing {
+            margin-top: $pad7;
+
+            color: $black;
+
+            .price {
+                font-size: $xxl;
+            }
+
+            .volume {
+                font-size: $xl;
+            }
+        }
+
+        .productToCart {
+            margin-top: $pad7;
+        }
+
+        .productInfo {
+            margin-top: $pad4;
+        }
+    }
+}

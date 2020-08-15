@@ -2,12 +2,14 @@ const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const common = require('./webpack.config');
 
 const dev = {
     mode: 'development',
-    devtool: 'inline-cheap-source-map',
+    devtool: 'source-map',
     devServer: {
         historyApiFallback: true,
         hotOnly: true,
@@ -22,15 +24,15 @@ const dev = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            __SERVER_ORIGIN__: '"http://localhost:5000"',
+            __SERVER_ORIGIN__: '"http://134.0.117.137:8000"',
             __CLIENT_ORIGIN__: '"http://localhost:8080"'
         }),
     ],
     module: {
         rules: [
             {
-                test: /\.scss$/,
-                exclude: /\.tailwind.global.css$/,
+                test: /\.(sc|c)ss$/,
+                exclude: /flexboxgrid/,
                 use: [
                     {
                         loader: 'style-loader',
@@ -43,40 +45,24 @@ const dev = {
                             namedExport: true,
                             exportOnlyLocals: true,
                         },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: [
-                                require('tailwindcss'),
-                                require('postcss-nested'),
-                                require('autoprefixer'),
-                            ],
-                        },
-                    },
-                    {
+                    }, {
                         loader: 'sass-loader',
                     }
                 ],
             }, {
                 test: /\.css$/,
+                include: /flexboxgrid/,
                 use: [
-                    'style-loader',
-                    'css-loader',
                     {
-                        loader: 'postcss-loader',
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
                         options: {
-                            ident: 'postcss',
-                            plugins: [
-                                require('postcss-import'),
-                                require('tailwindcss'),
-                                require('postcss-nested'),
-                                require('autoprefixer'),
-                            ],
+                            modules: true,
                         },
                     },
-                ]
+                ],
             }, {
                 test: /\.(png|svg|jpg|ico|ttf|woff)$/,
                 use: {

@@ -1,0 +1,35 @@
+@import "~vars/pads";
+
+.productGallery {
+    padding-right: $pad6;
+
+    .imagesSelect {
+        margin-top: $pad3;
+
+        .imageWrapper {
+            .image {
+                opacity: 0.5;
+                transform: scale(1.001);
+
+                transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+                cursor: pointer;
+            }
+        }
+
+        .imageWrapper.selected {
+            .image {
+                opacity: 1;
+            }
+        }
+
+        .imageWrapper:hover,
+        .imageWrapper:focus {
+            outline: none;
+
+            .image {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
