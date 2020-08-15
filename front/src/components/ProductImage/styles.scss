@@ -1,0 +1,15 @@
+.productImageWrapper {
+    position: relative;
+
+    width: 100%;
+    padding-bottom: 66%;
+
+    overflow: hidden;
+}
+
+.productImage {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+}

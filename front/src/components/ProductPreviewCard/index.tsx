@@ -3,6 +3,7 @@ import React from 'react';
 import {Reference, CartButton} from '@/components';
 
 import styles from './styles.scss';
+import ProductImage from '../ProductImage';
 
 
 type ProductPreviewCardProps = {
@@ -11,6 +12,7 @@ type ProductPreviewCardProps = {
     image: string;
     price: number;
     weight: number;
+    verboseName: string;
 }
 
 const ProductPreviewCard = ({
@@ -19,18 +21,20 @@ const ProductPreviewCard = ({
     image,
     price,
     weight,
+    verboseName,
 }: ProductPreviewCardProps) => (
     <Reference
-        to={`/product/${id}`}
+        to={`/product/${verboseName}/${id}`}
         className={styles.productCard}
     >
-        <div className={styles.productImageWrapper}>
-            <img src={image} className={styles.productImage} alt="Фотография товара" />
-        </div>
+        <ProductImage.Wrapper className={styles.productImageWrapper}>
+            <ProductImage className={styles.productImage} src={image} />
+        </ProductImage.Wrapper>
+
         <div className={styles.productInfo}>
             <p>
                 <span className={styles.productPrice}>{price} ₽</span>
-                <span className={styles.productWeight}> / {weight}кг</span>
+                <span className={styles.productWeight}> / {weight}</span>
             </p>
 
             <p className={styles.productName}>{name}</p>
