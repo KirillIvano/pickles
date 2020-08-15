@@ -26,10 +26,12 @@ const PriceSelect = observer(() => {
         () => {
             setMinPrice(localMinPrice ? +localMinPrice : edgePrices.minPrice);
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [edgePrices.minPrice],
     );
     useEffect(
         () => {setMaxPrice(localMaxPrice ? +localMaxPrice : edgePrices.maxPrice);},
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [edgePrices.maxPrice],
     );
 

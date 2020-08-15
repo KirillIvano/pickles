@@ -19,7 +19,7 @@ export const useDigestedProducts = () => {
     const unsortedProducts = rawProductsIds
         .map(productId => productsStore.productPreviews.get(productId) as ProductPreviewType)
         .filter(({price}) => price >= minPrice && price <= maxPrice)
-        .filter(({name}) => name.indexOf(searchValue) !== -1);
+        .filter(({name}) => name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1);
 
     return sortProducts(unsortedProducts, sortingPolicy);
 };
