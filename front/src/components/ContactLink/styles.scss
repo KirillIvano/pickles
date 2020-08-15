@@ -1,0 +1,10 @@
+.contactLink {
+    position: relative;
+
+    .tip {
+        left: calc(100% + 1rem);
+        top: 0;
+        bottom: auto;
+        right: auto;
+    }
+}

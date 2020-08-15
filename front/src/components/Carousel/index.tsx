@@ -1,12 +1,12 @@
 import React, {
+    useCallback,
     useEffect,
-    useMemo,
     useRef,
     useState,
 } from 'react';
 
-import {createDebouncer} from '@/util/debounce';
 import {renderForDesktopHOC} from '@/contexts/DeviceContext';
+import {useDebouncer} from '@/hooks/useDebouncer';
 
 import styles from './styles.scss';
 import {getStagesCount} from './helpers';
@@ -43,44 +43,49 @@ const CarouselControls = renderForDesktopHOC(({
 
 type CarouselProps = {
     capacity: number;
-    items: React.ReactNode[];
+    children: React.ReactNode[];
 }
 const Carousel = ({
     capacity,
-    items,
+    children,
 }: CarouselProps) => {
     const carouselRef = useRef<HTMLDivElement>(null);
 
     const [itemWidth, setItemWidth] = useState(0);
     const [carouselOffset, setCarouselOffset] = useState(0);
 
-    const updateSizes = () => {
+    const updateSizes = useCallback(() => {
         if (carouselRef.current) {
             const carouselWidth = carouselRef.current.clientWidth;
             setItemWidth(carouselWidth / capacity);
         }
-    };
-    const debouncedSizesUpdate = useMemo(() => createDebouncer(updateSizes, 200), []);
+    }, [capacity]);
+
+    const sizeUpdatesDebouncer = useDebouncer(200);
+    const updatedSizesDebounced = useCallback(
+        () => sizeUpdatesDebouncer.perform(updateSizes),
+        [sizeUpdatesDebouncer, updateSizes],
+    );
 
     useEffect(() => {
         updateSizes();
-    }, [capacity]);
+    }, [capacity, updateSizes]);
 
     useEffect(() => {
-        window.addEventListener('resize', debouncedSizesUpdate);
+        window.addEventListener('resize', updatedSizesDebounced);
 
         return () => window.removeEventListener(
             'resize',
-            debouncedSizesUpdate,
+            updatedSizesDebounced,
         );
-    }, []);
+    }, [updatedSizesDebounced]);
 
-    const stagesCount = getStagesCount(items.length, capacity);
+    const stagesCount = getStagesCount(children.length, capacity);
 
     return (
         <div className={styles.carousel} ref={carouselRef}>
             <CarouselContent
-                items={items}
+                items={children}
                 stagesCount={stagesCount}
                 currentStage={carouselOffset}
 

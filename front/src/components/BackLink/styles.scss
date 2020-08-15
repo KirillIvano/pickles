@@ -1,0 +1,59 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.backLink {
+    position: relative;
+
+    padding: $pad3;
+    padding-left: 30px;
+
+    color: $firm;
+    font-size: $sm;
+    font-family: 'Roboto', sans-serif;
+}
+
+.backLink::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 16px;
+
+    top: 50%;
+    left: 0;
+    margin-top: -8px;
+
+    background: url("./back.svg");
+    background-size: cover;
+}
+
+@keyframes tremble {
+    from {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(0);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.backLink:hover,
+.backLink:focus {
+    outline: none;
+
+    &::after {
+        animation: tremble 1s linear infinite;
+    }
+}

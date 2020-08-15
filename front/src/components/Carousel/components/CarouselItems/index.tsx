@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.less';
+import styles from './styles.scss';
 
 type CarouselContentItemsProps = {
     items: React.ReactNode[];

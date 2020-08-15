@@ -1,7 +1,8 @@
 import React, {useMemo} from 'react';
 import classnames from 'classnames';
 
-import styles from './styles.less';
+import styles from './styles.scss';
+
 
 type CarouselProgressProps = {
     stagesCount: number;

@@ -1,4 +1,4 @@
-@import "~vars/fonts.less";
+@import "~vars/fonts";
 
 .carousel {
     position: relative;
@@ -12,7 +12,7 @@
     .carouselRightControl {
         position: absolute;
         height: 91px;
-        width: @controlWidth;
+        width: $controlwidth;
 
         top: 50%;
         margin-top: -45px;

@@ -5,7 +5,7 @@ import {DeviceContext} from '@/contexts/DeviceContext';
 
 import {getUpdatedPosition} from './../../helpers';
 import {CarouselItems} from './..';
-import styles from './styles.less';
+import styles from './styles.scss';
 
 type CarouselContentProps = {
     items: React.ReactNode[];
