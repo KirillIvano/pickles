@@ -1,0 +1,32 @@
+@import "~vars/pads";
+@import "~vars/colors";
+@import "~vars/fonts";
+
+.infoTable {
+    padding: $pad4 $pad4;
+
+    background: $light_gray;
+    border-radius: 2px;
+
+    .infoTableItem {
+        display: flex;
+
+        color: $dark_gray;
+        font-size: $xs;
+        font-family: 'Roboto', sans-serif;
+
+        .itemName {
+            flex: 0 0 25%;
+            text-align: end;
+        }
+
+        .itemValue {
+            flex: 1 1 auto;
+            margin-left: $pad8;
+        }
+    }
+
+    .infoTableItem + .infoTableItem {
+        margin-top: $pad4;
+    }
+}

@@ -37,7 +37,9 @@ export const MenuTogglerBtn = ({
         onClick={toggle}
         onKeyUp={e => e.key === 'Enter' && toggle}
     >
-        <ToggleIcon />
+        <div className={styles.iconWrapper}>
+            <ToggleIcon />
+        </div>
         <span className={styles.menuTogglerContent}>{caption}</span>
     </button>
 );
@@ -48,7 +50,6 @@ type MenuProps = {
     children: React.ReactNode;
 
     className?: string;
-    openedClassName?: string;
 }
 
 export const Menu = ({
@@ -56,7 +57,6 @@ export const Menu = ({
     children,
 
     className,
-    openedClassName,
 }: MenuProps) => isOpened ? (
     <div
         className={classnames(

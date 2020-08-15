@@ -5,13 +5,13 @@
 .button {
     display: block;
     width: 100%;
+    padding: $pad4 $pad7;
 
     color: white;
     background-color: $firm;
+    border-radius: 2px;
 
-    padding: $pad3 $pad7;
-
-    transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 
     cursor: pointer;
 }

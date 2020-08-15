@@ -12,14 +12,18 @@
 
     background: transparent;
 
-    border: 0.5px solid $dark_gray;
+    border: 0.5px solid $medium_gray;
     border-radius: 2px;
 
-    .menuTogglerIcon {
-        fill: $dark_gray;
+    .iconWrapper {
+        flex: 0 0 10px;
 
-        transform-origin: center;
-        transition: 0.3s ease-in-out;
+        .menuTogglerIcon {
+            fill: $dark_gray;
+
+            transform-origin: center;
+            transition: 0.3s ease-in-out;
+        }
     }
 
     .menuTogglerContent {
@@ -49,5 +53,5 @@
     background: $light_gray;
 
     opacity: 1;
-    animation: appear 0.5s ease-in-out;
+    animation: appear 0.3s ease-in-out;
 }

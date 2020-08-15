@@ -1,0 +1,28 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.breadCrumps {
+    .breadCrump,
+    .breadCrump + .breadCrump::before {
+        color: $dark_gray;
+        font-size: $sm;
+    }
+
+    .breadCrump {
+        position: relative;
+        display: inline-block;
+
+        text-decoration: none;
+    }
+
+    .breadCrump + .breadCrump {
+        padding-left: $pad4;
+
+        &::before {
+            content: '/';
+            position: absolute;
+            left: 5px;
+        }
+    }
+}
