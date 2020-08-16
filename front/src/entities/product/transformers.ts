@@ -1,7 +1,7 @@
 import {ProductPreviewDto} from '@/services/product/dto';
 import {getImageUrl} from '@/util/getImageUrl';
 
-import {ProductPreviewType} from './types';
+import {ProductPreviewType, ProductType} from './types';
 
 
 export const clientifyProductPreview = (productPreview: ProductPreviewDto): ProductPreviewType => {
@@ -10,4 +10,11 @@ export const clientifyProductPreview = (productPreview: ProductPreviewDto): Prod
     productPreviewCopy.image = getImageUrl(productPreview.image);
 
     return productPreviewCopy;
+};
+
+export const clientifyProduct = (product: ProductType): ProductType => {
+    const productCopy = {...product};
+    productCopy.images = product.images.map(getImageUrl);
+
+    return productCopy;
 };

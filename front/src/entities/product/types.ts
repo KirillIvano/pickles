@@ -14,8 +14,12 @@ export type ProductDescriptionItemType = {
 
 export type ProductType = {
     id: number;
+    categoryId: number;
+
+    name: string;
+    verboseName: string;
     images: string[];
-    description: ProductDescriptionItemType[];
+    info: ProductDescriptionItemType[];
     price: number;
     weight: number;
 }
