@@ -1,0 +1,123 @@
+@import "~vars/colors";
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/screen";
+
+$modalBorderRadius: 5px;
+
+.cartModalContent {
+    display: flex;
+    align-items: stretch;
+
+    .productImageContainer {
+        flex: 0 0 300px;
+        width: 300px;
+
+        .productImageWrapper {
+            border-radius: $modalBorderRadius 0 0 $modalBorderRadius;
+            height: 100%;
+
+            .productImage {
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+
+    .cartProduct {
+        flex: 1 1 auto;
+
+        display: flex;
+        flex-direction: column;
+
+        .cartProductInfo {
+            flex: 1 1 auto;
+            padding: 20px 24px 20px 12px;
+
+            .modalCaption {
+                color: $dark_gray;
+                font-size: $xs;
+                font-weight: normal;
+            }
+
+            .productName {
+                margin-top: $pad2;
+
+                color: $black;
+                font-size: $xl;
+                font-weight: normal;
+            }
+
+            .productsCountContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                margin-top: $pad6;
+
+                .productPrice {
+                    font-size: $xxl;
+                    color: $black;
+                }
+            }
+        }
+
+        .cartLink {
+            flex: 0 0 auto;
+
+            width: 100%;
+
+            background: $firm;
+            color: white;
+
+            border-radius: 0 0 $modalBorderRadius 0;
+        }
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .cartModalContent {
+        flex-direction: column;
+
+        .productImageContainer {
+            flex: auto;
+            width: 100%;
+
+            .productImageWrapper {
+                border-radius: $modalBorderRadius $modalBorderRadius 0 0;
+
+                .productImage {
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+
+        .cartProduct {
+            flex: 1 1 auto;
+
+            display: flex;
+            flex-direction: column;
+
+            .cartProductInfo {
+                flex: auto;
+
+                .productName {
+                    margin-top: $pad1;
+
+                    font-size: $lg;
+                }
+
+                .productsCountContainer {
+                    .productPrice {
+                        font-size: $lg;
+                    }
+                }
+            }
+
+            .cartLink {
+                border-radius: 0 0 $modalBorderRadius $modalBorderRadius;
+            }
+        }
+    }
+}
