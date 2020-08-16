@@ -1,14 +1,13 @@
-type CartItemType = {
-    cartId: number;
+export type CartItemType = {
     productId: number;
     productsCount: number;
 }
 
-type Cart = {
-    products: CartItemType[];
-    isFinished: boolean;
+export type CartType = {
+    cartItems: CartItemType[];
 }
 
-type Offer = {
+export type Offer = {
     date: number;
+    cartId: number;
 }
