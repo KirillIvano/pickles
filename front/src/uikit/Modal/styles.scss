@@ -1,0 +1,87 @@
+@import "~vars/colors";
+
+.bodyOpen {
+    overflow-y: hidden;
+
+    .modalOverlay {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+
+        background: rgba(0, 0, 0, 0.7);
+
+        padding: 5%;
+
+        .modal {
+            position: relative;
+
+            width: 100%;
+            max-width: 800px;
+            min-height: 100px;
+
+            border-radius: 5px;
+
+            background: white;
+
+            .iconContainer {
+                position: absolute;
+                z-index: 1;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 50px;
+                height: 50px;
+                right: 0;
+
+                background: white;
+                border-radius: 5px;
+
+                cursor: pointer;
+
+                .closeIcon {
+                    width: 30px;
+                    height: 30px;
+
+                    path {
+                        fill: $medium_gray;
+                        transition: fill 0.3s;
+                    }
+                }
+            }
+
+            .iconContainer.dark {
+                background: transparent;
+
+                .closeIcon {
+                    border-radius: 50%;
+
+                    path {
+                        fill: $black;
+                    }
+                }
+            }
+
+            .iconContainer:hover,
+            .iconContainer:focus {
+                outline: none;
+
+                .closeIcon {
+                    path {
+                        fill: $dark_gray;
+                    }
+                }
+            }
+        }
+
+        .modal:focus {
+            outline: none;
+        }
+    }
+}
