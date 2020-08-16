@@ -23,31 +23,30 @@ const ProductPreviewCard = ({
     weight,
     verboseName,
 }: ProductPreviewCardProps) => (
-    <Reference
-        to={`/product/${verboseName}/${id}`}
-        className={styles.productCard}
-    >
-        <ProductImage.Wrapper className={styles.productImageWrapper}>
-            <ProductImage className={styles.productImage} src={image} />
-        </ProductImage.Wrapper>
+    <div className={styles.productCard}>
+        <Reference
+            to={`/product/${verboseName}/${id}`}
+            className={styles.productCardContent}
+        >
+            <ProductImage.Wrapper className={styles.productImageWrapper}>
+                <ProductImage className={styles.productImage} src={image} />
+            </ProductImage.Wrapper>
 
-        <div className={styles.productInfo}>
-            <p>
-                <span className={styles.productPrice}>{price} ₽</span>
-                <span className={styles.productWeight}> / {weight}</span>
-            </p>
+            <div className={styles.productInfo}>
+                <p>
+                    <span className={styles.productPrice}>{price} ₽</span>
+                    <span className={styles.productWeight}> / {weight}</span>
+                </p>
 
-            <p className={styles.productName}>{name}</p>
-        </div>
+                <p className={styles.productName}>{name}</p>
+            </div>
+        </Reference>
 
         <CartButton
-            handleClick={e => {
-                e.stopPropagation();
-            }}
-            content={'В корзину'}
+            productId={id}
             className={styles.cartButton}
         />
-    </Reference>
+    </div>
 );
 
 export default ProductPreviewCard;
