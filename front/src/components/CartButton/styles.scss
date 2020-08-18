@@ -1,3 +1,5 @@
+@import "~vars/colors";
+
 .cartButton {
     display: flex;
     justify-content: center;
@@ -5,5 +7,18 @@
 
     .buttonCaption {
         margin-left: 6px;
+    }
+}
+
+.cartButton.selected {
+    background-color: $light_gray;
+
+    .buttonCaption {
+        margin-left: 6px;
+        color: $black;
+
+        .cartLink {
+            color: $firm;
+        }
     }
 }

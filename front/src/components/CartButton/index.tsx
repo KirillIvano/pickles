@@ -1,32 +1,56 @@
 import React from 'react';
 import classnames from 'classnames';
+import {observer} from 'mobx-react-lite';
 
 import {Button} from '@/uikit';
+import {useCartStore} from '@/entities/cart/hooks';
+import {useCartModalContext} from '@/hooks/useCartModalContext';
 
 import styles from './styles.scss';
 import cartImg from './images/cart.svg';
 
 
 type CartButtonProps = {
-    handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    content: string;
+    productId: number;
 
     className?: string;
 }
 
-const CartButton = ({
-    handleClick,
-    content,
+const CartButton = observer(({
+    productId,
 
     className,
-}: CartButtonProps) => (
-    <Button
-        className={classnames(className, styles.cartButton)}
-        onClick={handleClick}
-    >
-        <img src={cartImg} />
-        <span className={styles.buttonCaption}>{content}</span>
-    </Button>
-);
+}: CartButtonProps) => {
+    const cartStore = useCartStore();
+    const cartModalContext = useCartModalContext();
+
+    const productFromCart = cartStore.getCartItemById(productId);
+    const isProductInCart = productFromCart ? true : false;
+
+    const handleCartAdd = (e: React.MouseEvent | React.KeyboardEvent) => {
+        e.stopPropagation();
+        cartModalContext.openModal(productId);
+        cartStore.addProductToCart(productId);
+    };
+
+    return (
+        <Button
+            onClick={handleCartAdd}
+            onKeyUp={e => e.key === 'Enter' && handleCartAdd(e)}
+            disabled={isProductInCart}
+            className={classnames(
+                className,
+                styles.cartButton,
+                {[styles.selected]: isProductInCart},
+            )}
+        >
+            {!isProductInCart && <img src={cartImg} />}
+
+            <span className={styles.buttonCaption}>
+                {isProductInCart ? 'В корзине' : 'В корзину'}
+            </span>
+        </Button>
+    );
+});
 
 export default CartButton;
