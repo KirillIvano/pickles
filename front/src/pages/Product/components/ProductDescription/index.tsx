@@ -32,8 +32,9 @@ const ProductDescription = observer(({
 
             <CartButton
                 className={styles.productToCart}
-                content={'В корзину'}
+                productId={productId}
             />
+
             <InfoTable
                 className={styles.productInfo}
             >

@@ -4,7 +4,6 @@ import {Row, Col} from 'react-flexbox-grid';
 import {renderForDesktopHOC} from '@/contexts/DeviceContext';
 import {Grid} from '@/uikit';
 
-import styles from './styles.scss';
 import {DesktopSidePanel, ProductsList} from './../';
 
 

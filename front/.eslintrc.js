@@ -65,5 +65,7 @@ module.exports = {
         'react/jsx-wrap-multilines': 'error',
 
         '@typescript-eslint/explicit-function-return-type': ['off'],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"    
     }
 };

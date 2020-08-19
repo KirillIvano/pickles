@@ -1,6 +1,7 @@
 @import "~vars/colors";
 @import "~vars/fonts";
 @import "~vars/pads";
+@import "~vars/screen";
 
 .pricesSelect {
     .pricesWrapper {
@@ -12,6 +13,16 @@
 
         .priceSelectInput + .priceSelectInput {
             margin-left: 16px;
+        }
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .pricesSelect {
+        .pricesWrapper {
+            .priceSelectInput {
+                text-align: center;
+            }
         }
     }
 }
