@@ -1,0 +1,16 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.checkoutInputWrapper {
+    & + & {
+        margin-top: $pad4;
+    }
+
+    .label {
+        color: $black;
+        font-size: $xs;
+
+        padding-bottom: $pad1;
+    }
+}

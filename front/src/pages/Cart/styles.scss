@@ -1,0 +1,21 @@
+@import "~vars/pads";
+@import "~vars/screen";
+
+.cartPage {
+    padding-top: $pad6;
+    padding-bottom: $pad12;
+
+    .sidePanel {
+        padding-left: $pad4;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .cartPage {
+        .sidePanel {
+            padding-left: 8px;
+            padding-right: 8px;
+            margin-top: $pad8;
+        }
+    }
+}

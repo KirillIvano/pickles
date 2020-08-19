@@ -1,0 +1,9 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+
+.checkout {
+    .submitBtn {
+        margin-top: $pad6;
+        font-size: $sm;
+    }
+}

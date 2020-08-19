@@ -1,0 +1,31 @@
+@import "~vars/pads";
+@import "~vars/colors";
+@import "~vars/fonts";
+
+.cartTotals {
+    padding-top: $pad9;
+    padding-bottom: $pad9;
+
+    color: $black;
+
+    .itemsCount {
+        font-size: $lg;
+        color: $dark_gray;
+    }
+
+    .totalsItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        margin-top: $pad2;
+
+        .itemName {
+            font-size: $lg;
+        }
+
+        .itemValue {
+            font-size: $xl;
+        }
+    }
+}
