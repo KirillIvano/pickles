@@ -5,24 +5,25 @@ import styles from './styles.scss';
 
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    sizing: 'sm' | 'lg';
+    sizing?: 'sm' | 'lg';
 }
 
-export const Input = ({
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
     className,
-    sizing,
+    sizing='sm',
     ...props
-}: InputProps) => (
+}: InputProps, ref) => (
     <input
         {...props}
+        ref={ref}
         className={classnames(
             className,
             styles.input,
             {[styles.large]: sizing === 'lg'},
         )}
     />
-);
-
+));
+Input.displayName = 'Input';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
     sizing: 'sm' | 'lg';
@@ -38,6 +39,7 @@ export const Select = ({
         className={classnames(
             className,
             styles.input,
+            styles.select,
             {[styles.large]: sizing === 'lg'},
         )}
     />

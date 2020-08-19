@@ -17,11 +17,14 @@ const Tooltip = ({
 
     className,
 }: TooltipProps) => (
-    <div className={classnames(
-        className,
-        styles.tooltip,
-        {[styles.visible]: isVisible},
-    )}>
+    <div
+        aria-hidden={!isVisible}
+        className={classnames(
+            className,
+            styles.tooltip,
+            {[styles.visible]: isVisible},
+        )}
+    >
         {content}
     </div>
 );

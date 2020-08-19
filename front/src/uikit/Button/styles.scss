@@ -18,9 +18,10 @@
 
 .button:hover,
 .button:focus {
+    outline: none;
     background-color: darken($firm, 12);
 }
 
-.button:active {
-    outline: none;
+.button:disabled {
+    cursor: default;
 }

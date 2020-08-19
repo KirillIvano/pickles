@@ -19,9 +19,16 @@
     transition: box-shadow 0.3s;
 }
 
+.select {
+    cursor: pointer;
+}
+
 .input.large {
-    padding: $pad4 $pad1;
-    text-align: center;
+    padding: $pad3 $pad4;
+}
+
+.input::placeholder {
+    color: $medium_gray;
 }
 
 .input:focus,

@@ -9,7 +9,7 @@ export class CartStore {
 
     @computed
     get cartItems() {
-        return [...this._cartItems.entries()];
+        return [...this._cartItems.values()];
     }
 
     @computed
@@ -41,6 +41,11 @@ export class CartStore {
     @action
     clearCart = () => {
         this._cartItems.clear();
+    }
+
+    @action
+    removeCartItem = (productId: number) => {
+        this._cartItems.delete(productId);
     }
 
     @action

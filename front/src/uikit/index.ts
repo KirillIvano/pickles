@@ -9,5 +9,8 @@ export {MenuTogglerBtn, Menu} from './Menu';
 export {default as PageHeading} from './PageHeading';
 export {Input, Select} from './Input';
 export {default as Label} from './Label';
+export {default as LabeledInput} from './LabeledInput';
 export {default as InfoTable} from './InfoTable';
 export {default as BreadCrumps} from './BreadCrumps';
+export {default as Modal} from './Modal';
+export {default as NumberInput} from './NumberInput';

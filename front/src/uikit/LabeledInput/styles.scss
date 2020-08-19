@@ -1,0 +1,10 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.label {
+    color: $black;
+    font-size: $xs;
+
+    padding-bottom: $pad1;
+}
