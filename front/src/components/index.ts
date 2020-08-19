@@ -5,3 +5,5 @@ export {default as CartButton} from './CartButton';
 export {default as BackLink} from './BackLink';
 export {default as ProductImage} from './ProductImage';
 export {default as Carousel} from './Carousel';
+export {default as ProductCountInput} from './ProductCountInput';
+export {default as ProductCartCard} from './ProductCartCard';

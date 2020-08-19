@@ -9,9 +9,15 @@ import styles from './styles.scss';
 
 type ProductCountInputProps = {
     productId: number;
+    className?: string;
+    wrapperClass?: string;
 }
 
-const ProductCountInput = observer(({productId}: ProductCountInputProps) => {
+const ProductCountInput = observer(({
+    productId,
+    className,
+    wrapperClass,
+}: ProductCountInputProps) => {
     const cartItem = useCartItemById(productId);
     const {updateProductCount} = useCartStore();
 
@@ -44,8 +50,19 @@ const ProductCountInput = observer(({productId}: ProductCountInputProps) => {
 
         if (isNaN(numericValue)) return;
 
-        numericValue >= 0 &&setLocalValue(val);
-        numericValue >= 1 && updateProductCount(productId, numericValue);
+        if (numericValue === 0) {
+            setLocalValue(val === '' ? '' : '1');
+            updateProductCount(productId, 1);
+        } else if (numericValue > 0) {
+            setLocalValue(val);
+            updateProductCount(productId, numericValue);
+        }
+    };
+
+    const handleBlur = () => {
+        if (localValue) return;
+
+        setLocalValue('1');
     };
 
     return (
@@ -55,9 +72,15 @@ const ProductCountInput = observer(({productId}: ProductCountInputProps) => {
             handleInc={handleInc}
             handleChange={handleChange}
 
+            onBlur={handleBlur}
+
             aria-invalid={+localValue < 1}
 
-            className={classnames({[styles.invalid]: +localValue < 1})}
+            wrapperClass={wrapperClass}
+            className={classnames(
+                className,
+                {[styles.invalid]: +localValue < 1},
+            )}
         />
     );
 });

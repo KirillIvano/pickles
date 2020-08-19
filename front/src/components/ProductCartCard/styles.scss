@@ -1,0 +1,104 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/screen";
+@import "~vars/pads";
+
+.cartCard {
+    position: relative;
+
+    margin-top: $pad6;
+
+    border-radius: 5px;
+    border: 0.5px solid $medium_gray;
+
+    transition: background-color 0.3s ease-in-out;
+
+    color: $black;
+
+    .removeIcon {
+        position: absolute;
+
+        top: 0;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 50px;
+        height: 50px;
+
+        background-color: transparent;
+
+        cursor: pointer;
+
+        .removeIconImage {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .cardInfo {
+        padding: $pad4;
+
+        .pricing {
+            .price {
+                font-size: $xxl;
+            }
+
+            .weight {
+                font-size: $lg;
+                color: $dark_gray;
+            }
+        }
+
+        .name {
+            margin-top: $pad3;
+            font-size: $lg;
+        }
+
+        .countInput {
+            margin-top: $pad2;
+        }
+
+        .totalPrice {
+            margin-top: $pad2;
+
+            color: $firm;
+            font-size: $xxl;
+        }
+    }
+}
+
+.cartCard:focus,
+.cartCard:hover {
+    outline: none;
+    background-color: #fafafa;
+}
+
+@media all and (min-width: $screen_md) {
+    .cartCard {
+        .cardInfo {
+            .pricing {
+                .price {
+                    font-size: $xl;
+                }
+
+                .weight {
+                    font-size: $sm;
+                    color: $dark_gray;
+                }
+            }
+
+            .name {
+                font-size: $lg;
+            }
+
+            .totalPrice {
+                padding-top: auto;
+
+                font-size: $xl;
+            }
+        }
+    }
+}

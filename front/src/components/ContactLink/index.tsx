@@ -67,7 +67,11 @@ const DesktopContactLink = ({
             onClick={handleClick}
             onKeyUp={({key}) => key === 'Enter' && handleClick()}
         >
-            <Tip className={styles.tip} content={'Скопировано!'} isVisible={isCopied} />
+            <Tip
+                className={styles.tip}
+                content={'Скопировано!'}
+                isVisible={isCopied}
+            />
             {children}
         </div>
     );
