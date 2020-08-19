@@ -4,4 +4,4 @@ import {createDebouncer} from '@/util/debounce';
 
 
 export const useDebouncer = (delay: number) =>
-    useMemo(() => createDebouncer(delay), []);
+    useMemo(() => createDebouncer(delay), [delay]);

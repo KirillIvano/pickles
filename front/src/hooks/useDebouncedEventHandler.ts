@@ -4,9 +4,9 @@ export const useDebouncedEventHandler = <TEvent extends React.SyntheticEvent,>(
     handler: (e: TEvent) => void,
     delayInMs: number,
 ) => {
-    let timeout: number | null = null;
-
     return useCallback((e: TEvent) => {
+        let timeout: number | null = null;
+
         e.persist();
         if (timeout) clearTimeout(timeout);
 
