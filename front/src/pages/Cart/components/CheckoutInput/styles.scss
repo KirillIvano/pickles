@@ -12,5 +12,19 @@
         font-size: $xs;
 
         padding-bottom: $pad1;
+
+        .asteriks {
+            color: red;
+            margin-left: 3px;
+        }
+    }
+
+    .input.error {
+        border: 0.5px solid red;
+    }
+
+    .errorView {
+        font-size: $xs;
+        color: red;
     }
 }
