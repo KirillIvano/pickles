@@ -1,0 +1,76 @@
+@import "~vars/fonts";
+@import "~vars/pads";
+@import "~vars/screen";
+@import "~vars/colors";
+
+.orderSuccessPage {
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .headingImage {
+            width: 80px;
+            height: auto;
+        }
+
+        .headingContent {
+            padding-top: $pad4;
+
+            text-align: center;
+            font-size: $xxl;
+            font-weight: normal;
+        }
+    }
+
+    .pageInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        padding-top: 120px;
+
+        .serviceInfo {
+            max-width: 300px;
+            font-size: $sm;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+
+            width: 100%;
+
+            .orderLink,
+            .catalogLink {
+                margin-top: $pad4;
+                display: block;
+                width: 100%;
+            }
+
+            .orderLink {
+                background: $firm;
+                color: white;
+            }
+        }
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .orderSuccessPage {
+        .pageInfo {
+            flex-direction: column;
+
+            .serviceInfo {
+                padding-bottom: $pad4;
+            }
+
+            .links {
+                align-self: center;
+            }
+        }
+    }
+}
