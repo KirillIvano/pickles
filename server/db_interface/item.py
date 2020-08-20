@@ -14,12 +14,14 @@ def add_product_objects(
     return items
 
 
-def create_many(order: Order, items: List[Dict[str, object]]) -> bool:
+def create_many(order: Order, items) -> bool:
     for item in items:
+        product: Product = item['product']
         Item.objects.create(
-            product=item['product'],
+            product=product,
             order=order,
-            quantity=item['quantity']
+            quantity=item['quantity'],
+            price=product.price
         )
     else:
         return False

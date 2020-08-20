@@ -40,6 +40,7 @@ class ProductAdmin(ModelAdmin):
 @admin.register(Order)
 class OrderAdmin(ModelAdmin):
     fields = [
+        'hash',
         'hash_digital',
         'name',
         'phone',
@@ -48,8 +49,12 @@ class OrderAdmin(ModelAdmin):
         'comment',
         'status',
     ]
-    readonly_fields = ['hash_digital']
+    readonly_fields = ['hash', 'hash_digital']
     inlines = [ItemInline]
+
+# @admin.register(OrderStatus)
+# class OrderStatusAdmin(ModelAdmin):
+#     pass
 
 # @admin.register(OrderStatus)
 # class OrderStatusAdmin(ModelAdmin):

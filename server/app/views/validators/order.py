@@ -25,11 +25,9 @@ def validate_order(request: HttpRequest) -> bool:
         return False
 
     for item in body.get('items'):
-        print(item)
         product_id = item.get('productId')
         quantity = item.get('quantity')
         if product_id is None or quantity is None:
-            print('sth is none')
             return False
 
     return True

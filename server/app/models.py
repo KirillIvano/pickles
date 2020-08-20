@@ -56,8 +56,9 @@ class Product(Model):
     price = IntegerField(
         verbose_name='Цена'
     )
-    weight = IntegerField(
-        verbose_name='Вес (в граммах)'
+    weight = CharField(
+        verbose_name='Вес (объём)',
+        max_length=64
     )
     category = ForeignKey(
         verbose_name='Категория',
@@ -173,12 +174,17 @@ class Order(Model):
         verbose_name='Комментарий',
         max_length=512,
     )
+    datetime = DateTimeField(
+        verbose_name='Дата и время создания',
+        auto_created=True,
+        null=True
+    )
 
     status = ForeignKey(
         OrderStatus,
         verbose_name='Статус',
         on_delete=SET_NULL,
-        null=True
+        null=True,
     )
 
 
@@ -194,7 +200,7 @@ class Item(Model):
     product = ForeignKey(
         Product,
         verbose_name='Продукт',
-        on_delete=DO_NOTHING
+        on_delete=DO_NOTHING,
         )
     order = ForeignKey(
         Order,
@@ -202,3 +208,7 @@ class Item(Model):
     quantity = IntegerField(
         verbose_name='Количество'
     )
+    price = IntegerField(
+        verbose_name='Цена',
+    )
+

@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from app.models import Order, Product
+import db_interface.order
 import db_interface.item
 from helpers import wrap_response
 from app.views.validators import order as validator
@@ -25,13 +26,28 @@ def new(request: HttpRequest) -> HttpResponse:
     except Product.DoesNotExist:
         return wrap_response.wrap_error('Неправильный id продукта')
 
-    order = Order.objects.create(
+    order = db_interface.order.create(
         name=body.get("name"),
         phone=body.get("phone"),
         email=body.get("email"),
         address=body.get("address"),
         comment=body.get("comment"),
+        items=items
     )
-    db_interface.item.create_many(order, items)
 
-    return wrap_response.wrap_data({})
+    return wrap_response.wrap_data(
+        {'id': order.hash_digital, 'key': order.hash})
+
+
+# noinspection PyArgumentList
+def get(request: HttpRequest, digital_hash: str) -> HttpResponse:
+    # noinspection PyCallByClass
+    key = request.GET.get(key='key')
+    if key is None:
+        return wrap_response.wrap_error("Нет передан ключ", )
+
+    instance = db_interface.order.by_digital_hash(digital_hash, key)
+    if len(instance) == 0:
+        return wrap_response.wrap_error("Нет заказа с таким номером", 404)
+
+    return wrap_response.wrap_data({'order': instance})

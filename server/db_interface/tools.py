@@ -4,30 +4,29 @@ import datetime
 pp = pprint.PrettyPrinter().pprint
 
 
-def to_dict(model, fields: list) -> dict:
+def to_dict(instance, fields: list) -> dict:
     """
     fields = [
         ('actual_key', 'newKey'),
     ]
     """
-    model = model.__dict__
+    instance = instance.__dict__
 
-    if '_state' in model.keys():
-        model.pop('_state')
-    if 'hash' in model.keys():
-        model.pop('hash')
+    for key in ['_state', 'hash']:
+        if instance.get(key) is not None:
+            instance.pop(key)
 
     if len(fields) == 0:
-        return model
+        return instance
     else:
-        new_model = {}
+        new_instance = {}
         for field in fields:
-            attr = model[field[0]]
+            attr = instance[field[0]]
             if type(attr) in [datetime.date]:
                 attr = attr.__str__()
-            new_model[field[1]] = attr
+            new_instance[field[1]] = attr
 
-        return new_model
+        return new_instance
 
 
 def select_from_query(query, fields):
@@ -61,8 +60,8 @@ def select_single(model, key, value, fields: list):
     ]
     """
     try:
-        query = model.objects.get(**{key: value})
-        instances = list(select_from_query([query], fields))
+        query = model.objects.filter(**{key: value})
+        instances = list(select_from_query(query, fields))
         if len(instances) == 0:
             return None
         else:

@@ -9,11 +9,8 @@ def _create_mail_session():
     return mail_session
 
 
-session = _create_mail_session()
-
-
 def send_mail(destination, subject, text):
-    global session
+    session = _create_mail_session()
     message = f"Subject: {subject}\n{text}"
     try:
         session.sendmail(
