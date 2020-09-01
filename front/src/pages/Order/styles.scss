@@ -1,0 +1,33 @@
+@import "~vars/fonts";
+@import "~vars/colors";
+@import "~vars/pads";
+
+.orderPage {
+    padding-top: 60px;
+    padding-bottom: 120px;
+
+    font-family: 'Open Sans', sans-serif;
+
+    .phoneReminderWrapper {
+        margin-top: $pad10;
+
+        display: flex;
+        justify-content: flex-end;
+
+        .phoneReminder {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            .reminderCaption {
+                color: $black;
+                font-size: $font_xs;
+            }
+
+            .phoneNumber {
+                color: $firm;
+                font-size: $font_xs;
+            }
+        }
+    }
+}

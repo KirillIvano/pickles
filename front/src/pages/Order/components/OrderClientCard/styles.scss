@@ -1,0 +1,11 @@
+@import "~vars/pads";
+@import "~vars/colors";
+
+
+.clientInfo {
+    .infoItem {
+        margin-top: $pad2;
+        color: $black;
+        font-size: .8rem;
+    }
+}

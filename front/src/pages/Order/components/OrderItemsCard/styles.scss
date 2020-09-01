@@ -1,0 +1,30 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/colors";
+
+.itemsCard {
+    .item,
+    .totals {
+        display: flex;
+        justify-content: space-between;
+
+        margin-top: $pad2;
+
+        color: $black;
+        font-size: .8rem;
+
+        .value {
+            flex: 0 0 100px;
+            text-align: end;
+        }
+    }
+
+    .totals {
+        align-items: flex-end;
+        margin-top: $pad5;
+
+        .totalSum {
+            font-size: $font_xl;
+        }
+    }
+}

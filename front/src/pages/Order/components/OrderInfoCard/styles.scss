@@ -1,0 +1,23 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/colors";
+
+.orderCard {
+    padding: $pad4;
+
+    border-radius: 5px;
+    border: 0.5px solid $medium_gray;
+
+    .caption {
+        padding-bottom: $pad6;
+
+        font-size: $font_xl;
+        font-weight: normal;
+    }
+}
+
+@media all and (max-width: 800px) {
+    .orderCard {
+        margin-top: $pad8;
+    }
+}

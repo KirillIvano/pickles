@@ -1,0 +1,14 @@
+@import "~vars/fonts";
+@import "~vars/colors";
+@import "~vars/pads";
+
+.orderGeneralInfo {
+    .orderHeadline {
+        font-size: $font_xxxl;
+    }
+
+    .infoItem {
+        margin-top: $pad2;
+        color: $black;
+    }
+}
