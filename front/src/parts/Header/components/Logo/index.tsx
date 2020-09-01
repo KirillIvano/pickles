@@ -3,7 +3,7 @@ import React from 'react';
 import {Reference} from '@/components';
 
 import styles from './styles.scss';
-import logoSrc from './images/logo.png';
+import logoSrc from './images/logo.svg';
 
 
 const Logo = () => (
