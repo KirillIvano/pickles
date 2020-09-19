@@ -101,7 +101,7 @@ const prodConfigs = {
                         loader: 'file-loader',
                         options: {
                             outputPath: 'images/',
-                            name: '[name].[ext]'
+                            name: '[name]_[hash].[ext]'
                         }
                     },
                 ],

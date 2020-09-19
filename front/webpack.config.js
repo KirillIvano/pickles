@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
 
-const vendorList = ['@babel/polyfill', 'react', 'react-dom'];    
-
 module.exports = {
       entry: './src/index.tsx',
       optimization: {
