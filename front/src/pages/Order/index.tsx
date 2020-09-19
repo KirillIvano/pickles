@@ -14,13 +14,14 @@ import {
     OrderGeneralInfo,
 } from './components';
 import styles from './styles.scss';
+import {useOrderPageStore} from './hooks/useOrderPageStore';
 
 
 const OrderPage = observer(() => {
     const {key: orderKey} = useQuery<{key: string}>();
     const orderId = +useParams<{orderId: string}>().orderId;
 
-    const {orderLoadingError, orderLoadingSuccess} = orderPageStore;
+    const {orderLoadingError, orderLoadingSuccess} = useOrderPageStore();
     const order = useOrderById(orderId);
 
     useEffect(() => {
@@ -44,6 +45,13 @@ const OrderPage = observer(() => {
                     <OrderClientCard orderId={orderId} />
                 </Col>
             </Row>
+
+            <div className={styles.phoneReminderWrapper}>
+                <p className={styles.phoneReminder}>
+                    <span className={styles.reminderCaption}>Телефон поддержки</span>
+                    <span className={styles.phoneNumber}>8(999)999-99-99</span>
+                </p>
+            </div>
         </Grid>
     );
 });

@@ -1,7 +1,9 @@
-import {observable, action} from 'mobx';
+import {observable, action, computed} from 'mobx';
 
 import {getOrderInfo} from '@/services/order';
 import {orderStore} from '@/store/stores/order';
+import { cartStore } from '@/store/stores/cart';
+import { productStore } from '@/store/stores/products';
 
 
 class OrderPageStore {

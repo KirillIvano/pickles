@@ -11,6 +11,7 @@ const OrderGeneralInfo = ({orderId}: OrderGeneralInfoProps) => {
     return (
         <div className={styles.orderGeneralInfo}>
             <h1 className={styles.orderHeadline}>Заказ №{orderId}</h1>
+            <p className={styles.declineReminder}>Чтобы отменить заказ, пожалуйста, позвоните нам</p>
         </div>
     );
 };
