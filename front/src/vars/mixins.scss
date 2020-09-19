@@ -1,0 +1,15 @@
+@import "./screen.scss";
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@mixin fadeOut($duration) {
+    animation: fade $duration ease-in-out;
+}
