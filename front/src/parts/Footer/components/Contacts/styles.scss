@@ -5,7 +5,7 @@
 .footerContacts {
     .companyName {
         font-weight: bold;
-        font-size: fonts.$xxxl;
+        font-size: fonts.$font_xxxl;
     }
 
     .contactsContainer {
@@ -14,7 +14,7 @@
         .contactsItem {
             margin-top: pads.$pad3;
 
-            font-size: fonts.$xs;
+            font-size: fonts.$font_xs;
         }
     }
 }

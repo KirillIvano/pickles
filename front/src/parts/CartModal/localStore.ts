@@ -1,7 +1,9 @@
-import { clientifyProductPreview } from '@/entities/product/transformers';
-import { getSingleProductPreview } from '@/services/product';
-import { productStore } from '@/store/stores/products';
 import {observable, action} from 'mobx';
+
+import {clientifyProductPreview} from '@/entities/product/transformers';
+import {getSingleProductPreview} from '@/services/product';
+import {productStore} from '@/store/stores/products';
+
 
 class CartModalStore {
     @observable

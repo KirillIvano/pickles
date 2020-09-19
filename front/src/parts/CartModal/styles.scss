@@ -5,6 +5,10 @@
 
 $modalBorderRadius: 5px;
 
+.cartModalPortal {
+    z-index: 1;
+}
+
 .cartModalContent {
     display: flex;
     align-items: stretch;
@@ -36,7 +40,7 @@ $modalBorderRadius: 5px;
 
             .modalCaption {
                 color: $dark_gray;
-                font-size: $xs;
+                font-size: $font_xs;
                 font-weight: normal;
             }
 
@@ -44,7 +48,7 @@ $modalBorderRadius: 5px;
                 margin-top: $pad2;
 
                 color: $black;
-                font-size: $xl;
+                font-size: $font_xl;
                 font-weight: normal;
             }
 
@@ -56,21 +60,36 @@ $modalBorderRadius: 5px;
                 margin-top: $pad6;
 
                 .productPrice {
-                    font-size: $xxl;
+                    font-size: $font_xxl;
                     color: $black;
                 }
             }
         }
 
-        .cartLink {
-            flex: 0 0 auto;
-
+        .cartModalControls {
+            display: flex;
             width: 100%;
+            padding: $pad4;
 
-            background: $firm;
-            color: white;
+            .cartLink + .cartLink {
+                margin-left: $pad3;
+            }
 
-            border-radius: 0 0 $modalBorderRadius 0;
+            .cartLink {
+                width: auto;
+                flex: 1 0 auto;
+
+                background: $firm;
+                color: white;
+                font-size: $font_sm;
+
+                border-radius: $modalBorderRadius;
+            }
+
+            .continueBuyingLink {
+                background: $firm_secondary;
+                color: $firm;
+            }
         }
     }
 }
@@ -105,18 +124,39 @@ $modalBorderRadius: 5px;
                 .productName {
                     margin-top: $pad1;
 
-                    font-size: $lg;
+                    font-size: $font_lg;
                 }
 
                 .productsCountContainer {
                     .productPrice {
-                        font-size: $lg;
+                        font-size: $font_lg;
                     }
                 }
             }
 
-            .cartLink {
-                border-radius: 0 0 $modalBorderRadius $modalBorderRadius;
+            .cartModalControls {
+                flex-direction: column;
+
+                .cartLink + .cartLink {
+                    margin-left: 0;
+                    margin-top: $pad3;
+                }
+
+                .cartLink {
+                    width: auto;
+                    flex: 1 0 auto;
+
+                    background: $firm;
+                    color: white;
+                    font-size: $font_sm;
+
+                    border-radius: $modalBorderRadius;
+                }
+
+                .continueBuyingLink {
+                    background: $firm_secondary;
+                    color: $firm;
+                }
             }
         }
     }

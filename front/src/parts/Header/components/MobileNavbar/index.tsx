@@ -21,20 +21,22 @@ const MobileNav = ({
                 styles.navbar,
                 styles[stage] as string,
             )}>
-                <NavItem
-                    wrapperClass={styles.navItem}
-                    path={NAV_ITEMS.catalog.path}
-                    name={NAV_ITEMS.catalog.name}
-                />
-                <NavItem
-                    wrapperClass={styles.navItem}
-                    path={NAV_ITEMS.delivery.path}
-                    name={NAV_ITEMS.delivery.name}
-                />
+                <ul className={styles.navbarContent}>
+                    <NavItem
+                        wrapperClass={styles.navItem}
+                        path={NAV_ITEMS.catalog.path}
+                        name={NAV_ITEMS.catalog.name}
+                    />
+                    <NavItem
+                        wrapperClass={styles.navItem}
+                        path={NAV_ITEMS.delivery.path}
+                        name={NAV_ITEMS.delivery.name}
+                    />
 
-                <CartNavItem
-                    className={styles.navItem}
-                />
+                    <CartNavItem
+                        className={styles.navItem}
+                    />
+                </ul>
             </nav>
         )}
     </Transition>

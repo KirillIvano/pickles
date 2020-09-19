@@ -1,0 +1,48 @@
+@import "~vars/colors";
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/borders";
+@import "~vars/screen";
+
+.cartShortcut {
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    bottom: 12%;
+    right: 0;
+    padding: $pad3;
+
+    background: white;
+    border-radius: $common_radius 0 0 $common_radius;
+
+    box-shadow: 0 0 20px  rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    &.shortcutVisible {
+        opacity: 1;
+    }
+
+    .cartImage {
+        display: block;
+        width: 50px;
+    }
+
+    .cartShortcutCaption {
+        margin-top: $pad2;
+
+        font-size: $font_xs;
+        color: $firm;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .cartShortcut {
+        padding: $pad2;
+        bottom: 5%;
+    }
+}

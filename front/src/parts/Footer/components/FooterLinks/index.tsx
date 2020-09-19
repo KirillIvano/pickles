@@ -4,22 +4,23 @@ import {observer} from 'mobx-react-lite';
 
 import {useCategoriesStore} from '@/entities/productCategory/hooks';
 import {getArrayHalfs} from '@/util/getArrayHalfs';
+import {CategoryPreview} from '@/entities/productCategory/types';
 
 import {LinkItem, LinksBlock} from './..';
 import styles from './styles.scss';
-import { CategoryPreview } from '@/entities/productCategory/types';
+
 
 type CategoriesLinksProps = {
     categories: CategoryPreview[];
 }
 
 const CategoriesLinks = ({categories}: CategoriesLinksProps) => (
-    <Col xs={6}>
+    <div>
         {categories.map(
             ({id, name}) =>
                 <LinkItem key={id} name={name} path={`/catalog?categoryId=${id}`} />,
         )}
-    </Col>
+    </div>
 );
 
 const FooterLinks = observer(() => {
@@ -32,27 +33,20 @@ const FooterLinks = observer(() => {
     return (
         <Row className={styles.footerLinks}>
             <Col md={6}>
-                <LinksBlock title={'Каталог'}>
+                <LinksBlock title={'Категории'}>
                     <Row>
-                        <CategoriesLinks categories={firstCategories} />
-                        <CategoriesLinks categories={restCategories} />
+                        <Col xs={6}>
+                            <CategoriesLinks categories={firstCategories} />
+                        </Col>
+                        <Col xs={6}>
+                            <CategoriesLinks categories={restCategories} />
+                        </Col>
                     </Row>
                 </LinksBlock>
             </Col>
             <Col md={3}>
-                <LinksBlock title={'Каталог'}>
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                </LinksBlock>
-            </Col>
-            <Col md={3}>
-                <LinksBlock title={'Каталог'}>
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
-                    <LinkItem name={'Баклажаны'} path={'/catalog/баклажаны'} />
+                <LinksBlock title={'Доставка'}>
+                    <LinkItem name={'О доставке'} path={'/delivery'} />
                 </LinksBlock>
             </Col>
         </Row>

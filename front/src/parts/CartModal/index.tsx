@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
+import classnames from 'classnames';
 
-import {ButtonLink, Modal, Preloader} from '@/uikit';
+import {ButtonLink, Modal, Preloader, Button} from '@/uikit';
 import {ProductImage, ProductCountInput} from '@/components';
 import {useProductPreviewById} from '@/entities/product/hooks';
 import {useCartItemById} from '@/entities/cart/hooks';
@@ -52,13 +53,21 @@ export const CartModalContent = observer(({productId}: {productId: number}) => {
                     </div>
                 </div>
 
-                <ButtonLink
-                    to="/cart"
-                    onClick={closeModal}
-                    className={styles.cartLink}
-                >
-                    Перейти в корзину
-                </ButtonLink>
+                <div className={styles.cartModalControls}>
+                    <Button
+                        onClick={closeModal}
+                        className={classnames(styles.cartLink, styles.continueBuyingLink)}
+                    >
+                        {'Продолжить покупки'}
+                    </Button>
+                    <ButtonLink
+                        to="/cart"
+                        handleInteract={closeModal}
+                        className={styles.cartLink}
+                    >
+                        {'Перейти в корзину'}
+                    </ButtonLink>
+                </div>
             </div>
         </section>
     );
@@ -74,6 +83,7 @@ const CartModal = () => {
         <Modal
             isOpen={isModalOpened}
             handleClose={closeModal}
+            portalClassName={styles.cartModalPortal}
         >
             <Modal.ModalCloseIcon
                 handleClick={closeModal}
