@@ -44,9 +44,9 @@ const CartButton = observer(({
                 {[styles.selected]: isProductInCart},
             )}
         >
-            {!isProductInCart && <img src={cartImg} />}
+            {!isProductInCart && <img className={styles.cartIcon} src={cartImg} />}
 
-            <span className={styles.buttonCaption}>
+            <span className={styles.buttonContent}>
                 {isProductInCart ? 'В корзине' : 'В корзину'}
             </span>
         </Button>

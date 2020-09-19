@@ -1,11 +1,17 @@
 @import "~vars/colors";
+@import "~vars/fonts";
 
 .cartButton {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .buttonCaption {
+    .cartIcon {
+        display: inline-block;
+        height: $font_xs;
+    }
+
+    .buttonContent {
         margin-left: 6px;
     }
 }
@@ -13,7 +19,7 @@
 .cartButton.selected {
     background-color: $light_gray;
 
-    .buttonCaption {
+    .buttonContent {
         margin-left: 6px;
         color: $black;
 

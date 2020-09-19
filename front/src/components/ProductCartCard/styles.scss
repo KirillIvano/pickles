@@ -5,8 +5,7 @@
 
 .cartCard {
     position: relative;
-
-    margin-top: $pad6;
+    height: 100%;
 
     border-radius: 5px;
     border: 0.5px solid $medium_gray;
@@ -42,30 +41,32 @@
         padding: $pad4;
 
         .pricing {
+            color: $dark_gray;
+
             .price {
-                font-size: $xxl;
+                font-size: $font_sm;
             }
 
             .weight {
-                font-size: $lg;
-                color: $dark_gray;
+                font-size: $font_sm;
             }
         }
 
         .name {
-            margin-top: $pad3;
-            font-size: $lg;
+            margin-top: $pad1;
+            font-size: $font_sm;
         }
 
         .countInput {
-            margin-top: $pad2;
+            margin-top: $pad4;
         }
 
         .totalPrice {
-            margin-top: $pad2;
+            padding-top: auto;
+            margin-top: $pad4;
 
-            color: $firm;
-            font-size: $xxl;
+            color: $black;
+            font-size: $font_xl;
         }
     }
 }
@@ -76,28 +77,24 @@
     background-color: #fafafa;
 }
 
-@media all and (min-width: $screen_md) {
+@media all and (max-width: $screen_md) {
     .cartCard {
         .cardInfo {
             .pricing {
+                color: $dark_gray;
+
                 .price {
-                    font-size: $xl;
+                    font-size: $font_sm;
                 }
 
                 .weight {
-                    font-size: $sm;
-                    color: $dark_gray;
+                    font-size: $font_sm;
                 }
             }
 
             .name {
-                font-size: $lg;
-            }
-
-            .totalPrice {
-                padding-top: auto;
-
-                font-size: $xl;
+                margin-top: $pad1;
+                font-size: $font_sm;
             }
         }
     }

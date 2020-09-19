@@ -2,6 +2,7 @@
 @import "~vars/colors";
 @import "~vars/fonts";
 @import "~vars/screen";
+@import "~vars/borders";
 
 .productCard {
     display: flex;
@@ -29,7 +30,7 @@
         .productInfo {
             padding: $pad2 $pad1 $pad2;
 
-            font-size: $lg;
+            font-size: $font_lg;
 
             .productPrice {
                 color: $black;
@@ -37,18 +38,18 @@
 
             .productWeight {
                 color: $dark_gray;
-                font-size: $xs;
+                font-size: $font_xs;
             }
 
             .productName {
                 margin-top: $pad1;
-                font-size: $sm;
+                font-size: $font_sm;
             }
         }
     }
 
-    .productCard:hover,
-    .productCard:focus {
+    .productCardContent:hover,
+    .productCardContent:focus {
         outline: none;
 
         .productImageWrapper {
@@ -59,7 +60,7 @@
     }
 
     .cartButton {
-        border-radius: 0 0 5px 5px;
+        border-radius: $small_radius;
     }
 }
 
@@ -67,8 +68,9 @@
     .productCard {
         .productCardContent {
             .productInfo {
+                .productPrice,
                 .productWeight {
-                    font-size: $lg;
+                    font-size: $font_sm;
                 }
             }
         }
