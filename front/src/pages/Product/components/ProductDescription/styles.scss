@@ -11,7 +11,7 @@
 
     .productName {
         font-weight: bold;
-        font-size: $xxxl;
+        font-size: $font_xxxl;
         line-height: 1.2;
         color: $black;
     }
@@ -23,11 +23,11 @@
 
         .price {
             font-weight: bold;
-            font-size: $xxl;
+            font-size: $font_xxl;
         }
 
         .volume {
-            font-size: $xl;
+            font-size: $font_xl;
         }
     }
 
@@ -46,7 +46,7 @@
 
         .productName {
             font-weight: normal;
-            font-size: $xxl;
+            font-size: $font_xxl;
         }
 
         .productPricing {
@@ -55,11 +55,11 @@
             color: $black;
 
             .price {
-                font-size: $xxl;
+                font-size: $font_xxl;
             }
 
             .volume {
-                font-size: $xl;
+                font-size: $font_xl;
             }
         }
 

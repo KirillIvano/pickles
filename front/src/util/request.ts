@@ -8,7 +8,7 @@ export type ResponseType<T extends object> = {
     ok: false;
 }
 
-const DEFAULT_ERROR = {error: 'Unexpected error', ok: false, status: 500};
+const DEFAULT_ERROR = {error: 'Странная ошибка на сервере :(', ok: false, status: 500};
 
 export const request = async <T extends object,>(
     url: RequestInfo,

@@ -21,7 +21,7 @@
             padding-top: $pad4;
 
             text-align: center;
-            font-size: $xxl;
+            font-size: $font_xxl;
             font-weight: normal;
         }
     }
@@ -35,18 +35,17 @@
 
         .serviceInfo {
             max-width: 300px;
-            font-size: $sm;
+            font-size: $font_sm;
         }
 
         .links {
             display: flex;
             flex-direction: column;
 
-            width: 100%;
+            width: auto;
 
             .orderLink,
             .catalogLink {
-                margin-top: $pad4;
                 display: block;
                 width: 100%;
             }
@@ -54,6 +53,10 @@
             .orderLink {
                 background: $firm;
                 color: white;
+            }
+
+            .catalogLink {
+                margin-top: $pad4;
             }
         }
     }
@@ -70,6 +73,8 @@
 
             .links {
                 align-self: center;
+
+                width: 100%;
             }
         }
     }

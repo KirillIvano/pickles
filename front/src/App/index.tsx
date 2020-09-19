@@ -8,6 +8,8 @@ import {
     Product,
     Delivery,
     Cart,
+    Order,
+    OrderSuccess,
 } from '@/pages';
 
 import {useAppInit} from './hooks';
@@ -22,11 +24,13 @@ const App = () => {
 
             <Suspense fallback={Preloader}>
                 <Switch>
-                    <Route exact path="/" />
+                    <Route exact path="/" component={Catalog} />
                     <Route exact path="/catalog" component={Catalog} />
                     <Route exact path="/delivery" component={Delivery} />
                     <Route exact path="/cart" component={Cart} />
                     <Route exact path="/product/:verbose/:productId" component={Product} />
+                    <Route exact path="/order/:orderId" component={Order} />
+                    <Route exact path="/orderSuccess" component={OrderSuccess} />
                 </Switch>
             </Suspense>
 
