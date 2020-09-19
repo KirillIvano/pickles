@@ -14,7 +14,7 @@
     background: #fff;
 
     color: $black;
-    font-size: $sm;
+    font-size: $font_sm;
 
     transition: box-shadow 0.3s;
 }
@@ -35,4 +35,8 @@
 .input:hover {
     outline: none;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1)
+}
+
+.input:disabled {
+    background-color: $medium_gray;
 }

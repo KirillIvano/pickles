@@ -4,25 +4,60 @@ import classnames from 'classnames';
 import styles from './styles.scss';
 
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+type InputBaseProps = {
+    className: string;
+    id: string;
+    name: string;
+
+    placeholder?: string;
+    type?: string;
+    value?: string;
+    tabIndex?: number;
     sizing?: 'sm' | 'lg';
+    disabled?: boolean;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(({
+type InputHandlers<TInputType extends HTMLElement> = {
+    onChange?: (e: React.ChangeEvent<TInputType>) => void;
+    onClick?: (e: React.MouseEvent<TInputType>) => void;
+    onKeyUp?: (e: React.KeyboardEvent<TInputType>) => void;
+    onKeyDown?: (e: React.KeyboardEvent<TInputType>) => void;
+    onFocus?: (e: React.FocusEvent<TInputType>) => void;
+    onBlur?: (e: React.FocusEvent<TInputType>) => void;
+}
+
+type TextAreaProps =  {
+    multiline: true;
+} & InputBaseProps & InputHandlers<HTMLTextAreaElement>;
+
+type InputProps = {
+    multiline?: false;
+}  & InputBaseProps & InputHandlers<HTMLInputElement>;
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Input = React.forwardRef<any, TextAreaProps | InputProps>(({
     className,
     sizing='sm',
+    multiline,
+
     ...props
-}: InputProps, ref) => (
-    <input
-        {...props}
-        ref={ref}
-        className={classnames(
+}: InputProps | TextAreaProps, ref) => {
+    const commonProps = {
+        ref,
+        className: classnames(
             className,
             styles.input,
             {[styles.large]: sizing === 'lg'},
-        )}
-    />
-));
+        ),
+    };
+
+    if (multiline) {
+        return <textarea {...props as TextAreaProps} {...commonProps} />;
+    }
+
+    return <input {...props as InputProps} {...commonProps} type="text" />;
+});
 Input.displayName = 'Input';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {

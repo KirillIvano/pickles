@@ -1,10 +1,11 @@
 @import "~vars/pads";
 @import "~vars/colors";
+@import "~vars/fonts";
 
 .buttonLink {
     display: inline-block;
 
-    padding: $pad3 $pad7;
+    padding: $pad3 $pad5;
 
     border: 1px solid $firm;
     border-radius: 2px;
@@ -12,6 +13,7 @@
     color: $black;
     text-decoration: none;
     text-align: center;
+    font-size: $font_xs;
 
     cursor: pointer;
 

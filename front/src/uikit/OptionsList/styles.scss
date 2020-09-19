@@ -1,6 +1,7 @@
 @import "~vars/pads";
 @import "~vars/colors";
 @import "~vars/fonts";
+@import "~vars/screen";
 
 .optionsList {
     .option {
@@ -18,5 +19,12 @@
 
     .option + .option {
         margin-top: 8px;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .option:focus,
+    .option:active {
+        outline: none;
     }
 }

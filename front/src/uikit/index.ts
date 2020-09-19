@@ -14,3 +14,4 @@ export {default as InfoTable} from './InfoTable';
 export {default as BreadCrumps} from './BreadCrumps';
 export {default as Modal} from './Modal';
 export {default as NumberInput} from './NumberInput';
+export {default as ProgressBar} from './ProgressBar';

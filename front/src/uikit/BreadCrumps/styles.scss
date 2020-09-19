@@ -6,7 +6,7 @@
     .breadCrump,
     .breadCrump + .breadCrump::before {
         color: $dark_gray;
-        font-size: $sm;
+        font-size: $font_sm;
     }
 
     .breadCrump {

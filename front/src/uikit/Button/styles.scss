@@ -1,15 +1,18 @@
 @import "~vars/pads";
 @import "~vars/fonts";
 @import "~vars/colors";
+@import "~vars/borders";
 
 .button {
     display: block;
     width: 100%;
-    padding: $pad4 $pad7;
+    padding: $pad3 $pad5;
 
     color: white;
+    font-size: $font_xs;
+
     background-color: $firm;
-    border-radius: 2px;
+    border-radius: $common_radius;
 
     transition: background-color 0.3s ease-in-out;
 
@@ -19,7 +22,7 @@
 .button:hover,
 .button:focus {
     outline: none;
-    background-color: darken($firm, 12);
+    background-color: darken($firm, 20);
 }
 
 .button:disabled {
