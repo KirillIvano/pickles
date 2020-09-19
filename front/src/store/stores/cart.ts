@@ -1,11 +1,13 @@
 import {observable, action, computed} from 'mobx';
 
 import {CartItemType, CartType} from '@/entities/cart/types';
+import {createDebouncer} from '@/util/debounce';
 
 
 export class CartStore {
     @observable
     private _cartItems = new Map<number, CartItemType>();
+    private _saveDebouncer = createDebouncer(600);
 
     @computed
     get cartItems() {
@@ -21,7 +23,9 @@ export class CartStore {
         const cartToBeSaved = {cartItems: [...this._cartItems.values()]};
         const stringifiedCart = JSON.stringify(cartToBeSaved);
 
-        localStorage.setItem('cart', stringifiedCart);
+        this._saveDebouncer.perform(
+            () => localStorage.setItem('cart', stringifiedCart),
+        );
     }
 
     getItemCount = (productId: number) => {
@@ -35,17 +39,19 @@ export class CartStore {
     @action
     addProductToCart = (productId: number) => {
         this._cartItems.set(productId, {productId, productsCount: 1});
-        // this.saveCartState();
+        this.saveCartState();
     }
 
     @action
     clearCart = () => {
         this._cartItems.clear();
+        this.saveCartState();
     }
 
     @action
     removeCartItem = (productId: number) => {
         this._cartItems.delete(productId);
+        this.saveCartState();
     }
 
     @action
