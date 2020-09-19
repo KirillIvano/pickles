@@ -1,3 +1,5 @@
+@import "./vars/colors.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -19,4 +21,12 @@ button {
 
 label {
     cursor: pointer;
+}
+
+:global(.js-focus-visible) :focus {
+    outline: 2px solid $firm;
+}
+
+:global(.js-focus-visible) :focus:not(:global(.focus-visible)) {
+    outline: none;
 }
