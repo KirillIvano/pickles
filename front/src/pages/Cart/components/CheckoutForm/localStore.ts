@@ -4,7 +4,7 @@ import {createOrder} from '@/services/order';
 import {cartStore} from '@/store/stores/cart';
 
 
-export class CheckoutStore {
+export class CheckoutFormStore {
     @observable
     formSendingError: null | string = null;
     @observable
@@ -57,4 +57,4 @@ export class CheckoutStore {
     }
 }
 
-export const checkoutStore = new CheckoutStore();
+export const checkoutFormStore = new CheckoutFormStore();

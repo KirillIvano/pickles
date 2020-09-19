@@ -1,12 +1,27 @@
 @import "~vars/pads";
 @import "~vars/screen";
+@import "~vars/mixins";
 
 .cartPage {
     padding-top: $pad6;
     padding-bottom: $pad12;
 
+    .cartItems {
+        margin-top: $pad6;
+
+        @include fadeOut(0.3s);
+
+        .cartItemContainer {
+            margin-top: $pad6;
+        }
+    }
+
     .sidePanel {
         padding-left: $pad4;
+
+        .checkout {
+            margin-top: $pad8;
+        }
     }
 }
 

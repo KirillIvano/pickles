@@ -9,7 +9,7 @@
 
     .label {
         color: $black;
-        font-size: $xs;
+        font-size: $font_xs;
 
         padding-bottom: $pad1;
 
@@ -24,7 +24,7 @@
     }
 
     .errorView {
-        font-size: $xs;
+        font-size: $font_xs;
         color: red;
     }
 }

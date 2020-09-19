@@ -9,7 +9,7 @@
     color: $black;
 
     .itemsCount {
-        font-size: $lg;
+        font-size: $font_lg;
         color: $dark_gray;
     }
 
@@ -21,11 +21,15 @@
         margin-top: $pad2;
 
         .itemName {
-            font-size: $lg;
+            font-size: $font_lg;
         }
 
         .itemValue {
-            font-size: $xl;
+            font-size: $font_xl;
+        }
+
+        .totalPrice {
+            font-size: $font_xxl;
         }
     }
 }

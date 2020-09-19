@@ -6,13 +6,21 @@ import {getUniqueId} from '@/util/getUniqueId';
 
 import styles from './styles.scss';
 
-interface CheckoutInputProps extends React.ComponentProps<typeof Input> {
+
+interface CheckoutInputProps {
+    name: string;
     caption: string;
+    placeholder: string;
+
+    type?: string;
+    className?: string;
+    disabled?: boolean;
     required?: boolean;
     error?: string;
 }
 
-const CheckoutInput = React.forwardRef<HTMLInputElement, CheckoutInputProps>(({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const CheckoutInput = React.forwardRef<any, CheckoutInputProps>(({
     caption,
     required,
     error,

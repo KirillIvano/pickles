@@ -1,0 +1,26 @@
+@import "~vars/colors";
+
+.progressBarContainer {
+    min-width: 60px;
+
+    .progressBack {
+        stroke: $light_gray;
+    }
+
+    .progressRect {
+        stroke: $firm;
+
+        transition: stroke-dasharray 0.3s ease-in-out;
+    }
+
+    .progressSuccess {
+        fill: $firm;
+
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+}

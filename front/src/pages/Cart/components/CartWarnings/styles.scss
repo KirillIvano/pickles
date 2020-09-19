@@ -1,0 +1,10 @@
+@import "~vars/pads";
+@import "~vars/colors";
+
+.cartWarning {
+    padding: $pad4;
+    margin-top: $pad3;
+
+    color: $dark_gray;
+    border: 0.5px solid #ffc658;
+}

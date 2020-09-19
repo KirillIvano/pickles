@@ -14,14 +14,14 @@
     color: $black;
 
     .headline {
-        font-size: $xxxl;
+        font-size: $font_xxxl;
         font-weight: bold;
     }
 
     .emptyCartInfo {
         margin-top: $pad6;
 
-        font-size: $xxl;
+        font-size: $font_xxl;
         font-weight: normal;
         text-align: center;
 
@@ -40,7 +40,7 @@
 @media all and (max-width: $screen_md) {
     .emptyCart {
         .emptyCartInfo {
-            font-size: $xl;
+            font-size: $font_xl;
         }
     }
 }
