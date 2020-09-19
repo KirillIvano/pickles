@@ -22,8 +22,7 @@ enum MenuName {
 }
 
 const MobileFilterPanel = () => {
-    const [selectedMenu, setSelectedMenu] = useState<MenuName | null>(MenuName.FILTER);
-
+    const [selectedMenu, setSelectedMenu] = useState<MenuName | null>(null);
 
     const handleMenuSelect = (menuName: MenuName) => {
         if (menuName === selectedMenu) {

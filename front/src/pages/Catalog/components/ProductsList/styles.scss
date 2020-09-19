@@ -1,7 +1,10 @@
 @import "~vars/pads";
+@import "~vars/mixins";
 
 .productList {
     padding-bottom: 4rem;
+
+    @include fadeOut(0.3s);
 
     .productListItem {
         margin-top: $pad8;
