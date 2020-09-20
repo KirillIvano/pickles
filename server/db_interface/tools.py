@@ -20,10 +20,15 @@ def to_dict(instance, fields: list) -> dict:
         return instance
     else:
         new_instance = {}
+
         for field in fields:
             attr = instance[field[0]]
-            if type(attr) in [datetime.date]:
+
+            if type(attr) is datetime.date:
                 attr = attr.__str__()
+            elif type(attr) is datetime.datetime:
+                attr = int(attr.timestamp())
+
             new_instance[field[1]] = attr
 
         return new_instance

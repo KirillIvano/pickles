@@ -1,28 +1,20 @@
-from aglobell.settings import MAIL_PASSWORD, MAIL_LOGIN
-import smtplib
+from aglobell.settings import *
+from django.core.mail import send_mail as dj_send_mail
 
 
-def _create_mail_session():
-    mail_session = smtplib.SMTP('smtp.gmail.com', 587)
-    mail_session.starttls()
-    mail_session.login(MAIL_LOGIN, MAIL_PASSWORD)
-    return mail_session
+def get_receivers(order):
+    receivers = [order.email]
+    if DEBUG:
+        receivers += EMAIL_DEBUG_RECEIVERS
+    return receivers
 
 
-def send_mail(destination, subject, text):
-    session = _create_mail_session()
-    message = f"Subject: {subject}\n{text}"
-    try:
-        session.sendmail(
-            from_addr=MAIL_LOGIN,
-            to_addrs=destination,
-            msg=message.encode('utf-8')
-        )
-    except smtplib.SMTPConnectError:
-        session = _create_mail_session()
-        session.sendmail(
-            from_addr=MAIL_LOGIN,
-            to_addrs=destination,
-            msg=message.encode('utf-8')
-        )
-    return True
+def send_mail(receiver, subject, payload):
+    print('sending mail to', receiver)
+    dj_send_mail(
+        subject=subject,
+        from_email=EMAIL_HOST_USER,
+        recipient_list=receiver,
+        message=payload,
+        html_message=payload
+    )

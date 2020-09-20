@@ -16,7 +16,7 @@ def new(request: HttpRequest) -> HttpResponse:
     for item in body.get('items'):
         items.append(
             {
-                "product_id": item['productId'],
+                "product_weight_id": item['productId'],
                 "quantity": item['quantity']
             }
         )
@@ -36,18 +36,19 @@ def new(request: HttpRequest) -> HttpResponse:
     )
 
     return wrap_response.wrap_data(
-        {'id': order.hash_digital, 'key': order.hash})
+        {'id': order.id, 'key': order.hash})
 
 
 # noinspection PyArgumentList
-def get(request: HttpRequest, digital_hash: str) -> HttpResponse:
+def get(request: HttpRequest, order_id: int) -> HttpResponse:
     # noinspection PyCallByClass
     key = request.GET.get(key='key')
     if key is None:
-        return wrap_response.wrap_error("Нет передан ключ", )
+        return wrap_response.wrap_error("Нет передан ключ")
 
-    instance = db_interface.order.by_digital_hash(digital_hash, key)
-    if len(instance) == 0:
+    try:
+        instance = db_interface.order.by_id(order_id, key)
+    except Order.DoesNotExist:
         return wrap_response.wrap_error("Нет заказа с таким номером", 404)
 
     return wrap_response.wrap_data({'order': instance})

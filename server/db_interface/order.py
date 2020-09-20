@@ -23,36 +23,37 @@ def create(
     return order
 
 
-def by_digital_hash(digital_hash, key) -> dict:
-    order_query = Order.objects.filter(hash_digital=digital_hash, hash=key)
-    if len(order_query) == 0:
-        return {}
-
+def by_id(order_id, key) -> dict:
+    order_instance = Order.objects.get(id=order_id, hash=key)
+    status = order_instance.status.verbose_name
     items_result = []
-    items_query = Item.objects.filter(order__hash_digital=digital_hash)
+    items_query = Item.objects.filter(order__id=order_id)
     total_price = 0
     for item in items_query:
         total_price += item.price * item.quantity
         items_result.append(
             {
-                'productId': item.product.id,
-                'name': item.product.name,
-                'verboseName': item.product.name_translit,
+                'productId': item.product_weight.id,
+                'name': item.product_weight.product.name,
+                'verboseName': item.product_weight.product.name_translit,
                 'quantity': item.quantity,
                 'price': item.price
             }
         )
 
     result = db_interface.tools.to_dict(
-        order_query[0],
+        order_instance,
         [
+            ('id', 'id'),
             ('name', 'name'),
             ('phone', 'phone'),
             ('email', 'email'),
             ('address', 'address'),
             ('comment', 'comment'),
+            ('datetime', 'date')
         ]
     )
     result['items'] = items_result
     result['totalPrice'] = total_price
+    result['status'] = status
     return result

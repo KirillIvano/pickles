@@ -2,7 +2,7 @@ from django.db.models import *
 from helpers import download_image
 from helpers import random_hash
 from helpers.transliterate import translit
-# Create your models here.
+from services.mail.interface import *
 
 
 class Category(Model):
@@ -38,7 +38,7 @@ class Product(Model):
         verbose_name_plural = 'Продукты'
 
     def __str__(self):
-        return f'{self.name} | {self.category.name}'
+        return f'{self.name}'
 
     def save(self, *a, **kw):
         self.name_translit = translit(self.name)
@@ -53,16 +53,31 @@ class Product(Model):
         verbose_name='Название в ссылке',
         max_length=256
     )
-    price = IntegerField(
-        verbose_name='Цена'
+    category = ForeignKey(
+        verbose_name='Категория',
+        to=Category, on_delete=SET_NULL, null=True
+    )
+
+
+class ProductWeight(Model):
+    class Meta:
+        verbose_name = 'Вес продукта'
+        verbose_name_plural = 'Вес продуктов'
+
+    def __str__(self):
+        return f'{self.weight}'
+
+    id = AutoField(primary_key=True)
+    product = ForeignKey(
+        Product,
+        on_delete=CASCADE
     )
     weight = CharField(
         verbose_name='Вес (объём)',
         max_length=64
     )
-    category = ForeignKey(
-        verbose_name='Категория',
-        to=Category, on_delete=SET_NULL, null=True
+    price = IntegerField(
+        verbose_name='Цена'
     )
 
 
@@ -144,14 +159,20 @@ class Order(Model):
         verbose_name_plural = 'Заказы'
 
     def __str__(self):
-        return f"{self.name} {self.phone}"
+        return f"{self.name} {self.phone} {self.datetime.date()}"
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            orig = None
+        else:
+            orig = Order.objects.get(id=self.id)
+
+        super().save(*args, **kwargs)
+        handle_order_mailing(Order.objects.get(id=self.id), orig)
+
+    id = AutoField(primary_key=True)
     hash = CharField(
         default=random_hash.hash_string,
-        max_length=64
-    )
-    hash_digital = CharField(
-        default=random_hash.hash_digital,
         max_length=64
     )
     name = CharField(
@@ -176,10 +197,9 @@ class Order(Model):
     )
     datetime = DateTimeField(
         verbose_name='Дата и время создания',
-        auto_created=True,
+        auto_now=True,
         null=True
     )
-
     status = ForeignKey(
         OrderStatus,
         verbose_name='Статус',
@@ -195,10 +215,10 @@ class Item(Model):
         verbose_name_plural = 'Позиции'
 
     def __str__(self):
-        return f"{self.product.name} {self.quantity}"
+        return f"{self.product_weight.product.name} {self.quantity}"
 
-    product = ForeignKey(
-        Product,
+    product_weight = ForeignKey(
+        ProductWeight,
         verbose_name='Продукт',
         on_delete=DO_NOTHING,
         )
@@ -211,4 +231,3 @@ class Item(Model):
     price = IntegerField(
         verbose_name='Цена',
     )
-
