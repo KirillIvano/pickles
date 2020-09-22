@@ -4,18 +4,18 @@ const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
 
 module.exports = {
-      entry: './src/index.tsx',
-      optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/](react|react-dom)/,
-                    name: "vendors",
-                    chunks: "all"
-                }
-            }
-        }
-    },
+    entry: './src/index.tsx',
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             commons: {
+    //                 test: /[\\/]node_modules[\\/](react|react-dom)/,
+    //                 name: "vendors",
+    //                 chunks: "all"
+    //             }
+    //         }
+    //     }
+    // },
     resolve: {
         extensions: ['.ts', '.js', '.tsx'],
         alias: {
@@ -27,7 +27,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
-        filename: '[name].[hash].js',
+        filename: '[name].js',
+        chunkFilename: '[name].chunk.js',
     },
     plugins: [
         new CleanObsoleteChunks(),
@@ -44,7 +45,7 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env', '@babel/preset-react']
+                            presets: ['@babel/preset-env', '@babel/preset-react'],
                         }
                     },
                     {

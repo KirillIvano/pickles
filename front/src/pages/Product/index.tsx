@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import {observer} from 'mobx-react-lite';
-import {Row, Col} from 'react-flexbox-grid';
 
-import {Grid, Preloader} from '@/uikit';
+import {Preloader} from '@/uikit';
 import {useProductById} from '@/entities/product/hooks';
 
 import {useProductPageStore} from './hooks/useProductPageStore';
@@ -25,7 +24,7 @@ const ProductPage = observer(() => {
         getProduct(productId);
     }, [productId, getProduct]);
 
-    if (productGettingError) return <div>Отшиб очка</div>;
+    if (productGettingError) return <div>Произошла ошибка</div>;
     if (productGettingInProgress || !product) return <Preloader />;
 
     return (

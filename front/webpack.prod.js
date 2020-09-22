@@ -3,11 +3,10 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJs = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack');
-const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const commonConfig = require('./webpack.config');
+
 
 const prodConfigs = {
     mode: 'production',
@@ -20,7 +19,7 @@ const prodConfigs = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'main.css',
-            chunkFilename: '[id].css'
+            chunkFilename: '[id].[hash].css'
         }),
         new webpack.DefinePlugin({
             __SERVER_ORIGIN__: '"http://134.0.117.137:8000"',
@@ -110,7 +109,5 @@ const prodConfigs = {
     },
 };
 
-
-console.log( merge(commonConfig, prodConfigs))
 
 module.exports = merge(commonConfig, prodConfigs);

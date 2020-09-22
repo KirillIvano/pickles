@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "ESNEXT",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
     "removeComments": true,

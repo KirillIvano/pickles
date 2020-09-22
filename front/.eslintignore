@@ -1,7 +1,4 @@
 webpack.config.js
 webpack.dev.js
 webpack.prod.js
-tailwind.config.js
-postcss.config.js
 dist/
-test/
