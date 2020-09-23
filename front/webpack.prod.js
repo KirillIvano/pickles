@@ -11,6 +11,15 @@ const commonConfig = require('./webpack.config');
 const prodConfigs = {
     mode: 'production',
     optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        },
         minimizer: [
             new TerserJs(),
             new OptimizeCssAssetsPlugin(),

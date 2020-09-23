@@ -23,10 +23,10 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Catalog} />
                     <Route exact path="/catalog" component={Catalog} />
-                    <Route exact path="/delivery" component={React.lazy(() => /* webpackChunkName: "lodash" */ import('./../pages/Delivery'))} />
-                    <Route exact path="/cart" component={React.lazy(() => import('./../pages/Cart'))} />
+                    <Route exact path="/delivery" component={React.lazy(() => /* webpackChunkName: "delivery" */import('./../pages/Delivery'))} />
+                    <Route exact path="/cart" component={React.lazy(() => /* webpackChunkName: "cart" */import('./../pages/Cart'))} />
                     <Route exact path="/product/:verbose/:productId" component={Product} />
-                    <Route exact path="/order/:orderId" component={React.lazy(() => import('./../pages/Order'))} />
+                    <Route exact path="/order/:orderId" component={React.lazy(() => /* webpackChunkName: "order" */import('./../pages/Order'))} />
                     <Route exact path="/orderSuccess" component={OrderSuccess} />
                 </Switch>
             </Suspense>

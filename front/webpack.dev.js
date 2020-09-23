@@ -1,9 +1,6 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const common = require('./webpack.config');
 

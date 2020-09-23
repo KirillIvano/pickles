@@ -5,22 +5,10 @@ const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
 module.exports = {
     entry: './src/index.tsx',
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             commons: {
-    //                 test: /[\\/]node_modules[\\/](react|react-dom)/,
-    //                 name: "vendors",
-    //                 chunks: "all"
-    //             }
-    //         }
-    //     }
-    // },
     resolve: {
         extensions: ['.ts', '.js', '.tsx'],
         alias: {
             '@': path.resolve(__dirname, 'src'),
-            // mobx: path.resolve(__dirname, "/node_modules/mobx/lib/mobx.es6.js"),
             vars: path.resolve(__dirname, 'src', 'vars')
         },
     },
@@ -36,6 +24,7 @@ module.exports = {
             template: 'src/index.html',
             minify: false,
         }),
+        // new BundleAnalyzerPlugin()
     ],
     module: {
         rules: [
