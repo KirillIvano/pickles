@@ -3,14 +3,18 @@ import db_interface.item
 import db_interface.tools
 
 
-def create(
-        name,
-        phone,
-        email,
-        address,
-        comment,
-        items
-):
+FIELDS_FOR_SINGLE_ORDER = [
+    ('id', 'id'),
+    ('name', 'name'),
+    ('phone', 'phone'),
+    ('email', 'email'),
+    ('address', 'address'),
+    ('comment', 'comment'),
+    ('datetime', 'date')
+]
+
+
+def create(name, phone, email, address, comment, items):
     order = Order.objects.create(
         name=name,
         phone=phone,
@@ -41,18 +45,7 @@ def by_id(order_id, key) -> dict:
             }
         )
 
-    result = db_interface.tools.to_dict(
-        order_instance,
-        [
-            ('id', 'id'),
-            ('name', 'name'),
-            ('phone', 'phone'),
-            ('email', 'email'),
-            ('address', 'address'),
-            ('comment', 'comment'),
-            ('datetime', 'date')
-        ]
-    )
+    result = db_interface.tools.to_dict(order_instance, FIELDS_FOR_SINGLE_ORDER)
     result['items'] = items_result
     result['totalPrice'] = total_price
     result['status'] = status

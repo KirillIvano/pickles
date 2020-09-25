@@ -32,8 +32,7 @@ def preview_every(category_id: int = None) -> list:
     return products
 
 
-def preview_by_id(product_weight_id: int) -> dict:
-    product_weight_instance = ProductWeight.objects.get(id=product_weight_id)
+def _extract_product_preview(product_weight_instance: ProductWeight) -> dict:
     product_instance = product_weight_instance.product
     product = db_interface.tools.to_dict(product_instance, FIELDS)
     product['image'] = db_interface.tools.select_single(
@@ -42,27 +41,21 @@ def preview_by_id(product_weight_id: int) -> dict:
     product['id'] = product_weight_instance.id
     product['weight'] = product_weight_instance.weight
     product['price'] = product_weight_instance.price
-
     return product
+
+
+def preview_by_id(product_weight_id: int) -> dict:
+    return _extract_product_preview(ProductWeight.objects.get(id=product_weight_id))
 
 
 def preview_by_ids(product_weight_ids: List[int]) -> list:
     product_weight_instances = ProductWeight.objects.filter(
         id__in=product_weight_ids
     )
-    products = []
-    for product_weight in product_weight_instances:
-        product_instance = product_weight.product
-        product = db_interface.tools.to_dict(product_instance, FIELDS)
-        product['image'] = db_interface.tools.select_single(
-            ProductImage, 'product__id', product['id'], [('image', 'image')]
-        )
-        product['id'] = product_weight.id
-        product['weight'] = product_weight.weight
-        product['price'] = product_weight.price
-        products.append(product)
-
-    return products
+    return [
+        _extract_product_preview(product_weight_instance)
+        for product_weight_instance in product_weight_instances
+    ]
 
 
 def full_by_id(product_weight_id: int) -> dict:

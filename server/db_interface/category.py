@@ -1,7 +1,11 @@
 import db_interface.tools
 from app.models import Category
 
-FIELDS = [('id', 'id'), ('name', 'name'), ('name_translit', 'verboseName')]
+FIELDS = [
+    ('id', 'id'),
+    ('name', 'name'),
+    ('name_translit', 'verboseName')
+]
 
 
 def every():
