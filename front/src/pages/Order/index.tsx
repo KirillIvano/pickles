@@ -49,7 +49,7 @@ const OrderPage = observer(() => {
             <div className={styles.phoneReminderWrapper}>
                 <p className={styles.phoneReminder}>
                     <span className={styles.reminderCaption}>Телефон поддержки</span>
-                    <span className={styles.phoneNumber}>8(999)999-99-99</span>
+                    <span className={styles.phoneNumber}>8(925)640-88-25</span>
                 </p>
             </div>
         </Grid>

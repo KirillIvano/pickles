@@ -38,7 +38,11 @@ export const CartModalContent = observer(({productId}: {productId: number}) => {
         <section className={styles.cartModalContent}>
             <div className={styles.productImageContainer}>
                 <ProductImage.Wrapper className={styles.productImageWrapper}>
-                    <ProductImage className={styles.productImage} src={image} />
+                    <ProductImage
+                        className={styles.productImage}
+                        src={image}
+                        alt={`Фото продукта с именем ${name}`}
+                    />
                 </ProductImage.Wrapper>
             </div>
 

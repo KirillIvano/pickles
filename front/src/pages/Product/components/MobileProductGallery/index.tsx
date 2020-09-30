@@ -28,6 +28,7 @@ const MobileProductGallery = ({
                             <ProductImage
                                 className={styles.productImage}
                                 src={image}
+                                alt={'Фото продукта'}
                             />
                         </ProductImage.Wrapper>
                     ),

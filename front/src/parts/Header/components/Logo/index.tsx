@@ -8,7 +8,11 @@ import logoSrc from './images/logo.svg';
 
 const Logo = () => (
     <Reference className={styles.logoContainer} to={'/'}>
-        <img className={styles.logo} src={logoSrc}></img>
+        <img
+            className={styles.logo}
+            src={logoSrc}
+            alt={'Логотип-ссылка на каталог'}
+        ></img>
     </Reference>
 );
 

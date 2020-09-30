@@ -21,7 +21,7 @@ const dev = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-            __SERVER_ORIGIN__: '"http://134.0.117.137:8000"',
+            __SERVER_ORIGIN__: '"https://aglobell.ru"',
             __CLIENT_ORIGIN__: '"http://localhost:8080"'
         }),
     ],

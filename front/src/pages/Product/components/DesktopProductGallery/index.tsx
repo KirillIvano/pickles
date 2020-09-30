@@ -40,6 +40,7 @@ const DesktopProductGallery = observer(({
                                     <ProductImage
                                         className={styles.image}
                                         src={image}
+                                        alt={'Фото продукта'}
                                     />
                                 </ProductImage.Wrapper>
                             </Col>

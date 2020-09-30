@@ -31,7 +31,7 @@ const prodConfigs = {
             chunkFilename: '[id].[hash].css'
         }),
         new webpack.DefinePlugin({
-            __SERVER_ORIGIN__: '"http://134.0.117.137:8000"',
+            __SERVER_ORIGIN__: '"https://aglobell.ru"',
         }),
         new ImageminPlugin({
             cache: true,

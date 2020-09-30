@@ -51,6 +51,7 @@ const SearchInput = ({
             </Label>
             <div className={styles.inputWrapper}>
                 <Input
+                    name={'Найти'}
                     sizing={sizing}
                     id={inputId}
                     className={classnames(className, styles.searchInput)}
@@ -61,7 +62,7 @@ const SearchInput = ({
                 <img
                     className={styles.loupe}
                     src={loupeImg}
-                    alt="Лупа"
+                    alt="Значок поиска"
                 />
             </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import styles from './styles.scss';
+import { useScrolled } from '@/hooks/useScrolled';
 
 
 type ProductImageWrapperProps = React.HTMLAttributes<HTMLDivElement>;
@@ -17,18 +18,29 @@ const ProductImageWrapper = ({
 );
 
 
-type ProductImageProps = React.ImgHTMLAttributes<HTMLImageElement>
+type ProductImageProps = {lazy?: boolean} & React.ImgHTMLAttributes<HTMLImageElement>
 
 const ProductImage = ({
     className,
-    ...props
-}: ProductImageProps) => (
-    <img
-        {...props}
-        className={classnames(className, styles.productImage)}
-    />
-);
+    src,
+    alt='Фото продукта',
+    lazy=false,
 
+    ...props
+}: ProductImageProps) => {
+    const {elementRef, isReached} = useScrolled();
+
+    return (
+        <img
+            {...props}
+
+            ref={elementRef as React.Ref<HTMLImageElement>}
+            src={lazy ? (isReached ? src : undefined) : src}
+            alt={lazy ? (isReached ? alt : undefined) : alt}
+            className={classnames(className, styles.productImage)}
+        />
+    );
+};
 
 ProductImage.Wrapper = ProductImageWrapper;
 

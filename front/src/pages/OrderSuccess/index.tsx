@@ -13,7 +13,11 @@ const OrderSuccess = () => {
     return (
         <Grid className={styles.orderSuccessPage}>
             <div className={styles.heading}>
-                <img className={styles.headingImage} src={successImg} alt="Успешно завершено" />
+                <img
+                    className={styles.headingImage}
+                    src={successImg}
+                    alt="Успешно завершено"
+                />
                 <h1 className={styles.headingContent}>Заказ отправлен администратору</h1>
             </div>
             <div className={styles.pageInfo}>

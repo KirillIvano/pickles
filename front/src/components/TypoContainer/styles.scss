@@ -1,0 +1,49 @@
+@import "~vars/colors";
+@import "~vars/fonts";
+@import "~vars/pads";
+
+.typoContainer {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin-top: $pad4;
+        color: $black;
+    }
+
+    h1 {
+        font-size: $font_xxxl;
+    }
+
+    h2 {
+        font-size: $font_xl;
+    }
+
+    h3 {
+        font-size: $font_lg;
+    }
+
+    h4 {
+        font-size: $font_sm;
+    }
+
+    h5 {
+        font-size: $font_sm;
+    }
+
+    p {
+        margin-top: $pad2;
+        font-size: $font_xs;
+        color: $dark_gray;
+    }
+
+    ul {
+        padding-left: $pad4;
+        margin-top: $pad4;
+    }
+
+    li {
+        list-style: circle;
+    }
+}

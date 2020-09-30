@@ -11,11 +11,11 @@ import {useDigestedProducts} from '../../hooks/useDigestedProducts';
 import {useCatalogStoreContext} from '../../hooks/useCatalogStoreContext';
 
 
-type ProductListItemProps = ProductPreviewType
+type ProductListItemProps = ProductPreviewType;
 
-const ProductListItem = (product: ProductListItemProps) => (
+const ProductListItem = (props: ProductListItemProps) => (
     <Col xs={6} md={4} className={styles.productListItem}>
-        <ProductPreviewCard {...product} />
+        <ProductPreviewCard {...props} />
     </Col>
 );
 
@@ -37,9 +37,9 @@ const ProductsList = observer(() => {
     return (
         <Row className={styles.productList}>
             {products.map(
-                product => (
+                (product, ind) => (
                     <ProductListItem
-                        key={product.id}
+                        key={ind}
                         {...product}
                     />
                 ),

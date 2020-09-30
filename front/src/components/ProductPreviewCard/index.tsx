@@ -13,6 +13,8 @@ type ProductPreviewCardProps = {
     price: number;
     weight: number;
     verboseName: string;
+
+    lazy?: boolean;
 }
 
 const ProductPreviewCard = ({
@@ -29,7 +31,12 @@ const ProductPreviewCard = ({
             className={styles.productCardContent}
         >
             <ProductImage.Wrapper className={styles.productImageWrapper}>
-                <ProductImage className={styles.productImage} src={image} />
+                <ProductImage
+                    className={styles.productImage}
+                    src={image}
+                    lazy={true}
+                    alt={`Фото продукта с названием "${name}"`}
+                />
             </ProductImage.Wrapper>
 
             <div className={styles.productInfo}>

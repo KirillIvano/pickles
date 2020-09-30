@@ -7,3 +7,4 @@ export {default as ProductImage} from './ProductImage';
 export {default as Carousel} from './Carousel';
 export {default as ProductCountInput} from './ProductCountInput';
 export {default as ProductCartCard} from './ProductCartCard';
+export {default as TypoContainer} from './TypoContainer';

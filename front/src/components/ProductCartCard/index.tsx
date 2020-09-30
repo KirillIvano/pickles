@@ -70,7 +70,10 @@ const ProductCartCard = observer(({productId, className}: ProductCartCardProps) 
             className={classnames(styles.cartCard, className)}
         >
             <ProductImage.Wrapper>
-                <ProductImage src={image} />
+                <ProductImage
+                    src={image}
+                    alt={`Фото продукта с названием "${name}"`}
+                />
             </ProductImage.Wrapper>
 
             <RemoveButton productId={productId} />

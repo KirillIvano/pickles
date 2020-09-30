@@ -15,12 +15,12 @@ type CategoriesLinksProps = {
 }
 
 const CategoriesLinks = ({categories}: CategoriesLinksProps) => (
-    <div>
+    <ul>
         {categories.map(
             ({id, name}) =>
                 <LinkItem key={id} name={name} path={`/catalog?categoryId=${id}`} />,
         )}
-    </div>
+    </ul>
 );
 
 const FooterLinks = observer(() => {
