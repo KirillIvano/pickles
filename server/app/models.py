@@ -72,12 +72,20 @@ class ProductWeight(Model):
         Product,
         on_delete=CASCADE
     )
+    retail = BooleanField(
+        verbose_name='Розница',
+        default=False
+    )
     weight = CharField(
         verbose_name='Вес (объём)',
         max_length=64
     )
     price = IntegerField(
         verbose_name='Цена'
+    )
+    show = BooleanField(
+        verbose_name='Показывать',
+        default=True
     )
 
 

@@ -8,27 +8,33 @@ FIELDS = [
     ('name', 'name'),
     ('name_translit', 'verboseName'),
     ('category_id', 'categoryId'),
+    ('retail', 'retail')
 ]
 
 
 def preview_every(category_id: int = None) -> list:
     if category_id is not None:
-        query = Product.objects.filter(category_id=category_id)
+        query = Product.objects.filter(
+            category_id=category_id, productweight__show=True
+        )
     else:
         query = Product.objects.all()
     products_raw = db_interface.tools.select_from_query(query, FIELDS)
 
     products = []
     for product in products_raw:
-        product['image'] = db_interface.tools.select_single(
+        image = db_interface.tools.select_single(
             ProductImage, 'product__id', product['id'], [('image', 'image')]
         )
-        for weight in ProductWeight.objects.filter(product_id=product['id']):
-            product_weight = product.copy()
-            product_weight['id'] = weight.id
-            product_weight['weight'] = weight.weight
-            product_weight['price'] = weight.price
-            products.append(product_weight)
+        if image:
+            product['image'] = image
+            for weight in ProductWeight.objects.filter(product_id=product['id']):
+                product_weight = product.copy()
+                product_weight['id'] = weight.id
+                product_weight['weight'] = weight.weight
+                product_weight['price'] = weight.price
+                product_weight['retail'] = weight.retail
+                products.append(product_weight)
     return products
 
 
@@ -41,6 +47,7 @@ def _extract_product_preview(product_weight_instance: ProductWeight) -> dict:
     product['id'] = product_weight_instance.id
     product['weight'] = product_weight_instance.weight
     product['price'] = product_weight_instance.price
+    product['retail'] = product_weight_instance.retail
     return product
 
 
@@ -75,4 +82,5 @@ def full_by_id(product_weight_id: int) -> dict:
     product['id'] = product_weight_instance.id
     product['weight'] = product_weight_instance.weight
     product['price'] = product_weight_instance.price
+    product['retail'] = product_weight_instance.retail
     return product

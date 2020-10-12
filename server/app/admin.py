@@ -16,7 +16,7 @@ class ProductInfoInline(StackedInline):
     model = ProductInfo
 
 
-class ProductWeightInline(StackedInline):
+class ProductWeightInline(TabularInline):
     model = ProductWeight
 
 
@@ -58,6 +58,7 @@ class OrderAdmin(ModelAdmin):
     ]
     readonly_fields = ['hash', 'datetime']
     inlines = [ItemInline]
+
 
 @admin.register(OrderStatus)
 class OrderStatusAdmin(ModelAdmin):
