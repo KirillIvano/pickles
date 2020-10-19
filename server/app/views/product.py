@@ -8,8 +8,11 @@ def preview_every(request: HttpRequest) -> HttpResponse:
     # noinspection PyCallByClass,PyTypeChecker
     category_id = request.GET.get('categoryId', None)
     # noinspection PyCallByClass,PyTypeChecker
+    retail = request.GET.get('retail', None)
+    # noinspection PyCallByClass,PyTypeChecker
     product_ids_raw = request.GET.get('productIds', None)
 
+    retail = {'true': True, 'false': False}.get(retail)
     if product_ids_raw:
         product_ids_list = product_ids_raw.split(',')
         try:
@@ -24,7 +27,7 @@ def preview_every(request: HttpRequest) -> HttpResponse:
         except ValueError:
             return wrap_error('Не удалось преобразовать id')
 
-    products = db_interface.product.preview_every(category_id)
+    products = db_interface.product.preview_every(category_id, retail)
     return wrap_data({"products": products})
 
 

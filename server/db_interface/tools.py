@@ -1,6 +1,7 @@
 from django.db.models.fields.files import ImageFieldFile
 import pprint
 import datetime
+import copy
 pp = pprint.PrettyPrinter().pprint
 
 
@@ -10,19 +11,19 @@ def to_dict(instance, fields: list) -> dict:
         ('actual_key', 'newKey'),
     ]
     """
-    instance = instance.__dict__
+    instance_copy = copy.deepcopy(instance.__dict__)
 
     for key in ['_state', 'hash']:
-        if instance.get(key) is not None:
-            instance.pop(key)
+        if instance_copy.get(key) is not None:
+            instance_copy.pop(key)
 
     if len(fields) == 0:
-        return instance
+        return instance_copy
     else:
         new_instance = {}
 
         for field in fields:
-            attr = instance[field[0]]
+            attr = instance_copy[field[0]]
 
             if type(attr) is datetime.date:
                 attr = attr.__str__()

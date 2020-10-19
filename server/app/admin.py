@@ -18,6 +18,12 @@ class ProductInfoInline(StackedInline):
 
 class ProductWeightInline(TabularInline):
     model = ProductWeight
+    fields = [
+        'weight',
+        'price',
+        'retail',
+        'show'
+    ]
 
 
 class ProductImageInline(StackedInline):
@@ -31,7 +37,11 @@ class ItemInline(TabularInline):
 @admin.register(Product)
 class ProductAdmin(ModelAdmin):
     list_display = [
+        'id',
         'name',
+        'category',
+    ]
+    list_editable = [
         'category',
     ]
     list_display_links = ['name']
@@ -41,6 +51,7 @@ class ProductAdmin(ModelAdmin):
         'name_translit',
     ]
     readonly_fields = ['name_translit']
+    search_fields = ['name']
     inlines = [ProductWeightInline, ProductInfoInline, ProductImageInline]
 
 
@@ -64,6 +75,19 @@ class OrderAdmin(ModelAdmin):
 class OrderStatusAdmin(ModelAdmin):
     pass
 
-# @admin.register(OrderStatus)
-# class OrderStatusAdmin(ModelAdmin):
-#     pass
+
+@admin.register(ProductWeight)
+class ProductWeightAdmin(ModelAdmin):
+    list_display = [
+        'id',
+        'product',
+        'retail',
+        'weight',
+        'price'
+    ]
+    list_editable = [
+        'price',
+    ]
+    list_filter = [
+        'retail',
+    ]
