@@ -2,7 +2,8 @@ import React from 'react';
 import {observer} from 'mobx-react-lite';
 
 import {useCartStore} from '@/entities/cart/hooks';
-import {NAV_ITEMS} from '@/constants/nav';
+import {useUserStore} from '@/entities/user/hooks';
+import {UserRetailType} from '@/entities/user/types';
 
 import {NavItem} from './../';
 
@@ -10,14 +11,13 @@ import {NavItem} from './../';
 type CartNavItemProps = Omit<React.ComponentProps<typeof NavItem>, 'name' | 'path'>;
 
 const CartNavItem = (props: CartNavItemProps) => {
-    const {cartItems} = useCartStore();
-
-    const itemsCount = cartItems.length;
+    const {retailType} = useUserStore();
+    const {itemsCount} = useCartStore(retailType);
 
     return (
         <NavItem
             {...props}
-            path={NAV_ITEMS.cart.path}
+            path={retailType === UserRetailType.RETAIL ? '/cart/retail' : '/cart'}
             name={`Корзина( ${itemsCount} )`}
         />
     );

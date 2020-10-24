@@ -1,12 +1,22 @@
-import {observable, action, computed} from 'mobx';
+import {observable, action} from 'mobx';
 
 import {ProductPreviewType} from '@/entities/product/types';
 import {productStore} from '@/store/stores/products';
 import {getProductPreviews as fetchProducts} from '@/services/product';
 import {clientifyProductPreview} from '@/entities/product/transformers';
+import {UserRetailType} from '@/entities/user/types';
 
 
-class CatalogStore {
+interface ProductStoreInterface {
+    getProductPreviews: () => Map<number, ProductPreviewType>;
+    addProductPreviews: (products: ProductPreviewType[]) => void;
+}
+
+class CatalogStoreBase {
+    constructor(
+        private _productStore: ProductStoreInterface,
+    ) {}
+
     @observable.ref
     productIds: number[] = [];
     @observable
@@ -17,12 +27,11 @@ class CatalogStore {
     @observable
     productsGettingError: string | null = null;
 
-    @computed
-    get edgePrices() {
+    getEdgePrices = () => {
         const prices = this.productIds.map(
             productId => (
-                productStore
-                    .productPreviews
+                this._productStore
+                    .getProductPreviews()
                     .get(productId) as ProductPreviewType
             ).price,
         );
@@ -34,18 +43,20 @@ class CatalogStore {
     }
 
     @action
-    getProducts = async (categoryId?: number) => {
+    getProducts = async (categoryId?: number, retailType?: UserRetailType) => {
         this.productsGettingError = null;
         this.productsLoadingInProgress = true;
 
-        const productsRes = await fetchProducts(categoryId);
+        const productsRes = await fetchProducts(categoryId, retailType);
 
         if (productsRes.ok === false) {
             this.productsGettingError = productsRes.error;
         } else {
             const {products} = productsRes.data;
 
-            productStore.addProductPreviews(products.map(clientifyProductPreview));
+            this._productStore.addProductPreviews(
+                products.map(clientifyProductPreview),
+            );
             this.productIds = products.map(({id}) => id);
         }
 
@@ -53,5 +64,4 @@ class CatalogStore {
     }
 }
 
-
-export const catalogStore = new CatalogStore();
+export const CatalogStore = CatalogStoreBase.bind(null, productStore);

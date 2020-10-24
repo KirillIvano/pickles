@@ -5,6 +5,7 @@ import {observer} from 'mobx-react-lite';
 import {Button} from '@/uikit';
 import {useCartStore} from '@/entities/cart/hooks';
 import {useCartModalContext} from '@/hooks/useCartModalContext';
+import {useUserStore} from '@/entities/user/hooks';
 
 import styles from './styles.scss';
 import cartImg from './images/cart.svg';
@@ -21,7 +22,8 @@ const CartButton = observer(({
 
     className,
 }: CartButtonProps) => {
-    const cartStore = useCartStore();
+    const {retailType} = useUserStore();
+    const cartStore = useCartStore(retailType);
     const cartModalContext = useCartModalContext();
 
     const productFromCart = cartStore.getCartItemById(productId);

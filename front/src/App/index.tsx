@@ -1,8 +1,13 @@
 import React, {Suspense} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {Preloader} from '@/uikit';
-import {Footer, Header, CartModal} from '@/parts';
+import {
+    Footer,
+    Header,
+    CartModal,
+    RetailChangeModal,
+} from '@/parts';
 import {
     Catalog,
     Product,
@@ -10,7 +15,11 @@ import {
 } from '@/pages';
 
 import {useAppInit} from './hooks';
-import {withCartModalContext} from '@/containers/withCartModalContext';
+
+
+const LazyCart = React.lazy(() => /* webpackChunkName: "cart" */import('./../pages/Cart'));
+const LazyOrder = React.lazy(() => /* webpackChunkName: "order" */import('./../pages/Order'));
+const LazyDelivery = React.lazy(() => /* webpackChunkName: "delivery" */import('./../pages/Delivery'));
 
 const App = () => {
     useAppInit();
@@ -21,20 +30,23 @@ const App = () => {
 
             <Suspense fallback={Preloader}>
                 <Switch>
-                    <Route exact path="/" component={Catalog} />
+                    <Redirect exact from="/" to="/catalog" />
+                    <Route exact path="/catalog/:type" component={Catalog} />
                     <Route exact path="/catalog" component={Catalog} />
-                    <Route exact path="/delivery" component={React.lazy(() => /* webpackChunkName: "delivery" */import('./../pages/Delivery'))} />
-                    <Route exact path="/cart" component={React.lazy(() => /* webpackChunkName: "cart" */import('./../pages/Cart'))} />
+                    <Route exact path="/delivery" component={LazyDelivery} />
+                    <Route exact path="/cart/:type" component={LazyCart} />
+                    <Route exact path="/cart" component={LazyCart} />
                     <Route exact path="/product/:verbose/:productId" component={Product} />
-                    <Route exact path="/order/:orderId" component={React.lazy(() => /* webpackChunkName: "order" */import('./../pages/Order'))} />
+                    <Route exact path="/order/:orderId" component={LazyOrder} />
                     <Route exact path="/orderSuccess" component={OrderSuccess} />
                 </Switch>
             </Suspense>
 
+            <RetailChangeModal />
             <CartModal />
             <Footer />
         </>
     );
 };
 
-export default withCartModalContext(App);
+export default App;

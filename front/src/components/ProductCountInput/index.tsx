@@ -3,9 +3,11 @@ import {observer} from 'mobx-react-lite';
 import classnames from 'classnames';
 
 import {NumberInput} from '@/uikit';
-import {useCartItemById, useCartStore} from '@/entities/cart/hooks';
+import {useCartStore} from '@/entities/cart/hooks';
+import {useUserStore} from '@/entities/user/hooks';
 
 import styles from './styles.scss';
+
 
 type ProductCountInputProps = {
     productId: number;
@@ -18,8 +20,9 @@ const ProductCountInput = observer(({
     className,
     wrapperClass,
 }: ProductCountInputProps) => {
-    const cartItem = useCartItemById(productId);
-    const {updateProductCount} = useCartStore();
+    const {retailType} = useUserStore();
+    const cartStore = useCartStore(retailType);
+    const cartItem = cartStore.getCartItemById(productId);
 
     const [localValue, setLocalValue] = useState('');
 
@@ -37,13 +40,13 @@ const ProductCountInput = observer(({
 
     const handleInc = () => {
         setLocalValue(val => `${+val + 1}`);
-        updateProductCount(productId, +localValue + 1);
+        cartStore.updateProductCount(productId, +localValue + 1);
     };
     const handleDec = () => {
         if (+localValue <= 1) return;
 
         setLocalValue(`${+localValue - 1}`);
-        updateProductCount(productId, +localValue - 1);
+        cartStore.updateProductCount(productId, +localValue - 1);
     };
     const handleChange = (val: string) => {
         const numericValue = +val;
@@ -52,10 +55,10 @@ const ProductCountInput = observer(({
 
         if (numericValue === 0) {
             setLocalValue(val === '' ? '' : '1');
-            updateProductCount(productId, 1);
+            cartStore.updateProductCount(productId, 1);
         } else if (numericValue > 0) {
             setLocalValue(val);
-            updateProductCount(productId, numericValue);
+            cartStore.updateProductCount(productId, numericValue);
         }
     };
 

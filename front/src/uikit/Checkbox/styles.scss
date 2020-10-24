@@ -1,0 +1,15 @@
+@import "~vars/fonts";
+@import "~vars/colors";
+@import "~vars/pads";
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+
+    color: $black;
+    font-size: $font_xs;
+
+    .checkboxLabel {
+        margin-left: $pad3;
+    }
+}

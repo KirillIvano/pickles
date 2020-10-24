@@ -1,0 +1,44 @@
+@import "~vars/pads";
+@import "~vars/borders";
+@import "~vars/fonts";
+@import "~vars/colors";
+
+.retailChangeModalContent {
+    padding: $pad6;
+    color: $dark_gray;
+
+    .modalHeading {
+        color: $black;
+        font-size: $font_lg;
+        font-weight: normal;
+    }
+
+    .infoList {
+        margin-top: $pad3;
+
+        .infoListHeading {
+            font-size: $font_lg;
+            font-weight: normal;
+        }
+
+        .infoListItem {
+            margin-top: $pad1;
+
+            font-size: $font_xs;
+        }
+    }
+
+    .infoParagraph {
+        margin-top: $pad3;
+        font-size: $font_xs;
+    }
+
+    .showAgainCheckbox {
+        margin-top: $pad4;
+        font-size: $font_sm;
+    }
+}
+
+.continueBtn {
+    border-radius: 0 0 $small_radius $small_radius;
+}

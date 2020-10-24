@@ -6,16 +6,19 @@ import {useCartItemById, useCartStore} from '@/entities/cart/hooks';
 import {useProductPreviewById} from '@/entities/product/hooks';
 import {useFormattedPrice} from '@/hooks/useFormattedPrice';
 import {InteractionEventBase, useEnterPressHandler} from '@/hooks/useEnterPressHandler';
+import {UserRetailType} from '@/entities/user/types';
 
 import styles from './styles.scss';
 import ProductCountInput from '../ProductCountInput';
 import ProductImage from '../ProductImage';
 import trashCanImage from './images/can.svg';
 import Reference from '../Reference';
+import { useUserStore } from '@/entities/user/hooks';
 
 
 const RemoveButton = observer(({productId}: {productId: number}) => {
-    const {removeCartItem} = useCartStore();
+    const {retailType} = useUserStore();
+    const {removeCartItem} = useCartStore(retailType);
 
     return (
         <button
@@ -34,14 +37,20 @@ const RemoveButton = observer(({productId}: {productId: number}) => {
     );
 });
 
+
 type ProductCartCardProps = {
     productId: number;
     className?: string;
+    retailType?: UserRetailType;
 }
 
-const ProductCartCard = observer(({productId, className}: ProductCartCardProps) => {
+const ProductCartCard = observer(({
+    productId,
+    className,
+}: ProductCartCardProps) => {
+    const {retailType} = useUserStore();
     const product = useProductPreviewById(productId);
-    const cartItem = useCartItemById(productId);
+    const cartItem = useCartItemById(productId, retailType);
 
     const handleNumberInputWrapperClick = (e: React.MouseEvent<Element>) => e.stopPropagation();
     const handleNumberInputWrapperPress = useEnterPressHandler(

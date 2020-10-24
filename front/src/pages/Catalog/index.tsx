@@ -1,31 +1,42 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {useQuery} from '@/hooks/useQuery';
 import {CartShortcut} from '@/parts';
 import {useScrollTop} from '@/hooks/useScrollTop';
+import {useUserStore} from '@/entities/user/hooks';
 
 import {DesktopCatalog, MobileCatalog} from './components';
 import {withProductsFiltering} from './containers/withProductsFiltering';
-import {useCatalogStoreContext} from './hooks/useCatalogStoreContext';
+import {useCategoryId} from './hooks/useCategoryId';
+import {useCatalogRetailType} from './hooks/useCatalogRetailType';
+import {CatalogStoreContext} from './contexts/CatalogStore';
+import {CatalogStore} from './localStore';
 
 
 const Catalog = () => {
     useScrollTop();
 
-    const {getProducts} = useCatalogStoreContext();
-    const {categoryId} = useQuery<{categoryId: string}>();
+    const categoryId = useCategoryId();
+    const retailType = useCatalogRetailType();
+
+    const userStore = useUserStore();
+    const productsStore = useMemo(() => new CatalogStore(), []);
 
     useEffect(() => {
-        getProducts(+categoryId);
-    }, [categoryId, getProducts]);
+        retailType && userStore.setRetailType(retailType);
+    }, [retailType, userStore]);
+
+    useEffect(() => {
+        productsStore.getProducts(categoryId, retailType);
+    }, [categoryId, retailType, productsStore]);
 
     return (
-        <>
+        <CatalogStoreContext.Provider value={productsStore}>
             <CartShortcut />
+
             <DesktopCatalog />
             <MobileCatalog />
-        </>
+        </CatalogStoreContext.Provider>
     );
 };
 

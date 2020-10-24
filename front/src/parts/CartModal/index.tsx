@@ -8,6 +8,9 @@ import {useProductPreviewById} from '@/entities/product/hooks';
 import {useCartItemById} from '@/entities/cart/hooks';
 import {useCartModalContext} from '@/hooks/useCartModalContext';
 import {useDeviceType} from '@/contexts/DeviceContext';
+import {useUserStore} from '@/entities/user/hooks';
+import {NAV_ITEMS} from '@/constants/nav';
+import {UserRetailType} from '@/entities/user/types';
 
 import styles from './styles.scss';
 import {useCartModalStore} from './hooks';
@@ -16,13 +19,14 @@ import {useCartModalStore} from './hooks';
 export const CartModalContent = observer(({productId}: {productId: number}) => {
     const {productLoadingError, getProductPreview} = useCartModalStore();
     const {closeModal} = useCartModalContext();
+    const {retailType} = useUserStore();
 
     useEffect(() => {
         getProductPreview(productId);
     }, [productId, getProductPreview]);
 
     const productPreview = useProductPreviewById(productId);
-    const cartItem = useCartItemById(productId);
+    const cartItem = useCartItemById(productId, retailType);
 
     if (productLoadingError) return <div>Ошибка загрузки</div>;
     if (!productPreview || !cartItem) return <Preloader />;
@@ -65,7 +69,7 @@ export const CartModalContent = observer(({productId}: {productId: number}) => {
                         {'Продолжить покупки'}
                     </Button>
                     <ButtonLink
-                        to="/cart"
+                        to={(retailType === UserRetailType.RETAIL ? NAV_ITEMS.retailCart : NAV_ITEMS.cart).path}
                         handleInteract={closeModal}
                         className={styles.cartLink}
                     >

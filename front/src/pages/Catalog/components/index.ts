@@ -11,3 +11,4 @@ export {default as PriceSelect} from './PriceSelect';
 export {default as SortSelect} from './SortSelect';
 export {default as ProductsSearch} from './ProductsSearch';
 export {default as CategorySelect} from './CategorySelect';
+export {default as CatalogRetailType} from './CatalogRetailType';

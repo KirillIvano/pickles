@@ -1,8 +1,10 @@
 import {createContext, useContext} from 'react';
 
-import {cartPageStorage} from '../localStorage';
+import {UserRetailType} from '@/entities/user/types';
+
+import {CartPageStorage} from '../localStorage';
 
 
-export const CartPageStoreContext = createContext(cartPageStorage);
+export const CartPageStoreContext = createContext(new CartPageStorage(UserRetailType.WHOLE));
 
 export const useCartPageStore = () => useContext(CartPageStoreContext);

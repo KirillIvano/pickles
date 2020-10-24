@@ -1,30 +1,38 @@
 import {request} from '@/util/request';
 import {getRequestUrl} from '@/util/getRequestUrl';
+import {UserRetailType} from '@/entities/user/types';
+import {clearFalsy} from '@/util/whitelist';
 
 import {ProductPreviewDto, CategoryPreviewDto, ProductDto} from './dto';
 
 
-export const getProductPreviews = (categoryId?: number) =>
+export const getProductPreviews = (categoryId?: number, retailType=UserRetailType.WHOLE) =>
     request<{products: ProductPreviewDto[]}>(
         getRequestUrl(
             '/api/productPreview',
-            categoryId ? {categoryId} : undefined,
+            {
+                ...clearFalsy({categoryId}),
+                retail: retailType === UserRetailType.RETAIL,
+            },
         ),
     );
 
 export const getSingleProductPreview = (productId: number) =>
-    request<{product: ProductPreviewDto}>(
+    request<{products: ProductPreviewDto[]}>(
         getRequestUrl(
             '/api/productPreview',
             {productIds: productId},
         ),
     );
 
-export const getPreviewsByIds = (productIds: number[]) =>
+export const getPreviewsByIds = (productIds: number[], retailType=UserRetailType.WHOLE) =>
     request<{products: ProductPreviewDto[]}>(
         getRequestUrl(
             '/api/productPreview',
-            {productIds: productIds.join(',')},
+            {
+                productIds: productIds.join(','),
+                retail: retailType === UserRetailType.RETAIL,
+            },
         ),
     );
 

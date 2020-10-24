@@ -16,7 +16,8 @@ const PriceSelect = observer(() => {
     const device = useDeviceType();
     const inputsSize = device === 'mobile' ? 'lg' : 'sm';
 
-    const {edgePrices} = useCatalogStoreContext();
+    const {getEdgePrices} = useCatalogStoreContext();
+    const edgePrices = getEdgePrices();
     const {setMaxPrice, setMinPrice} = useProductFiltersContext();
 
     const [localMinPrice, setLocalMinPrice] = useState('');

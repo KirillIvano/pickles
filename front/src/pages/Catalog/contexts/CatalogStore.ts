@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-import {catalogStore} from '../localStore';
+import {CatalogStore} from '../localStore';
 
 
-export const CatalogStoreContext = createContext(catalogStore);
+export const CatalogStoreContext = createContext(new CatalogStore());

@@ -2,8 +2,9 @@ import {observer} from 'mobx-react-lite';
 import React from 'react';
 import classnames from 'classnames';
 
-import {FREE_DELIVERY_RATE, MIN_DELIVERY_PRICE} from '@/constants/delivery';
 import {ProgressBar} from '@/uikit';
+import {useUserStore} from '@/entities/user/hooks';
+import {getDeliveryConfigByRetail} from '@/util/getDeliveryConfigByRetail';
 
 import styles from './styles.scss';
 import {useCartPageStore} from '../../hooks/useCartPageStore';
@@ -40,19 +41,20 @@ type CartDeliveryProps = {
 }
 
 const CartDelivery = observer(({className}: CartDeliveryProps) => {
-    const {
-        cartTotalProductsPrice,
-    } = useCartPageStore();
+    const {cartTotalProductsPrice} = useCartPageStore();
+    const {retailType} = useUserStore();
 
-    const minProgress = cartTotalProductsPrice / MIN_DELIVERY_PRICE;
-    const freeDeliveryProgress = cartTotalProductsPrice / FREE_DELIVERY_RATE;
+    const {minFreeRate, minRate} = getDeliveryConfigByRetail(retailType);
+
+    const minProgress = cartTotalProductsPrice / minRate;
+    const freeDeliveryProgress = cartTotalProductsPrice / minFreeRate;
 
     return (
         <div className={classnames(className, styles.deliveryInfo)}>
             <CartDeliveryItem
                 progress={minProgress}
                 caption={minProgress < 1 ?
-                    `${MIN_DELIVERY_PRICE - cartTotalProductsPrice}₽ до возможности заказать` :
+                    `${minRate - cartTotalProductsPrice}₽ до возможности заказать` :
                     'Вы можете сделать заказ'
                 }
             />
@@ -60,7 +62,7 @@ const CartDelivery = observer(({className}: CartDeliveryProps) => {
             <CartDeliveryItem
                 progress={freeDeliveryProgress}
                 caption={freeDeliveryProgress < 1 ?
-                    `${FREE_DELIVERY_RATE - cartTotalProductsPrice}₽ до бесплатной доставки` :
+                    `${minFreeRate - cartTotalProductsPrice}₽ до бесплатной доставки` :
                     'Доставка бесплатна'
                 }
             />

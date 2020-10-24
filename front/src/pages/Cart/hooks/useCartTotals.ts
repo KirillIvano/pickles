@@ -1,14 +1,16 @@
 import {useCartStore} from '@/entities/cart/hooks';
 import {useProductStore} from '@/entities/product/hooks';
+import {useUserStore} from '@/entities/user/hooks';
 
 
 export const useCartTotals = (): {count: number; price: number} => {
-    const {cartItems} = useCartStore();
-    const {productPreviews} = useProductStore();
+    const {retailType} = useUserStore();
+    const {cartItems} = useCartStore(retailType);
+    const productsStore = useProductStore();
 
     const totals = cartItems.reduce(
         (acc, {productId, productsCount}) => {
-            const product = productPreviews.get(productId);
+            const product = productsStore.getProductPreviews().get(productId);
             if (!product) return acc;
 
             acc.count += productsCount;

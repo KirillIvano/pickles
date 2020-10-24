@@ -21,33 +21,34 @@
         color: $black;
     }
 
-    .deliveryContact {
-        position: relative;
-
-        display: block;
-        width: max-content;
+    .deliveryContactContainer {
         margin-top: $pad4;
 
-        font-size: $font_lg;
-        color: $firm;
-        text-decoration: none;
+        .deliveryContact {
+            display: inline-block;
+            position: relative;
 
-        cursor: pointer;
-    }
+            font-size: $font_lg;
+            color: $firm;
+            text-decoration: none;
 
-    .deliveryContact::after {
-        content: "";
-        position: absolute;
+            cursor: pointer;
+        }
 
-        height: 2px;
+        .deliveryContact::after {
+            content: "";
+            position: absolute;
 
-        bottom: -5px;
-        left: 50%;
-        right: 50%;
+            height: 2px;
 
-        background: $firm;
+            bottom: -5px;
+            left: 50%;
+            right: 50%;
 
-        transition: 0.3s ease-in-out;
+            background: $firm;
+
+            transition: 0.3s ease-in-out;
+        }
     }
 
     .deliveryContact:hover::after,

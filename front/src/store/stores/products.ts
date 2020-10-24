@@ -2,26 +2,35 @@ import {observable, action} from 'mobx';
 
 import {ProductPreviewType, ProductType} from '@/entities/product/types';
 
+
 class ProductStore {
-    @observable products: Map<number, ProductType> = new Map();
-    @observable productPreviews: Map<number, ProductPreviewType> = new Map();
+    @observable private _products: Map<number, ProductType> = new Map();
+    @observable private _productPreviews: Map<number, ProductPreviewType> = new Map();
+
+    getProductPreviews() {
+        return this._productPreviews;
+    }
+
+    getProducts() {
+        return this._products;
+    }
 
     getProductById(productId: number) {
-        return this.products.get(productId);
+        return this._products.get(productId);
     }
     getProductPreviewById(productId: number) {
-        return this.productPreviews.get(productId);
+        return this.getProductPreviews().get(productId);
     }
 
     @action
     addProduct(product: ProductType) {
-        this.products.set(product.id, product);
+        this._products.set(product.id, product);
     }
 
     @action
     addProductPreviews(previews: ProductPreviewType[]) {
         previews.forEach(
-            preview => this.productPreviews.set(preview.id, preview),
+            preview => this._productPreviews.set(preview.id, preview),
         );
     }
 }

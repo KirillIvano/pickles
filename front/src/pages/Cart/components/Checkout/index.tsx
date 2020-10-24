@@ -1,10 +1,10 @@
 import React from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {MIN_DELIVERY_PRICE} from '@/constants/delivery';
-
 import {CheckoutForm} from './../';
 import {useCartPageStore} from '../../hooks/useCartPageStore';
+import { useUserStore } from '@/entities/user/hooks';
+import { getDeliveryConfigByRetail } from '@/util/getDeliveryConfigByRetail';
 
 
 type CheckoutProps = {
@@ -13,10 +13,13 @@ type CheckoutProps = {
 
 const Checkout = observer(({className}: CheckoutProps) => {
     const {cartTotalProductsPrice} = useCartPageStore();
+    const {retailType} = useUserStore();
+
+    const {minRate} = getDeliveryConfigByRetail(retailType);
 
     return (
         <div className={className}>
-            {MIN_DELIVERY_PRICE <= cartTotalProductsPrice ?
+            {minRate <= cartTotalProductsPrice ?
                 <CheckoutForm /> :
                 <p>Вы пока что не можете оформить заказ</p>
             }

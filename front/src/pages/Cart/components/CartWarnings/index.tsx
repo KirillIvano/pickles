@@ -1,14 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 import {Col, Row} from 'react-flexbox-grid';
+import {observer} from 'mobx-react-lite';
 
-import {
-    DELIVERY_PRICE,
-    FREE_DELIVERY_RATE,
-    MIN_DELIVERY_PRICE,
-} from '@/constants/delivery';
+import {useUserStore} from '@/entities/user/hooks';
 
 import styles from './styles.scss';
+import {getRetailWarnings} from './util';
 
 
 type CartWarningProps = {
@@ -29,22 +27,21 @@ const CartWarning = ({
     </div>
 );
 
-const CartWarnings = () => {
+
+const CartWarnings = observer(() => {
+    const {retailType} = useUserStore();
+
     return (
         <Row>
-            <Col xs={12} md={4}>
-                <CartWarning>
-                    {
-                        `Минимальная сумма заказа ${MIN_DELIVERY_PRICE}₽` +
-                        `, доставка стоит ${DELIVERY_PRICE}₽`
-                    }
-                </CartWarning>
-            </Col>
-            <Col xs={12} md={4}>
-                <CartWarning>Доставка бесплатна при сумме более {FREE_DELIVERY_RATE}₽</CartWarning>
-            </Col>
+            {getRetailWarnings(retailType).map((warning, ind) => (
+                <Col key={ind} xs={12} md={4}>
+                    <CartWarning>
+                        {warning}
+                    </CartWarning>
+                </Col>
+            ))}
         </Row>
     );
-};
+});
 
 export default CartWarnings;

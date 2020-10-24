@@ -4,7 +4,7 @@ import {Row, Col} from 'react-flexbox-grid';
 import {renderForDesktopHOC} from '@/contexts/DeviceContext';
 import {Grid} from '@/uikit';
 
-import {DesktopSidePanel, ProductsList} from './../';
+import {DesktopSidePanel, ProductsList, CatalogRetailType} from './../';
 
 
 const DesktopCatalog = () =>  (
@@ -15,6 +15,7 @@ const DesktopCatalog = () =>  (
             </Col>
 
             <Col xs={8}>
+                <CatalogRetailType />
                 <ProductsList />
             </Col>
         </Row>

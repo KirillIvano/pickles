@@ -2,6 +2,8 @@ import {observable, action} from 'mobx';
 
 import {createOrder} from '@/services/order';
 import {cartStore} from '@/store/stores/cart';
+import { userStore } from '@/store/stores/user';
+import { UserRetailType } from '@/entities/user/types';
 
 
 export class CheckoutFormStore {
@@ -22,7 +24,7 @@ export class CheckoutFormStore {
         this.formSendingSuccess = false;
         this.orderInfo = {};
 
-        cartStore.clearCart();
+        cartStore.getCart(userStore.retailType).clearCart();
     }
 
     @action
@@ -36,12 +38,13 @@ export class CheckoutFormStore {
         this.formSendingError = null;
         this.formSendingInProgress = true;
 
-        const items = cartStore.cartItems.map(
+        const items = cartStore.getCart(userStore.retailType).cartItems.map(
             ({productId, productsCount}) =>
                 ({productId, quantity: productsCount}),
         );
         const orderRes = await createOrder({
             ...body,
+            retail: userStore.retailType === UserRetailType.RETAIL,
             items,
         });
 

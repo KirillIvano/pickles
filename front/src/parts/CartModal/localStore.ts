@@ -16,9 +16,10 @@ class CartModalStore {
         if (productGetRes.ok === false) {
             this.productLoadingError = productGetRes.error;
         } else {
-            const productPreview = productGetRes.data.product;
+            const productPreviews = productGetRes.data.products;
+
             productStore.addProductPreviews(
-                [clientifyProductPreview(productPreview)],
+                productPreviews.map(clientifyProductPreview),
             );
         }
     }

@@ -3,14 +3,10 @@
 @use "~vars/pads";
 
 .footer {
-    background: colors.$light_gray;
+    padding-top: pads.$pad10;
+    padding-bottom: pads.$pad10;
 
-    .footerContent {
-        display: flex;
-        flex-direction: column;
-        padding-top: pads.$pad10;
-        padding-bottom: pads.$pad10;
-    }
+    background: colors.$light_gray;
 }
 
 @media (min-width: screen.$screen_md) {

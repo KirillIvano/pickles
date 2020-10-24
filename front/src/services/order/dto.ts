@@ -7,6 +7,8 @@ export type OrderCreateDto = {
     address: string;
     comment: string;
 
+    retail: boolean;
+
     items: {productId: number; quantity: number}[];
 }
 

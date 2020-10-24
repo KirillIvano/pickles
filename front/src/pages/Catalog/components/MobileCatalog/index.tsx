@@ -1,15 +1,16 @@
 import React from 'react';
 
 import {renderForMobileHOC} from '@/contexts/DeviceContext';
-import {Grid, PageHeading} from '@/uikit';
+import {Grid} from '@/uikit';
 
 import {ProductsList, MobileFilterPanel} from '..';
+import CatalogRetailType from '../CatalogRetailType';
 
 
 const MobileCatalog = () => (
     <>
         <Grid>
-            <PageHeading content={'Каталог'} />
+            <CatalogRetailType />
         </Grid>
         <MobileFilterPanel />
         <Grid>

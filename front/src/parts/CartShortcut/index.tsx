@@ -5,13 +5,15 @@ import classnames from 'classnames';
 
 import {useCartStore} from '@/entities/cart/hooks';
 import {Reference} from '@/components';
+import {useUserStore} from '@/entities/user/hooks';
 
 import styles from './styles.scss';
 import cartSrc from './images/cart.svg';
 
 
 const CartShortcut = observer(() => {
-    const {itemsCount} = useCartStore();
+    const {retailType} = useUserStore();
+    const {itemsCount} = useCartStore(retailType);
 
     return createPortal(
         <Reference

@@ -4,20 +4,42 @@ import {cartStore} from '@/store/stores/cart';
 import {productStore} from '@/store/stores/products';
 import {getPreviewsByIds} from '@/services/product';
 import {clientifyProductPreview} from '@/entities/product/transformers';
-import {DELIVERY_PRICE, FREE_DELIVERY_RATE, MIN_DELIVERY_PRICE} from '@/constants/delivery';
+import {UserRetailType} from '@/entities/user/types';
+import {CartInterface} from '@/entities/cart/interfaces';
+import {ProductPreviewType} from '@/entities/product/types';
+import {getDeliveryConfigByRetail} from '@/util/getDeliveryConfigByRetail';
 
 
-class CartPageStorage {
+interface CartFacadeInterface {
+    getCart: (retailType: UserRetailType) => CartInterface;
+}
+
+interface ProductStoreInterface {
+    getProductPreviewById: (productId: number) => ProductPreviewType | undefined;
+    addProductPreviews: (products: ProductPreviewType[]) => void;
+}
+
+class CartPageStorageBase {
+    constructor(
+        private _cartStore: CartFacadeInterface,
+        private _productStore: ProductStoreInterface,
+        private _retailType: UserRetailType,
+    ) {}
+
     @observable
     cartGettingError: string | null;
     @observable
     cartGettingCompleted = false;
 
+    getCurrentCart(): CartInterface {
+        return this._cartStore.getCart(this._retailType);
+    }
+
     @computed
     get cartTotalProductsPrice(): number {
-        return cartStore.cartItems.reduce(
+        return this._cartStore.getCart(this._retailType).cartItems.reduce(
             (acc, {productId, productsCount}) => {
-                const productPreview = productStore.getProductPreviewById(productId);
+                const productPreview = this._productStore.getProductPreviewById(productId);
 
                 return acc + (productPreview ? productPreview.price * productsCount : 0);
             },
@@ -26,11 +48,21 @@ class CartPageStorage {
     }
 
     @computed
+    get cartTotalCount(): number {
+        return this.getCurrentCart().cartItems.reduce(
+            (acc, {productsCount}) => acc + productsCount,
+            0,
+        );
+    }
+
+    @computed
     get deliveryPrice(): number {
-        if (this.cartTotalProductsPrice < MIN_DELIVERY_PRICE) {
+        const {minRate, minFreeRate, deliveryPrice} = getDeliveryConfigByRetail(this._retailType);
+
+        if (this.cartTotalProductsPrice < minRate) {
             return 0;
-        } else if (this.cartTotalProductsPrice < FREE_DELIVERY_RATE) {
-            return DELIVERY_PRICE;
+        } else if (this.cartTotalProductsPrice < minFreeRate) {
+            return deliveryPrice;
         }
 
         return 0;
@@ -41,30 +73,22 @@ class CartPageStorage {
         return this.cartTotalProductsPrice + this.deliveryPrice;
     }
 
-    @computed
-    get cartTotalCount(): number {
-        return cartStore.cartItems.reduce(
-            (acc, {productsCount}) => acc + productsCount,
-            0,
-        );
-    }
-
     @action
     getCartItems = async () => {
-        const {cartItems} = cartStore;
+        const {cartItems} = this.getCurrentCart();
 
         this.cartGettingCompleted = false;
         this.cartGettingError = null;
 
         const productIds = cartItems.map(({productId}) => productId);
 
-        const productGetRes = await getPreviewsByIds(productIds);
+        const productGetRes = await getPreviewsByIds(productIds, this._retailType);
 
         if (productGetRes.ok === false) {
             this.cartGettingError = productGetRes.error;
         } else {
             const {products} = productGetRes.data;
-            productStore.addProductPreviews(
+            this._productStore.addProductPreviews(
                 products.map(clientifyProductPreview),
             );
         }
@@ -73,5 +97,4 @@ class CartPageStorage {
     }
 }
 
-
-export const cartPageStorage = new CartPageStorage();
+export const CartPageStorage = CartPageStorageBase.bind(null, cartStore, productStore);

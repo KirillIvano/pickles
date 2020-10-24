@@ -1,5 +1,6 @@
 @import "~vars/pads";
 @import "~vars/mixins";
+@import "~vars/colors";
 
 .productList {
     padding-bottom: 4rem;
@@ -8,5 +9,26 @@
 
     .productListItem {
         margin-top: $pad8;
+    }
+
+    .showMoreBtn {
+        padding: $pad3 $pad5;
+        margin-top: $pad7;
+
+        background-color: white;
+        transition: background-color 0.5s;
+        color: $firm;
+
+        border: 1px solid $firm;
+        border-radius: 4px;
+    }
+
+    .showMoreBtn:hover,
+    .showMoreBtn:focus {
+        background-color: $light_gray;
+    }
+
+    .showMoreBtn:active {
+        background-color: darken($light_gray, 10);
     }
 }
