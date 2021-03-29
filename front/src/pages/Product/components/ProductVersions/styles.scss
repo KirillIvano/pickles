@@ -1,0 +1,42 @@
+@import "~vars/fonts";
+@import "~vars/pads";
+@import "~vars/screen";
+
+.productVariant {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & + & {
+        margin-top: $pad4;
+    }
+
+    .productVariantInfo {
+        flex: 1 1 auto;
+        font-size: $font_sm;
+
+        .productVariantPrice {
+            font-size: $font_xl;
+            font-weight: bold;
+        }
+    }
+
+    .cartButtonWrapper {
+        flex: 0 0 140px;
+
+        display: flex;
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .productVariant {
+        .productVariantInfo {
+            font-size: $font_xs;
+
+            .productVariantPrice {
+                font-size: $font_sm;
+            }
+        }
+    }
+}

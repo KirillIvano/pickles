@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 
-export const useProductId = () => {
+export const useVariantId = () => {
     const {productId} = useParams<{productId: string}>();
 
     return +productId;

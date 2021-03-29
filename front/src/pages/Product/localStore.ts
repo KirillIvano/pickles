@@ -9,6 +9,8 @@ export class ProductPageStore {
     productGettingError: string | null = null;
     @observable
     productGettingInProgress = false;
+    @observable
+    currentProductId?: number;
 
     @action
     getProduct = async (productId: number) => {
@@ -21,6 +23,8 @@ export class ProductPageStore {
             this.productGettingError = productRes.error;
         } else {
             const {product} = productRes.data;
+
+            this.currentProductId = product.id;
             productStore.addProduct(clientifyProduct(product));
         }
 

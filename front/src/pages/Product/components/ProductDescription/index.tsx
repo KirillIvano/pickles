@@ -2,10 +2,10 @@ import React from 'react';
 import {observer} from 'mobx-react-lite';
 
 import {InfoTable} from '@/uikit';
-import {CartButton} from '@/components';
 import {useProductById} from '@/entities/product/hooks';
 
 import styles from './styles.scss';
+import { ProductVersions } from '..';
 
 
 type ProductDescriptionProps = {
@@ -16,8 +16,6 @@ const ProductDescription = observer(({
     productId,
 }: ProductDescriptionProps) => {
     const {
-        price,
-        weight,
         info,
         name,
     } = useProductById(productId);
@@ -25,14 +23,10 @@ const ProductDescription = observer(({
     return (
         <div className={styles.productDescription}>
             <h2 className={styles.productName}>{name}</h2>
-            <p className={styles.productPricing}>
-                <span className={styles.price}>{price}₽</span>
-                <span className={styles.volume}> за {weight}</span>
-            </p>
 
-            <CartButton
-                className={styles.productToCart}
+            <ProductVersions
                 productId={productId}
+                className={styles.productVariants}
             />
 
             <InfoTable

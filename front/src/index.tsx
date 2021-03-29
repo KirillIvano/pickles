@@ -7,6 +7,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import {DeviceContext} from '@/contexts/DeviceContext';
 import {getDeviceType} from '@/util/getDeviceType';
+import {Metrics} from '@/parts';
 
 import {WithScrollContext} from './contexts/ScrollContext';
 import {WithCartModalContext} from './containers/withCartModalContext';
@@ -25,6 +26,8 @@ render(
                 </WithCartModalContext>
             </WithScrollContext>
         </BrowserRouter>
+
+        <Metrics />
     </DeviceContext.Provider>,
     root,
 );

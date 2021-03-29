@@ -24,7 +24,6 @@ module.exports = {
             template: 'src/index.html',
             minify: false,
         }),
-        // new BundleAnalyzerPlugin()
     ],
     module: {
         rules: [

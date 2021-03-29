@@ -92,9 +92,8 @@ const prodConfigs = {
                 test: /\.css$/,
                 include: /flexboxgrid/,
                 use: [
+                    MiniCssExtractPlugin.loader,
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                    },                    {
                         loader: 'css-loader',
                         options: {
                             modules: true,
@@ -102,7 +101,7 @@ const prodConfigs = {
                     },
                 ],
             },
-             {
+            {
                 test: /\.(png|svg|jpg|ico|ttf)$/,
                 use: [
                     {

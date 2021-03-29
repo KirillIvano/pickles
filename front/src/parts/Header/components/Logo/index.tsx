@@ -7,7 +7,10 @@ import logoSrc from './images/logo.svg';
 
 
 const Logo = () => (
-    <Reference className={styles.logoContainer} to={'/'}>
+    <Reference
+        data-e2e="header__logo"
+        className={styles.logoContainer} to={'/'}
+    >
         <img
             className={styles.logo}
             src={logoSrc}

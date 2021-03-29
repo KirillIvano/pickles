@@ -15,7 +15,7 @@ const MobileHeader = () => {
 
     return (
         <>
-            <header className={styles.header}>
+            <header data-e2e="header" className={styles.header}>
                 <Grid className={classnames(styles.headerContent)}>
                     <Logo />
                     <Burger

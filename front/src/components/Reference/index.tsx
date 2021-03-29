@@ -13,18 +13,33 @@ const Reference = ({
     to,
     children,
     className,
+    onClick,
+    onKeyUp,
+
     ...props
 }: ReferenceProps) => {
     const history = useHistory();
 
-    const handleInteract = () => history.push(to);
+    const handleInteract = () => {
+        history.push(to);
+    };
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        onClick && onClick(e);
+        handleInteract();
+    };
+
+    const handleKeyUp = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+        onKeyUp && onKeyUp(e);
+        (e.key === 'Enter' || e.key === 'Space') && handleInteract();
+    };
 
     return (
         <a
             {...props}
             tabIndex={0}
-            onKeyUp={e => e.key === 'Enter' && handleInteract()}
-            onClick={handleInteract}
+            onKeyUp={handleKeyUp}
+            onClick={handleClick}
             className={classnames(
                 className,
                 styles.reference,

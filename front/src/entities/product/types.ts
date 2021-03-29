@@ -12,6 +12,13 @@ export type ProductDescriptionItemType = {
     value: string;
 }
 
+export type ProductWeightInfo = {
+    weight: string;
+    id: number;
+    price: number;
+    oldPrice?: number;
+}
+
 export type ProductType = {
     id: number;
     categoryId: number;
@@ -20,6 +27,6 @@ export type ProductType = {
     verboseName: string;
     images: string[];
     info: ProductDescriptionItemType[];
-    price: number;
-    weight: number;
+
+    productWeights: ProductWeightInfo[];
 }

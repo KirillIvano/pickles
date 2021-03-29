@@ -3,7 +3,7 @@ import {observer} from 'mobx-react-lite';
 import classnames from 'classnames';
 
 import {ButtonLink, Modal, Preloader, Button} from '@/uikit';
-import {ProductImage, ProductCountInput} from '@/components';
+import {ProductImage, ProductCountInput, Reference} from '@/components';
 import {useProductPreviewById} from '@/entities/product/hooks';
 import {useCartItemById} from '@/entities/cart/hooks';
 import {useCartModalContext} from '@/hooks/useCartModalContext';
@@ -35,6 +35,7 @@ export const CartModalContent = observer(({productId}: {productId: number}) => {
         image,
         name,
         price,
+        verboseName,
     } = productPreview;
     const {productsCount} = cartItem;
 
@@ -60,6 +61,14 @@ export const CartModalContent = observer(({productId}: {productId: number}) => {
                         <span className={styles.productPrice}>{price * productsCount} ₽</span>
                     </div>
                 </div>
+
+                <Reference
+                    to={`/product/${verboseName}/${productId}`}
+                    className={styles.productVariantsInformer}
+                    onClick={() => closeModal()}
+                >
+                    Информация о товаре и другие упаковки
+                </Reference>
 
                 <div className={styles.cartModalControls}>
                     <Button

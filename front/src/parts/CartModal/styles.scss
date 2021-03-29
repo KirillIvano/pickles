@@ -66,6 +66,14 @@ $modalBorderRadius: 5px;
             }
         }
 
+        .productVariantsInformer {
+            padding: $pad4;
+
+            font-size: $font_xs;
+            color: $firm;
+            text-decoration: underline;
+        }
+
         .cartModalControls {
             display: flex;
             width: 100%;
