@@ -12,14 +12,12 @@ def new(request: HttpRequest) -> HttpResponse:
         return wrap_response.wrap_error('Запрос не валидирован')
 
     body = json.loads(request.body)
-    items = []
-    for item in body.get('items'):
-        items.append(
-            {
-                "product_weight_id": item['productId'],
-                "quantity": item['quantity']
-            }
-        )
+    items = [
+        {
+            "product_weight_id": item['productId'],
+            "quantity": item['quantity']
+        } for item in body.get('items')
+    ]
 
     try:
         items = db_interface.item.add_product_objects(items)
@@ -32,7 +30,8 @@ def new(request: HttpRequest) -> HttpResponse:
         email=body.get("email"),
         address=body.get("address"),
         comment=body.get("comment"),
-        items=items
+        retail=body.get("retail"),
+        items=items,
     )
 
     return wrap_response.wrap_data(

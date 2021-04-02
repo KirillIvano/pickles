@@ -10,17 +10,19 @@ FIELDS_FOR_SINGLE_ORDER = [
     ('email', 'email'),
     ('address', 'address'),
     ('comment', 'comment'),
-    ('datetime', 'date')
+    ('datetime', 'date'),
+    ('retail', 'retail')
 ]
 
 
-def create(name, phone, email, address, comment, items):
+def create(name, phone, email, address, comment, items, retail):
     order = Order.objects.create(
         name=name,
         phone=phone,
         email=email,
         address=address,
         comment=comment,
+        retail=retail,
         status=OrderStatus.objects.get(code='initial')
     )
     db_interface.item.create_many(order, items)

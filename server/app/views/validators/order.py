@@ -15,6 +15,7 @@ def validate_order(request: HttpRequest) -> bool:
         "address",
         "comment",
         "items",
+        "retail"
     ]
     # try:
     for key in keys:

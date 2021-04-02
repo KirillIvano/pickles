@@ -65,7 +65,7 @@ class ProductWeight(Model):
         verbose_name_plural = 'Вес продуктов'
 
     def __str__(self):
-        return f'{self.weight}'
+        return f'{self.product.name} {self.weight}'
 
     id = AutoField(primary_key=True)
     product = ForeignKey(
@@ -80,6 +80,10 @@ class ProductWeight(Model):
         verbose_name='Вес (объём)',
         max_length=64
     )
+    old_price = IntegerField(
+        verbose_name='Старая цена (для скидок)',
+        null=True, blank=True
+    )
     price = IntegerField(
         verbose_name='Цена'
     )
@@ -87,6 +91,10 @@ class ProductWeight(Model):
         verbose_name='Показывать',
         default=True
     )
+    #
+    # @property
+    # def name(self):
+    #     return self.product.name
 
 
 class ProductImage(Model):
@@ -138,6 +146,27 @@ class ProductInfo(Model):
     )
     value = TextField(
         verbose_name='Текст'
+    )
+
+
+class DailyProductWeight(Model):
+    class Meta:
+        verbose_name = "Продукт дня"
+        verbose_name_plural = "Продукты дня"
+
+    def __str__(self):
+        return f"{self.date}"
+
+    date = DateField(verbose_name='Дата')
+    retail_product = ManyToManyField(
+        "ProductWeight",
+        related_name='retail_product',
+        verbose_name='Розничный продукт',
+    )
+    wholesale_product = ManyToManyField(
+        "ProductWeight",
+        related_name='wholesale_product',
+        verbose_name='Отповый продукт',
     )
 
 
@@ -214,6 +243,9 @@ class Order(Model):
         on_delete=SET_NULL,
         null=True,
     )
+    retail = BooleanField(
+        verbose_name='Розница'
+    )
 
 
 class Item(Model):
@@ -229,10 +261,11 @@ class Item(Model):
         ProductWeight,
         verbose_name='Продукт',
         on_delete=DO_NOTHING,
-        )
+    )
     order = ForeignKey(
         Order,
-        on_delete=CASCADE)
+        on_delete=CASCADE
+    )
     quantity = IntegerField(
         verbose_name='Количество'
     )

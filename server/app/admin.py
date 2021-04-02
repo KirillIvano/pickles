@@ -20,6 +20,7 @@ class ProductWeightInline(TabularInline):
     model = ProductWeight
     fields = [
         'weight',
+        'old_price',
         'price',
         'retail',
         'show'
@@ -71,6 +72,18 @@ class OrderAdmin(ModelAdmin):
     inlines = [ItemInline]
 
 
+@admin.register(DailyProductWeight)
+class DailyProductWeightAdmin(ModelAdmin):
+    fields = [
+        'date',
+        'wholesale_product',
+    ]
+    filter_horizontal = [
+        'retail_product',
+        'wholesale_product',
+    ]
+
+
 @admin.register(OrderStatus)
 class OrderStatusAdmin(ModelAdmin):
     pass
@@ -80,11 +93,16 @@ class OrderStatusAdmin(ModelAdmin):
 class ProductWeightAdmin(ModelAdmin):
     list_display = [
         'id',
-        'product',
-        'retail',
+        'product_name',
         'weight',
-        'price'
+        'price',
+        'retail',
     ]
+
+    def product_name(self, obj):
+        return obj.product.name
+    product_name.admin_order_field = 'product__name'
+
     list_editable = [
         'price',
     ]
