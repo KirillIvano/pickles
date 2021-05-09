@@ -1,3 +1,4 @@
+import smtplib
 from services.mail.core import *
 from helpers.generate_link import get_order_link
 
@@ -15,7 +16,11 @@ def handle_order_mailing(order, previous=None):
     }
     handler = order_status_mapping.get(order.status.code)
     if handler is not None:
-        handler(order)
+        try:
+            handler(order)
+        except smtplib.SMTPException as e:
+            print(f"Не смог отправить письмо: {e}")
+            pass
 
 
 def created(order):

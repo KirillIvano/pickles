@@ -124,11 +124,11 @@ def full_by_id(product_weight_id: int) -> dict:
     return product_copy
 
 
-def get_daily_wholesale() -> dict:
+def get_daily_wholesale() -> [dict, None]:
     try:
         product = DailyProductWeight.objects.get(
             date=datetime.now().date()
         ).wholesale_product.first()
         return list(_extract_product_previews([product]))[0]
     except DailyProductWeight.DoesNotExist:
-        return {}
+        return None
