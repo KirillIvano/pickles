@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {ProductImage} from '@/components';
 import {getImageUrl} from '@/util/getImageUrl';
 
 import {useFeaturingProductSafe} from '../../hooks/useFeaturingProductSafe';

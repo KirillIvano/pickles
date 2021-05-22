@@ -3,9 +3,9 @@ import React from 'react';
 import {renderForMobileHOC} from '@/contexts/DeviceContext';
 import {Grid} from '@/uikit';
 
-import {ProductsList, MobileFilterPanel} from '..';
+import {ProductsList, MobileFilterPanel, CatalogFeaturing} from '..';
 import CatalogRetailType from '../CatalogRetailType';
-
+import styles from './styles.scss';
 
 const MobileCatalog = () => (
     <>
@@ -14,6 +14,7 @@ const MobileCatalog = () => (
         </Grid>
         <MobileFilterPanel />
         <Grid>
+            <CatalogFeaturing className={styles.featuring} />
             <ProductsList />
         </Grid>
     </>

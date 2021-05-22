@@ -7,7 +7,7 @@ import {Featuring} from '@/parts';
 import {useCatalogRetailType} from '../../hooks/useCatalogRetailType';
 
 
-const CatalogFeaturing = observer(({className}: {className: string}) => {
+const CatalogFeaturing = observer(({className}: {className?: string}) => {
     const retailType = useCatalogRetailType();
 
     return retailType === UserRetailType.WHOLE ?
