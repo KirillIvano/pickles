@@ -4,6 +4,7 @@ import {Reference, CartButton} from '@/components';
 
 import styles from './styles.scss';
 import ProductImage from '../ProductImage';
+import ProductPreviewCardSkeleton from './Skeleton';
 
 
 type ProductPreviewCardProps = {
@@ -55,5 +56,7 @@ const ProductPreviewCard = ({
         />
     </div>
 );
+
+ProductPreviewCard.Skeleton = ProductPreviewCardSkeleton;
 
 export default ProductPreviewCard;

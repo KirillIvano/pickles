@@ -1,0 +1,17 @@
+@import "~vars/pads";
+
+.skeletonContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 120px 1fr;
+}
+
+.contentSkeleton {
+    margin-top: $pad4;
+
+    .contentSkeletonItem {
+        display: block;
+        max-width: 300px;
+        margin-top: $pad2
+    }
+}

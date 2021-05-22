@@ -5,7 +5,7 @@ import {InfoTable} from '@/uikit';
 import {useProductById} from '@/entities/product/hooks';
 
 import styles from './styles.scss';
-import { ProductVersions } from '..';
+import {ProductVersions} from '..';
 
 
 type ProductDescriptionProps = {

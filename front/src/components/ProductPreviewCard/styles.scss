@@ -64,6 +64,22 @@
     }
 }
 
+.productCardSkeleton {
+    .skeletonImage {
+        height: 0;
+        padding-bottom: 66.66%;
+    }
+
+    .skeletonContent {
+        padding: $pad2;
+
+        .skeletonName {
+            display: block;
+            margin-top: $pad2;
+        }
+    }
+}
+
 @media all and (max-width: $screen_md) {
     .productCard {
         .productCardContent {

@@ -15,7 +15,7 @@ const DesktopSortSelect = () => {
     const handleSelectChange = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) =>
             setSortingPolicy(getPolicyByName(e.currentTarget.value) || 'none'),
-        [],
+        [setSortingPolicy],
     );
 
     return (

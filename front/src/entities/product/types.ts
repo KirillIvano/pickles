@@ -2,6 +2,7 @@ export type ProductPreviewType = {
     id: number;
     image: string;
     name: string;
+    oldPrice?: number;
     price: number;
     weight: number;
     verboseName: string;

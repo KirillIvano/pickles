@@ -4,12 +4,13 @@ import {observer} from 'mobx-react-lite';
 
 import {ProductPreviewType} from '@/entities/product/types';
 import {ProductPreviewCard} from '@/components';
-import {Button, Preloader} from '@/uikit';
+import {Button} from '@/uikit';
 
 import styles from './styles.scss';
 import {useDigestedProducts} from '../../hooks/useDigestedProducts';
 import {useCatalogStoreContext} from '../../hooks/useCatalogStoreContext';
 import {useShownProductsCount} from './hooks/useShownProductsCount';
+import ProductsListSkeleton from './Skeleton';
 
 
 type ProductListItemProps = ProductPreviewType;
@@ -29,7 +30,7 @@ const ProductsList = observer(() => {
     const {showMore, shownCount} = useShownProductsCount();
 
     if (productsLoadingInProgress) {
-        return <Preloader />;
+        return <ProductsListSkeleton />;
     }
 
     if (products.length === 0) {
