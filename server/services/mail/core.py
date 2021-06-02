@@ -1,27 +1,20 @@
-import smtplib
-from email.mime.text import MIMEText
-
-from settings import MAIL_HOST, MAIL_LOGIN, MAIL_PASSWORD, MAIL_PORT
-from tasks import tasks
+from aglobell.settings import *
+from django.core.mail import send_mail as dj_send_mail
 
 
-server = smtplib.SMTP_SSL(MAIL_HOST, MAIL_PORT)
-server.login(MAIL_LOGIN, MAIL_PASSWORD)
-
-def generate_mail(address: str, text: str, title: str = '') -> MIMEText:
-    message = MIMEText(text)
-
-    message['From'] = MAIL_LOGIN
-    message['To'] = address
-    message['Subject'] = title
-
-    return message
+def get_receivers(order):
+    receivers = [order.email]
+    if DEBUG:
+        receivers += EMAIL_DEBUG_RECEIVERS
+    return receivers
 
 
-def send_mail(address: str, text: str):
-    msg = generate_mail(address, text)
-    server.sendmail(msg['From'], msg['To'], msg.as_string())
-
-@tasks.task
-def send_mail_async(address: str, text: str):
-    send_mail(address, text)
+def send_mail(receiver, subject, payload):
+    print('sending mail to', receiver)
+    dj_send_mail(
+        subject=subject,
+        from_email=EMAIL_HOST_USER,
+        recipient_list=receiver,
+        message=payload,
+        html_message=payload
+    )
