@@ -2,7 +2,7 @@ import {action, observable} from 'mobx';
 
 import {getFeaturingProduct} from '@/services/product';
 import {productStore} from '@/store/stores/products';
-import { ProductPreviewType } from '@/entities/product/types';
+import {ProductPreviewType} from '@/entities/product/types';
 
 
 export class FeaturingStore {
