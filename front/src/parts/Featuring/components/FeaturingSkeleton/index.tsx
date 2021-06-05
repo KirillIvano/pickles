@@ -5,7 +5,10 @@ import styles from './styles.scss';
 
 
 const FeaturingSkeleton = () => (
-    <div className={styles.skeletonContainer}>
+    <div
+        data-e2e="featuring__skeleton"
+        className={styles.skeletonContainer}
+    >
         <Skeleton
             circle={true}
             height={100}

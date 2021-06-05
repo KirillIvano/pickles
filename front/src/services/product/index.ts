@@ -49,6 +49,6 @@ export const getProduct = (productId: number) =>
     );
 
 export const getFeaturingProduct = () =>
-    request<{product: ProductPreviewDto | {id: undefined}}>(
+    request<{product: ProductPreviewDto | null}>(
         getRequestUrl('/api/productPreview/wholesale/daily'),
     );

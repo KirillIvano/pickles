@@ -13,3 +13,4 @@ export {default as ProductsSearch} from './ProductsSearch';
 export {default as CategorySelect} from './CategorySelect';
 export {default as CatalogRetailType} from './CatalogRetailType';
 export {default as CatalogFeaturing} from './CatalogFeaturing';
+export {default as CategoryDescription} from './CategoryDescription';

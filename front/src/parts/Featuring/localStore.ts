@@ -9,7 +9,7 @@ export class FeaturingStore {
     @observable
     public featuringLoadingInProgress = true;
     @observable
-    public featuringLoadingError?: string;
+    public featuringLoadingError?: string | null;
 
     @observable
     public featuringId?: number;
@@ -24,7 +24,7 @@ export class FeaturingStore {
             const {data} = res;
             const {product} = data;
 
-            if (typeof product.id === 'number') {
+            if (typeof product?.id === 'number') {
                 productStore.addProductPreviews([product as ProductPreviewType]);
                 this.featuringId = product.id;
             } else {
@@ -41,7 +41,7 @@ export class FeaturingStore {
 
     private resetGetFeaturing = () => {
         this.featuringLoadingInProgress = true;
-        this.featuringLoadingError = undefined;
+        this.featuringLoadingError = null;
     }
 }
 

@@ -9,6 +9,7 @@ import {
     ProductsList,
     CatalogRetailType,
     CatalogFeaturing,
+    CategoryDescription,
 } from './../';
 import styles from './styles.scss';
 
@@ -24,6 +25,7 @@ const DesktopCatalog = () =>  (
                 <CatalogRetailType />
                 <CatalogFeaturing className={styles.featuringSection} />
                 <ProductsList />
+                <CategoryDescription />
             </Col>
         </Row>
     </Grid>

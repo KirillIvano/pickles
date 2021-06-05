@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import {Row, Col} from 'react-flexbox-grid';
 import {observer} from 'mobx-react-lite';
 

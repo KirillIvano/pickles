@@ -17,7 +17,7 @@ const FeaturingContent = () => {
     } = useFeaturingProductSafe();
 
     return (
-        <div className={styles.featuring}>
+        <div data-e2e="featuring__content" className={styles.featuring}>
             <div className={styles.featuringImage__container}>
                 <img
                     src={getImageUrl(image)}
@@ -27,8 +27,16 @@ const FeaturingContent = () => {
 
             <div className={styles.featuringContent}>
                 <div className={styles.featuringContent__pricing}>
-                    {oldPrice && <span className={styles.featuringContent__oldPrice}>{oldPrice} ₽</span>}
-                    <span className={styles.featuringContent__price}>{' '}{price} ₽</span>
+                    {oldPrice && (
+                        <span className={styles.featuringContent__oldPrice}>
+                            {oldPrice} ₽
+                        </span>
+                    )}
+
+                    <span className={styles.featuringContent__price}>
+                        {' '}{price} ₽
+                    </span>
+
                     {' /'} {weight}
                 </div>
 
