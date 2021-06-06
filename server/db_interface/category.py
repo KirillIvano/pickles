@@ -5,6 +5,7 @@ FIELDS = [
     ('id', 'id'),
     ('name', 'name'),
     ('description', 'description'),
+    ('description_meta', 'descriptionMeta'),
     ('name_translit', 'verboseName')
 ]
 

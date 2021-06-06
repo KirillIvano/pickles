@@ -8,7 +8,7 @@ admin.site.site_header = "Админ-панель Aglobell"
 
 @admin.register(Category)
 class CategoryAdmin(ModelAdmin):
-    fields = ['name', 'name_translit', 'description']
+    fields = ['name', 'name_translit', 'description', 'description_meta']
     readonly_fields = ['name_translit']
 
 

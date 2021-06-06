@@ -27,8 +27,14 @@ class Category(Model):
         max_length=256
     )
     description = TextField(
-        verbose_name="Описание"
+        verbose_name="Описание",
+        null=True, blank=True
     )
+    description_meta = TextField(
+        verbose_name="Описание для meta description",
+        null=True, blank=True
+    )
+
     order = IntegerField(
         verbose_name='Порядок',
         default=0
@@ -174,7 +180,6 @@ class DailyProductWeight(Model):
 
 
 class OrderStatus(Model):
-
     class Meta:
         verbose_name = "Статус"
         verbose_name_plural = "Статусы"
@@ -252,7 +257,6 @@ class Order(Model):
 
 
 class Item(Model):
-
     class Meta:
         verbose_name = 'Позиция'
         verbose_name_plural = 'Позиции'
