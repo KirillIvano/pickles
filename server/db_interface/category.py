@@ -4,6 +4,7 @@ from app.models import Category
 FIELDS = [
     ('id', 'id'),
     ('name', 'name'),
+    ('description', 'description'),
     ('name_translit', 'verboseName')
 ]
 

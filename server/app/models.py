@@ -26,6 +26,9 @@ class Category(Model):
         verbose_name='Название в ссылке',
         max_length=256
     )
+    description = TextField(
+        verbose_name="Описание"
+    )
     order = IntegerField(
         verbose_name='Порядок',
         default=0

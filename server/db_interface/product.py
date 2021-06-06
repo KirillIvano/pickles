@@ -21,7 +21,7 @@ PRODUCT_WEIGHT_FIELDS = [
 
 def _extract_product_previews(
         product_weight_instances: List[ProductWeight]
-) -> List[Dict]:
+):
     for product_weight_instance in product_weight_instances:
         product_copy = db_interface.tools.to_dict(
             product_weight_instance.product, PRODUCT_FIELDS)
@@ -126,9 +126,10 @@ def full_by_id(product_weight_id: int) -> dict:
 
 def get_daily_wholesale() -> [dict, None]:
     try:
-        product = DailyProductWeight.objects.get(
+        pw = DailyProductWeight.objects.get(
             date=datetime.now().date()
         ).wholesale_product.first()
-        return list(_extract_product_previews([product]))[0]
+        pp = list(_extract_product_previews([pw]))
+        return pp[0] if len(pp) > 0 else None
     except DailyProductWeight.DoesNotExist:
         return None
