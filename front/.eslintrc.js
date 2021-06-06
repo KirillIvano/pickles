@@ -46,7 +46,8 @@ module.exports = {
         'handle-callback-err': ['error'],
         'max-len': ['warn', {code: 120}],
         'no-console': ['error'],
-
+        'object-curly-spacing': ["error", "never"],
+    
         'react/prop-types': 'off',
         'react/jsx-uses-react': 'error',
         'react/jsx-uses-vars': 'error',
@@ -67,6 +68,7 @@ module.exports = {
         'react/jsx-wrap-multilines': 'error',
 
         '@typescript-eslint/explicit-function-return-type': ['off'],
+        '@typescript-eslint/interface-name-prefix': ['off'],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn"    
     }

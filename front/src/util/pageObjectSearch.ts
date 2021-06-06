@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 export const po = (strings: TemplateStringsArray, ...e2eIds: string[]) => {
     let res = '';
     const stringsLen = strings.length;
@@ -7,5 +9,5 @@ export const po = (strings: TemplateStringsArray, ...e2eIds: string[]) => {
     }
     res += strings[stringsLen - 1];
 
-    return res;
+    return cy.get(res);
 };

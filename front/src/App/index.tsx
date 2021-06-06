@@ -15,6 +15,7 @@ import {
 } from '@/pages';
 
 import {useAppInit} from './hooks';
+import {Helmet} from 'react-helmet';
 
 
 const LazyCart = React.lazy(() => /* webpackChunkName: "cart" */import('./../pages/Cart'));
@@ -26,6 +27,17 @@ const App = () => {
 
     return (
         <>
+            <Helmet>
+                <meta
+                    name="description"
+                    content={
+                        'Cоленья, корейские салаты и морепродукты оптом и в розницу. ' +
+                        'Доставка по Москве и в другие города.'
+                    }
+                />
+                <title>Aglobell</title>
+            </Helmet>
+
             <Header />
 
             <Suspense fallback={Preloader}>

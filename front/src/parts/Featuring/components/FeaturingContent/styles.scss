@@ -1,0 +1,85 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/colors";
+@import "~vars/screen";
+
+.featuring {
+    display: flex;
+    overflow: hidden;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+
+    .featuringImage__container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        width: 200px;
+        overflow-x: hidden;
+
+        .featuringImage {
+            position: absolute;
+            height: 100%;
+        }
+    }
+
+    .featuringContent {
+        flex: 1 0 auto;
+        padding: $pad8;
+
+        .featuringContent__pricing {
+            font-size: $font_sm;
+
+            .featuringContent__oldPrice {
+                color: $dark_gray;
+                text-decoration: line-through;
+                font-size: $font_xl;
+            }
+
+            .featuringContent__price {
+                font-size: $font_xl;
+            }
+
+            .featuringContent__oldPrice + .featuringContent__price {
+                color: red;
+            }
+        }
+
+        .featuringContent__name {
+            margin-top: $pad6;
+            font-size: $font_sm;
+        }
+
+        .featuringContent__cartButton {
+            margin-top: $pad6;
+        }
+    }
+}
+
+@media all and (max-width: $screen_md) {
+    .featuring {
+        flex-direction: column;
+
+        .featuringImage__container {
+            width: 100%;
+
+            .featuringImage {
+                position: relative;
+                width: 100%;
+            }
+        }
+
+        .featuringContent {
+            padding: $pad4;
+
+            .featuringContent__name {
+                margin-top: $pad3;
+            }
+
+            .featuringContent__cartButton {
+                margin-top: $pad3;
+            }
+        }
+    }
+}

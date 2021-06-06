@@ -36,7 +36,6 @@ export const getPreviewsByIds = (productIds: number[], retailType=UserRetailType
         ),
     );
 
-
 export const getProductCategoriesPreviews = () =>
     request<{categories: CategoryPreviewDto[]}>(
         getRequestUrl(
@@ -47,4 +46,9 @@ export const getProductCategoriesPreviews = () =>
 export const getProduct = (productId: number) =>
     request<{product: ProductDto}>(
         getRequestUrl(`/api/product/${productId}`),
+    );
+
+export const getFeaturingProduct = () =>
+    request<{product: ProductPreviewDto | null}>(
+        getRequestUrl('/api/productPreview/wholesale/daily'),
     );

@@ -1,9 +1,8 @@
 .productImageWrapper {
     position: relative;
+    overflow: hidden;
 
     padding-bottom: 66.66%;
-
-    overflow: hidden;
 
     .productImage {
         position: absolute;

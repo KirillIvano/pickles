@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import {useScrolled} from '@/hooks/useScrolled';
+
 import styles from './styles.scss';
-import { useScrolled } from '@/hooks/useScrolled';
 
 
 type ProductImageWrapperProps = React.HTMLAttributes<HTMLDivElement>;

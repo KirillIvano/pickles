@@ -4,6 +4,7 @@ const TerserJs = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack');
 const webpack = require('webpack');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const commonConfig = require('./webpack.config');
 
@@ -26,6 +27,7 @@ const prodConfigs = {
         ],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'main.css',
             chunkFilename: '[id].[hash].css'
@@ -36,24 +38,23 @@ const prodConfigs = {
         new ImageminPlugin({
             cache: true,
             imageminOptions: {
-              plugins: [
-                ["gifsicle", { interlaced: true }],
-                ["jpegtran", { progressive: true }],
-                ["optipng", { optimizationLevel: 5 }],
-                [
-                  "svgo",
-                  {
-                    plugins: [
-                      {
-                        removeViewBox: false
-                      }
+                plugins: [
+                    ["gifsicle", { interlaced: true }],
+                    ["jpegtran", { progressive: true }],
+                    ["optipng", { optimizationLevel: 5 }],
+                    [
+                        "svgo",
+                        {
+                            plugins: [
+                                {
+                                    removeViewBox: false
+                                }
+                            ]
+                        }
                     ]
-                  }
                 ]
-              ]
             }
         }),
-        // new BundleAnalyzerPlugin(),
     ],
     module: {
         rules: [
@@ -68,11 +69,9 @@ const prodConfigs = {
                         },
                     },
                     {
-                        loader: 'typings-for-css-modules-loader',
+                        loader: 'css-loader',
                         options: {
                             modules: true,
-                            namedExport: true,
-                            exportOnlyLocals: true,
                         },
                     },
                     {
