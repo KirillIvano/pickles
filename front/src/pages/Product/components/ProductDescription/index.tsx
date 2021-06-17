@@ -22,7 +22,7 @@ const ProductDescription = observer(({
 
     return (
         <div className={styles.productDescription}>
-            <h2 className={styles.productName}>{name}</h2>
+            <h1 className={styles.productName}>{name}</h1>
 
             <ProductVersions
                 productId={productId}

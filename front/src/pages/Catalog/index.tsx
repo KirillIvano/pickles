@@ -15,18 +15,20 @@ import {CatalogStore} from './localStore';
 import {useCategoryById} from '@/entities/productCategory/hooks';
 
 
+const defaultMetaDescription =
+    'Аглобелл предлагает вкусные соленья, морепродукты, бочковые овощи оптом. ' +
+    'В каталоге Вы можете выбрать помидоры, огурцы, капусту, имбирь, корейскую морковь. Доставка по Москве, России.';
+
 const PageHead = observer(() => {
     const categoryId = useCategoryId();
     const category = useCategoryById(categoryId);
 
-    if (!category) return null;
-
-    const {name, description} = category;
+    const {descriptionMeta} = category || {};
 
     return (
         <Helmet>
-            <title>Каталог - {name}</title>
-            {description && <meta key="description" name="description" content={description} />}
+            <title>Соленья оптом: цены, купить в Москве | Соленые овощи маринованные, бочковые</title>
+            <meta key="description" name="description" content={descriptionMeta ?? defaultMetaDescription} />
         </Helmet>
     );
 });

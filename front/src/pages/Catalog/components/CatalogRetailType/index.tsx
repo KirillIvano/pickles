@@ -14,7 +14,7 @@ const CatalogRetailType = observer(() => {
     return (
         <div className={styles.retailHeaderContainer}>
             <h1 className={styles.retailHeader}>
-                {retailType === UserRetailType.RETAIL ? 'Розничный каталог' : 'Оптовый каталог'}
+                {retailType === UserRetailType.RETAIL ? 'Розничный каталог' : 'Соленья оптом'}
             </h1>
 
             <ButtonLink

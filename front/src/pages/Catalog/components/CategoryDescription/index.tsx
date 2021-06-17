@@ -19,12 +19,11 @@ const CatalogDescription = observer(({
 
     if (!category || !category.description) return null;
 
-    const {description, name} = category;
+    const {description} = category;
 
     return (
         <div className={cn(className, styles.categoryDesription)}>
-            <h1 className={styles.name}>{name}</h1>
-            <p className={styles.description}>{description}</p>
+            <div dangerouslySetInnerHTML={{__html: description}}></div>
         </div>
     );
 });
