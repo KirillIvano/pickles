@@ -1,0 +1,37 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+@import "~vars/colors";
+
+.uselessText {
+    margin-bottom: $pad6;
+    margin-top: $pad6;
+
+    ul {
+        margin-top: $pad2;
+        margin-bottom: $pad2;
+
+        color: $dark_gray;
+
+        li {
+            margin-top: $pad2;
+            margin-left: 20px;
+
+            list-style: disc;
+        }
+    }
+
+    h3 {
+        margin-top: $pad6;
+
+        font-size: $font_xl;
+        color: $black;
+    }
+
+    p {
+        margin-top: $pad2;
+
+        font-size: $font_sm;
+        color: $dark_gray;
+        line-height: 1.5;
+    }
+}

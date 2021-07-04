@@ -1,0 +1,19 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+
+.notFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: $pad16 $pad4;
+
+    .heading {
+        font-size: $font_xxl;
+        font-weight: normal;
+    }
+
+    .catalogLink {
+        margin-top: $pad4;
+    }
+}

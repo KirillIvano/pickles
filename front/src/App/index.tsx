@@ -12,6 +12,7 @@ import {
     Catalog,
     Product,
     OrderSuccess,
+    NotFound,
 } from '@/pages';
 
 import {useAppInit} from './hooks';
@@ -51,6 +52,7 @@ const App = () => {
                     <Route exact path="/product/:verbose/:productId" component={Product} />
                     <Route exact path="/order/:orderId" component={LazyOrder} />
                     <Route exact path="/orderSuccess" component={OrderSuccess} />
+                    <Route exact path="*" component={NotFound} />
                 </Switch>
             </Suspense>
 

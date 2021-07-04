@@ -5,6 +5,8 @@ import {Helmet} from 'react-helmet';
 import {CartShortcut} from '@/parts';
 import {useScrollTop} from '@/hooks/useScrollTop';
 import {useUserStore} from '@/entities/user/hooks';
+import {useCategoryById} from '@/entities/productCategory/hooks';
+import {UserRetailType} from '@/entities/user/types';
 
 import {DesktopCatalog, MobileCatalog} from './components';
 import {withProductsFiltering} from './containers/withProductsFiltering';
@@ -12,7 +14,6 @@ import {useCategoryId} from './hooks/useCategoryId';
 import {useCatalogRetailType} from './hooks/useCatalogRetailType';
 import {CatalogStoreContext} from './contexts/CatalogStore';
 import {CatalogStore} from './localStore';
-import {useCategoryById} from '@/entities/productCategory/hooks';
 
 
 const defaultMetaDescription =
@@ -22,12 +23,16 @@ const defaultMetaDescription =
 const PageHead = observer(() => {
     const categoryId = useCategoryId();
     const category = useCategoryById(categoryId);
+    const retail = useCatalogRetailType();
 
     const {descriptionMeta} = category || {};
 
     return (
         <Helmet>
-            <title>Соленья оптом: цены, купить в Москве | Соленые овощи маринованные, бочковые</title>
+            <title>
+                Соленья {retail === UserRetailType.RETAIL ? 'в розницу' : 'оптом'}:{' '}
+                цены, купить в Москве | Соленые овощи маринованные, бочковые
+            </title>
             <meta key="description" name="description" content={descriptionMeta ?? defaultMetaDescription} />
         </Helmet>
     );

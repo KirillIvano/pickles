@@ -11,6 +11,7 @@ import {
 } from '..';
 import CatalogRetailType from '../CatalogRetailType';
 import styles from './styles.scss';
+import CatalogUselessText from '../CatalogUselessText';
 
 const MobileCatalog = () => (
     <>
@@ -22,6 +23,7 @@ const MobileCatalog = () => (
             <CatalogFeaturing className={styles.featuring} />
             <ProductsList />
             <CategoryDescription />
+            <CatalogUselessText />
         </Grid>
     </>
 );

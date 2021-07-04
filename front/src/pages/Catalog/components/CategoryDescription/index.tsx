@@ -5,6 +5,7 @@ import {observer} from 'mobx-react-lite';
 
 import {useCategoryId} from '../../hooks/useCategoryId';
 import styles from './styles.scss';
+import CatalogUselessText from '../CatalogUselessText';
 
 
 export type CatalogDescriptionProps = {
@@ -17,6 +18,7 @@ const CatalogDescription = observer(({
     const categoryId = useCategoryId();
     const category = useCategoryById(categoryId);
 
+    if (!categoryId) return <CatalogUselessText />;
     if (!category || !category.description) return null;
 
     const {description} = category;

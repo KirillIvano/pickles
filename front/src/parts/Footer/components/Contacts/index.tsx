@@ -10,7 +10,7 @@ const ContactsItem = ({children}: {children: React.ReactNode}) =>
 
 const FooterContacts = () => (
     <div className={styles.footerContacts}>
-        <h1 className={styles.companyName}>Aglobell</h1>
+        <h2 className={styles.companyName}>Aglobell</h2>
 
         <ul className={styles.contactsContainer}>
             <ContactsItem>Розничный отдел - {MAIN_PHONE_NUMBER}</ContactsItem>
