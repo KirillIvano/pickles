@@ -30,7 +30,7 @@ const PageHead = observer(() => {
     return (
         <Helmet>
             <title>
-                Соленья {retail === UserRetailType.RETAIL ? 'в розницу' : 'оптом'}:{' '}
+                {category?.name ?? 'Соленья'} {retail === UserRetailType.RETAIL ? 'в розницу' : 'оптом'}:{' '}
                 цены, купить в Москве | Соленые овощи маринованные, бочковые
             </title>
             <meta key="description" name="description" content={descriptionMeta ?? defaultMetaDescription} />
