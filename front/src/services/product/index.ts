@@ -4,17 +4,24 @@ import {UserRetailType} from '@/entities/user/types';
 import {clearFalsy} from '@/util/whitelist';
 
 import {ProductPreviewDto, CategoryPreviewDto, ProductDto} from './dto';
+import {ProductGroup} from '@/entities/productGroup/types';
 
 
-export const getProductPreviews = (categoryId?: number, retailType=UserRetailType.WHOLE) =>
+export type GetProductPreviewsParams = {
+    categoryId: number | null;
+    groupId: number | null;
+    retailType?: UserRetailType;
+}
+export const getProductPreviews = ({categoryId, retailType, groupId}: GetProductPreviewsParams, signal?: AbortSignal) =>
     request<{products: ProductPreviewDto[]}>(
         getRequestUrl(
             '/api/productPreview',
             {
-                ...clearFalsy({categoryId}),
+                ...clearFalsy({categoryId, compilationId: groupId}),
                 retail: retailType === UserRetailType.RETAIL,
             },
         ),
+        {signal},
     );
 
 export const getSingleProductPreview = (productId: number) =>
@@ -40,6 +47,13 @@ export const getProductCategoriesPreviews = () =>
     request<{categories: CategoryPreviewDto[]}>(
         getRequestUrl(
             '/api/category/all',
+        ),
+    );
+
+export const getProductGroups = () =>
+    request<{compilations: ProductGroup[]}>(
+        getRequestUrl(
+            '/api/compilation/preview',
         ),
     );
 

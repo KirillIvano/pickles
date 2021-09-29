@@ -7,19 +7,19 @@ import {UserRetailType} from '@/entities/user/types';
 import {useCatalogRetailType} from './useCatalogRetailType';
 
 
-export const useCategoryIdUpdater = () => {
+export const useGroupIdUpdater = () => {
     const history = useHistory();
-    const search = useQuery<{categoryId?: string; groupId?: string}>();
+    const search = useQuery<{groupId?: string; categoryId?: string}>();
     const retailType = useCatalogRetailType();
 
     return (id?: number | null) => {
         const updatedSearch = {...search};
 
-        delete updatedSearch.groupId;
+        delete updatedSearch.categoryId;
         if (!id) {
-            delete updatedSearch.categoryId;
+            delete updatedSearch.groupId;
         } else {
-            updatedSearch.categoryId = `${id}`;
+            updatedSearch.groupId = `${id}`;
         }
 
         history.push({

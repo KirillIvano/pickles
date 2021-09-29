@@ -17,10 +17,14 @@ class CatalogStoreBase {
         private _productStore: ProductStoreInterface,
     ) {}
 
+    private _abortController: AbortController;
+
     @observable.ref
     productIds: number[] = [];
     @observable
     categoryId: number | null = null;
+    @observable
+    groupId: number | null = null;
 
     @observable
     productsLoadingInProgress = false;
@@ -43,12 +47,29 @@ class CatalogStoreBase {
     }
 
     @action
-    getProducts = async (categoryId?: number, retailType?: UserRetailType) => {
+    setCategory = (categoryId: number | null) => {
+        this.categoryId = categoryId;
+    }
+
+    @action
+    setGroup = (groupId: number | null) => {
+        this.groupId = groupId;
+    }
+
+    @action
+    getProducts = async (categoryId: number | null, retailType: UserRetailType | undefined, groupId: number | null) => {
+        if (this._abortController) this._abortController.abort();
         this.productsGettingError = null;
         this.productsLoadingInProgress = true;
 
-        const productsRes = await fetchProducts(categoryId, retailType);
+        const controller = new AbortController();
+        this._abortController = controller;
 
+        const {signal} = controller;
+
+        const productsRes = await fetchProducts({categoryId, retailType, groupId}, signal);
+
+        if (signal.aborted) return;
         if (productsRes.ok === false) {
             this.productsGettingError = productsRes.error;
         } else {

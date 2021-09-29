@@ -7,11 +7,10 @@ import {
     ProductsList,
     MobileFilterPanel,
     CatalogFeaturing,
-    CategoryDescription,
+    CatalogDescription,
 } from '..';
 import CatalogRetailType from '../CatalogRetailType';
 import styles from './styles.scss';
-import CatalogUselessText from '../CatalogUselessText';
 
 const MobileCatalog = () => (
     <>
@@ -22,8 +21,7 @@ const MobileCatalog = () => (
         <Grid>
             <CatalogFeaturing className={styles.featuring} />
             <ProductsList />
-            <CategoryDescription />
-            <CatalogUselessText />
+            <CatalogDescription />
         </Grid>
     </>
 );

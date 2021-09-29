@@ -1,4 +1,5 @@
 import React, {createContext, useContext} from 'react';
+import {} from 'redux';
 
 export const DeviceContext = createContext<'mobile' | 'desktop'>('desktop');
 

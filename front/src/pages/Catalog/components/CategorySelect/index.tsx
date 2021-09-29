@@ -19,7 +19,7 @@ const CategorySelect = observer(() => {
             <OptionsList.Option
                 isSelected={!categoryId}
                 caption={'Все'}
-                handleSelect={() => updateCategoryId()}
+                handleSelect={() => updateCategoryId(null)}
             />
 
             {categoriesPreviews.map(

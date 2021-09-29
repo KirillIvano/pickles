@@ -29,8 +29,8 @@ const prodConfigs = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'main.css',
-            chunkFilename: '[id].[hash].css'
+            filename: 'main.[contenthash].css',
+            chunkFilename: '[id].[contenthash].css'
         }),
         new webpack.DefinePlugin({
             __SERVER_ORIGIN__: '"https://aglobell.ru"',

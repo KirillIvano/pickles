@@ -5,7 +5,7 @@ import {Helmet} from 'react-helmet';
 import {CartShortcut} from '@/parts';
 import {useScrollTop} from '@/hooks/useScrollTop';
 import {useUserStore} from '@/entities/user/hooks';
-import {useCategoryById} from '@/entities/productCategory/hooks';
+import {useCategoriesStore} from '@/entities/productCategory/hooks';
 import {UserRetailType} from '@/entities/user/types';
 
 import {DesktopCatalog, MobileCatalog} from './components';
@@ -14,7 +14,7 @@ import {useCategoryId} from './hooks/useCategoryId';
 import {useCatalogRetailType} from './hooks/useCatalogRetailType';
 import {CatalogStoreContext} from './contexts/CatalogStore';
 import {CatalogStore} from './localStore';
-
+import {useGroupId} from './hooks/useGroupId';
 
 const defaultMetaDescription =
     'Аглобелл предлагает вкусные соленья, морепродукты, бочковые овощи оптом. ' +
@@ -22,8 +22,10 @@ const defaultMetaDescription =
 
 const PageHead = observer(() => {
     const categoryId = useCategoryId();
-    const category = useCategoryById(categoryId);
+    const categoryStore = useCategoriesStore();
     const retail = useCatalogRetailType();
+
+    const category = categoryId !== null ? categoryStore.categoriesPreviews[categoryId] : null;
 
     const {descriptionMeta} = category || {};
 
@@ -41,19 +43,27 @@ const PageHead = observer(() => {
 const Catalog = () => {
     useScrollTop();
 
-    const categoryId = useCategoryId();
+    const queryCategoryId = useCategoryId();
+    const queryGroupId = useGroupId();
+
     const retailType = useCatalogRetailType();
 
     const userStore = useUserStore();
     const catalogStore = useMemo(() => new CatalogStore(), []);
+    const {categoryId, groupId} = catalogStore;
 
     useEffect(() => {
         retailType && userStore.setRetailType(retailType);
     }, [retailType, userStore]);
 
     useEffect(() => {
-        catalogStore.getProducts(categoryId, retailType);
-    }, [categoryId, retailType, catalogStore]);
+        catalogStore.setCategory(queryCategoryId || null);
+        catalogStore.setGroup(queryGroupId || null);
+    }, [catalogStore, queryCategoryId, queryGroupId]);
+
+    useEffect(() => {
+        catalogStore.getProducts(categoryId, retailType, groupId);
+    }, [retailType, catalogStore, groupId, categoryId]);
 
     return (
         <>

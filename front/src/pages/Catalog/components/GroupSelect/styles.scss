@@ -1,0 +1,11 @@
+@import "~vars/pads";
+@import "~vars/fonts";
+
+.heading {
+    font-size: $font_lg;
+    margin-bottom: $pad2;
+}
+
+.groupSelect {
+    margin-top: $pad6;
+}

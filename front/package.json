@@ -14,6 +14,7 @@
     "prod": "webpack --config ./webpack.prod.js",
     "dev": "webpack-dev-server --port=5000 --config ./webpack.dev.js",
     "remote-dev": "webpack --watch --config ./webpack.dev.js",
+    "deploy": "scp -r ~/aglo/front/dist/* root@134.0.117.137:/var/www/aglobell",
     "e2e": "cypress open"
   },
   "devDependencies": {

@@ -14,6 +14,7 @@ import {
     CategorySelect,
 } from '..';
 import styles from './styles.scss';
+import GroupSelect from '../GroupSelect';
 
 
 enum MenuName {
@@ -61,6 +62,7 @@ const MobileFilterPanel = () => {
                 <Grid className={styles.menuContent}>
                     <PriceSelect />
                     <CategorySelect />
+                    <GroupSelect />
                 </Grid>
             </Menu>
 

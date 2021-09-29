@@ -17,10 +17,10 @@ const FooterContacts = () => (
             <ContactsItem>Оптовый отдел - {OPT_PHONE_NUMBER}</ContactsItem>
             <ContactsItem>{MAIN_EMAIL}</ContactsItem>
             <ContactsItem>
-                город Москва, 8 км МКАД, ТЦ &quot;ДРАЙВ&quot;, дом 3, корпус 1, павильон №12
+                город Москва, 8 км МКАД, ТЦ &quot;ДРАЙВ&quot;, дом 3, корпус 1, павильон № 21
             </ContactsItem>
             <ContactsItem>
-                город Москва, 8 км МКАД, ТЦ &quot;СКАРАБЕЙ&quot;, дом 3, корпус 1, павильон №199
+                город Москва, 8 км МКАД, ТЦ &quot;СКАРАБЕЙ&quot;, дом 3, корпус 2, павильон №199
             </ContactsItem>
             <ContactsItem>ИНН 772153835692. ОГРНИП 315774600002011</ContactsItem>
         </ul>

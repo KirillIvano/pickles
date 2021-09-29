@@ -7,6 +7,7 @@ import {
     DesktopSortSelect,
     CategorySelect,
 } from '..';
+import GroupSelect from '../GroupSelect';
 
 
 const DesktopSidePanel = () => {
@@ -15,6 +16,8 @@ const DesktopSidePanel = () => {
             <ProductsSearch />
             <DesktopSortSelect />
             <CategorySelect />
+            <GroupSelect />
+
             <div className={styles.priceSelectWrapper}>
                 <PriceSelect />
             </div>

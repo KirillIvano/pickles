@@ -14,6 +14,9 @@ class CategoriesStore {
     @observable
     categoriesGettingError: string | null = null;
 
+    getCategoryById(categoryId: number): CategoryPreview | null {
+        return this.categoriesPreviews.find(({id}) => id === categoryId) ?? null;
+    }
 
     @action
     async getCategories() {
